@@ -1,20 +1,13 @@
 package org.btarikool.javacourse;
 
-public class Peasant {
-    String name;
+public class Peasant extends Person{
 
     public Peasant(String name) {
-        this.name = name;
-    }
+        super(name);
+        this.title = "";
+        this.health = 0.9;
+        this.power = 2;
 
-    public String getTitleAndName() {
-        return name;
     }
-
-    public void doAction(String actionContent) {
-        Action action = new Action();
-        action.doAction(this.getTitleAndName(), actionContent);
-    }
-
 
 }

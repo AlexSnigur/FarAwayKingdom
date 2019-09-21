@@ -1,19 +1,15 @@
 package org.btarikool.javacourse;
 
-public class Knight {
-    String name;
+public class Knight extends Person{
+    private static final String TITLE = "Knight ";
+
 
     public Knight(String name) {
-        this.name = name;
-    }
+        super(name);
+        this.title = "Knight ";
+        this.health = 0.7;
+        this.power = 5;
 
-    public String getTitleAndName() {
-        return "Knight " + name;
-    }
-
-    public void doAction(String actionContent) {
-        Action action = new Action();
-        action.doAction(this.getTitleAndName(), actionContent);
     }
 
 }

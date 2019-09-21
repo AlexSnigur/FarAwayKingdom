@@ -1,19 +1,14 @@
 package org.btarikool.javacourse;
 
-public class Lord {
-    String name;
+public class Lord extends Person{
+    private static final String TITLE = "Lord ";
 
     public Lord(String name) {
-        this.name = name;
-    }
+        super(name);
+        this.title = "Lord ";
+        this.health = 0.7;
+        this.power = 5;
 
-    public String getTitleAndName() {
-        return "Lord " + name;
-    }
-
-    public void doAction(String actionContent) {
-        Action action = new Action();
-        action.doAction(this.getTitleAndName(), actionContent);
     }
 
 }
