@@ -2,9 +2,11 @@ package org.btarikool.javacourse;
 
 public class Peasant extends Person{
 
+    public static final String TITLE = "";
+
     public Peasant(String name) {
         super(name);
-        this.title = "";
+        this.title = TITLE;
         this.health = 0.9;
         this.power = 2;
 

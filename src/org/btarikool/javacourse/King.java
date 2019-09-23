@@ -8,7 +8,7 @@ public class King extends Person{
 
     public King(String name) {
         super(name);
-        this.title = "King ";
+        this.title = TITLE;
         this.health = 0.5;
         this.power = 10;
 

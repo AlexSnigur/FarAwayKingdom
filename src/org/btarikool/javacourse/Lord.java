@@ -5,7 +5,7 @@ public class Lord extends Person{
 
     public Lord(String name) {
         super(name);
-        this.title = "Lord ";
+        this.title =  TITLE;
         this.health = 0.7;
         this.power = 5;
 

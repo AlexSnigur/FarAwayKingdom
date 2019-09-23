@@ -6,6 +6,8 @@ public abstract class Person {
     String title;
     double health;
     int power;
+    private static final String TITLE = "";
+
 
 
     public Person() {}
@@ -14,22 +16,25 @@ public abstract class Person {
         this.name = name;
     }
 
-    public String getTitleAndName() {
+    public String getTitleAndName()  {
         return title + name;
     }
 
-    public void doAction(String actionContent, boolean isUpwards) {
+    public void doAction(String actionContent, boolean isUpwards) throws Exception {
         Action action = new Action();
         if (isUpwards) {
-            health *= 1.33;
+            health *=  1.33;
             power--;
         } else {
             health /= 1.164993;
             power++;
         }
+        if (health < 0.2) {
+            throw new Exception("Game over!");
+        }
         action.doAction(this.getTitleAndName(), actionContent);
     }
-    public void doAction(String actionContent) {
+    public void doAction(String actionContent) throws Exception{
         doAction(actionContent, false);
     }
 
