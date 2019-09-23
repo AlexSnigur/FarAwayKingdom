@@ -13,12 +13,12 @@ public class Kingdom {
         Knight knight1 = new Knight(args[3]);
         Knight knight2 = new Knight(args[4]);
 
-        knight1.perform("I offer you homage, " + lord1.getName());
-        knight2.perform("I will protect you, " + lord2.getName());
-        lord1.perform("I obey you, " + king.getName());
-        lord2.perform("I will protect you," + king.getName());
-        king.perform("I give you land, " + lord1.getName());
-        king.perform("I give you two peasants, " + lord2.getName());
+        knight1.perform("I offer you homage, Lord " + lord1.getName());
+        knight2.perform("I will protect you, Lord " + lord2.getName());
+        lord1.perform("I obey you, King " + king.getName());
+        lord2.perform("I will protect you, King " + king.getName());
+        king.perform("I give you land, Lord " + lord1.getName());
+        king.perform("I give you two peasants, Lord " + lord2.getName());
         lord2.setPeasants(2);
         System.out.println("Count of Lord 2's peasants: " + lord2.getPeasantsCount());
     }
