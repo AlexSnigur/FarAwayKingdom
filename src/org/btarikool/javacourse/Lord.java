@@ -8,6 +8,8 @@ public class Lord extends Person{
         this.title = "Lord ";
         this.health = 0.7;
         this.power = 5;
+        this.game_over();
+
 
     }
 

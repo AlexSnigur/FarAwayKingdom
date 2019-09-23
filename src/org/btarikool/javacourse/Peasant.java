@@ -7,6 +7,7 @@ public class Peasant extends Person{
         this.title = "";
         this.health = 0.9;
         this.power = 2;
+        this.game_over();
 
     }
 

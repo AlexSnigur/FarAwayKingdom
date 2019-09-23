@@ -41,6 +41,10 @@ public abstract class Person {
         System.out.println("Hello! I am the " + getTitleAndName() );
 
     }
+    public void game_over(){
+        if (health <0.2);
+        System.out.println("Game over");
+    }
 
 
 }

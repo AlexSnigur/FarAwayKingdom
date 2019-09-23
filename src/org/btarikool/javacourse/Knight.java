@@ -9,6 +9,8 @@ public class Knight extends Person{
         this.title = "Knight ";
         this.health = 0.7;
         this.power = 5;
+        this.game_over();
+
 
     }
 
