@@ -15,7 +15,7 @@ public class Kingdom {
         Lord lord2 = new Lord(args[1]);
         King king = new King(args[0]);
 
-        knight1.doAction("my hommage to " + lord1.getTitleAndName());
+        knight1.doAction("my hello to " + lord1.getTitleAndName());
         knight2.doAction("my military service to " + lord2.getTitleAndName());
         lord1.doAction("my loyalty to " + king.getTitleAndName());
         lord2.doAction("my military aid to " + king.getTitleAndName());
