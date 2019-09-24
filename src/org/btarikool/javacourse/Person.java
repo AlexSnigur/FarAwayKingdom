@@ -6,7 +6,6 @@ public abstract class Person {
     String title;
     double health;
     int power;
-    private static final String TITLE = "";
     private static final double HEALTH_CHANGE_COEFFICIENT = 0.98;
     public static int runCounter = 0;
     private double healthUpCoeff = 1.33;
