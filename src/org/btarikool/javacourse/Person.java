@@ -49,11 +49,6 @@ public abstract class Person {
     public void report() {
         System.out.println(getTitleAndName() + "'s health: " + health + "; power: " + power);
     }
-
-    public void sayHello(String name) {
-        System.out.println("Hello! I am the " + getTitleAndName() );
-
-    }
-
-
 }
+
+
