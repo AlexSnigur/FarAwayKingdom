@@ -1,22 +1,32 @@
 package org.btarikool.javacourse;
 
-public class Lord extends Human{
+public class Lord extends Human {
+    private final static String TITLE = "Lord ";
+    private final double HEALTH = 0.7d;
+    private final int AUTHORITY = 5;
+    private final int STATUS_LEVEL = 2;
 
-    public Lord(String name){
+    public Lord(String name) {
         super(name);
-        System.out.println("Я - лорд, меня зовут " + getName() + "!");
+        this.healPoints = HEALTH;
+        this.title = TITLE;
+        this.authorityPoints = AUTHORITY;
+        this.statusLevel = STATUS_LEVEL;
+        System.out.println(this.toString());
     }
 
     public void reverence(Human person) {
-        System.out.println("Лорд " + getName() + " почитает " + person);
+        System.out.println(TITLE + getName() + " gives homage " + person.title + " " + person.getName());
+        this.changeHpAndAuthorityLevel(person);
     }
 
     public void defend(Human person) {
-        System.out.println("Лорд " + getName() + " защищает " + person);
+        System.out.println(TITLE + getName() + " defends " + person.title + " " + person.getName());
+        this.changeHpAndAuthorityLevel(person);
     }
 
-    @Override
-    public String toString() {
-        return "лорд " + getName() + ".";
+    public void presents(Human person, String present) {
+        System.out.println(TITLE + getName() + " gives " + present + " " + person.title + " " + person.getName());
+        this.changeHpAndAuthorityLevel(person);
     }
 }

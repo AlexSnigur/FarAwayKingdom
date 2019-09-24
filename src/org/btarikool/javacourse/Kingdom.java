@@ -1,29 +1,67 @@
 package org.btarikool.javacourse;
 
 // Program arguments:
-// "Роберт Баратеон" "Эддард Старк" "Петир Бейлиш" "Родрик Кассель" "Джорах Мормонт"
+// "Robert Baratheon" "Eddard Stark" "Petyr Baelish" "Rodrik Cassel" "Jorah Mormont"
 
 public class Kingdom {
 
-    public static void main(String[] args) {
-        System.out.println("1) Создаются Король, два Лорда и два Рыцаря" + "\n");
+    public static void main(String[] args) throws Exception {
+
+        //Creating objects
         King king = new King(args[0]);
         Lord lordFirst = new Lord(args[1]);
         Lord lordSecond = new Lord(args[2]);
         Knight knightFirst = new Knight(args[3]);
         Knight knightSecond = new Knight(args[4]);
-        System.out.println("\n" + "2) Рыцарь 1 должен принести оммаж Лорду 1" + "\n");
-        knightFirst.oath(lordFirst);
-        System.out.println("\n" + "3) Рыцарь 2 должен защитить Лорда 2" + "\n");
-        knightSecond.defend(lordSecond);
-        System.out.println("\n" + "4) Лорд 1 почитает Короля" + "\n");
-        lordFirst.reverence(king);
-        System.out.println("\n" + "5) Лорд 2 защищает короля" + "\n");
-        lordSecond.defend(king);
-        System.out.println("\n" + "6) Король дает Лорду 1 землю" + "\n");
-        king.present(lordFirst, "землю");
-        System.out.println("\n" + "7) Король дает Лорду 2 двух крестьян" + "\n");
-        king.present(lordSecond, "двух крестьян");
+        System.out.println();
+
+        //Iterate actions 1st time
+        iterationOfActions(knightFirst, knightSecond, lordFirst, lordSecond, king);
+        System.out.println();
+
+        //Heroes stats after 1st iteration
+        Human.printListOfHumans();
+        System.out.println();
+
+        //HealPoint's index change by coefficient (insert ur value)
+        Human.changeHpIndex(0.4);
+
+        //Iteration using for cycle
+        while (king.authorityPoints < 20) {
+            iterationOfActions(knightFirst, knightSecond, lordFirst, lordSecond, king);
+            System.out.println();
+        }
+
+        //Heroes stats after doing some iterations
+        System.out.println();
+        Human.printListOfHumans();
     }
 
+    public static void iterationOfActions(Knight knightFirst, Knight knightSecond, Lord lordFirst, Lord lordSecond, King king) throws Exception {
+        knightFirst.oath(lordFirst);
+        knightSecond.defend(lordSecond);
+        lordFirst.reverence(king);
+        lordSecond.defend(king);
+        king.presents(lordFirst, "the lends");
+        king.presentsPeasant(lordSecond);
+        king.presentsPeasant(lordSecond);
+        lordFirst.presents(knightFirst, "1 food");
+        lordSecond.presents(knightSecond, "protection");
+        knightFirst.bringsNewLand(king, "new lend");
+        knightSecond.bringsNewLand(king, "new lend");
+        Human.getPeasantsList().get(1).presents(lordFirst, "food");
+        Human.getPeasantsList().get(0).presents(lordSecond, "food");
+
+        //Controls if any Human or Peasant object has HealPoint level under 0.2.
+        //If any of this conditions equals true, program ends throwing Game Over exception.
+        for (Human x : Human.getHumansList()) {
+            for (Peasant y : Human.getPeasantsList()){
+                if (x.healPoints < 0.2 || y.healPoints < 0.2) {
+                    System.out.println("\nGAME IS OVER! " + (x.healPoints>y.healPoints?y.getName():x.getName()) + "'s HealPoints level is under 0.2.");
+                    Exception exception = new Exception("Game Over, one of the humans is dead.");
+                    throw exception;
+                }
+            }
+        }
+    }
 }

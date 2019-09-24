@@ -1,20 +1,26 @@
 package org.btarikool.javacourse;
 
-public class Peasant {
-    String name;
+import java.util.ArrayList;
 
-    public Peasant(String name) {
-        this.name = name;
+public class Peasant extends Human{
+    private final static String TITLE = "Крестьянин";
+    private String name;
+    private final double HEALTH = 0.9d;
+    private final int AUTHORITY = 2;
+    private final int STATUS_LEVEL = 3;
+
+
+    public Peasant(String name){
+        super(name);
+        this.healPoints = HEALTH;
+        this.title = TITLE;
+        this.authorityPoints = AUTHORITY;
+        this.statusLevel = STATUS_LEVEL;
+
     }
 
-    public String getTitleAndName() {
-        return name;
+    public void presents(Human person, String present) {
+        System.out.println(getName() + " даёт " + present + " " + person.title + " " + person.getName());
+        this.changeHpAndAuthorityLevel(person);
     }
-
-    public void doAction(String actionContent) {
-        Action action = new Action();
-        action.doAction(this.getTitleAndName(), actionContent);
-    }
-
-
 }
