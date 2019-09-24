@@ -9,12 +9,15 @@ public abstract class Human {
     public String title;
     public int authorityPoints;
     public int statusLevel;
+    public int rank;
     private static double healthIndexDown = 1.164993;
     private static double healthIndexUp = 1.3;
     private static List<Human> humansList = new ArrayList<>();
     private int indexByHumansList;
     private static List<Peasant> peasantsList = new ArrayList<>();
     private int indexByPeasantsList;
+    private static List<Human> deadList = new ArrayList<>();
+
 
     //Default constructor
     public Human() {
@@ -50,6 +53,11 @@ public abstract class Human {
         return peasantsList;
     }
 
+    //Get List of Dead Humans
+    public static List<Human> getDeadList() {
+        return deadList;
+    }
+
     //Get Peasant's or Human's ID from their own list
     public int getIndexByList() {
         if (this instanceof Peasant) return this.indexByPeasantsList;
@@ -62,9 +70,14 @@ public abstract class Human {
         healthIndexUp *= a;
     }
 
-    //Sout list of Humans
+    //Print list of Humans
     public static void printListOfHumans() {
         for (Human human : humansList) System.out.println(human);
+    }
+
+    //Print list of dead humans
+    public static void printListOfDead() {
+        for (Human deadHuman : deadList) System.out.println(deadHuman);
     }
 
     public void changeHpAndAuthorityLevel(Human person){
