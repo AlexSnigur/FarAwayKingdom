@@ -31,7 +31,7 @@ public abstract class Human {
         if (this instanceof Peasant) {
             this.indexByPeasantsList = peasantsList.size();
             peasantsList.add((Peasant)this);
-            this.name = name + "'s peasant with Own ID: " + getIndexByList();
+            this.name = name + " with Own ID: " + getIndexByList();
         // If object is is instance of class Human
         } else {
             this.indexByHumansList = humansList.size();
@@ -70,6 +70,11 @@ public abstract class Human {
     //Print list of Humans
     public static void printListOfHumans() {
         for (Human human : humansList) System.out.println(human);
+    }
+
+    //Print list of Peasants
+    public static void printListOfPeasants() {
+        for (Peasant peasant : peasantsList) System.out.println(peasant);
     }
 
     //Print list of dead humans

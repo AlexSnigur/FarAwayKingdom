@@ -17,17 +17,17 @@ public class Lord extends Human {
     }
 
     public void reverence(Human person) {
-        System.out.println(TITLE + getName() + " gives homage " + person.title + " " + person.getName());
+        System.out.println(this.TITLE + getName() + " gives homage " + person.title + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 
     public void defend(Human person) {
-        System.out.println(TITLE + getName() + " defends " + person.title + " " + person.getName());
+        System.out.println(this.TITLE + getName() + " defends " + person.title + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 
     public void presents(Human person, String present) {
-        System.out.println(TITLE + getName() + " gives " + present + " " + person.title + " " + person.getName());
+        System.out.println(this.TITLE + getName() + " gives " + present + " " + person.title + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 }

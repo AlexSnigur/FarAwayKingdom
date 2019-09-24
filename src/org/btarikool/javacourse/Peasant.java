@@ -3,7 +3,7 @@ package org.btarikool.javacourse;
 import java.util.ArrayList;
 
 public class Peasant extends Human{
-    private final static String TITLE = "Крестьянин";
+    private final static String TITLE = "Peasant of";
     private String name;
     private final double HEALTH = 0.9d;
     private final int AUTHORITY = 2;

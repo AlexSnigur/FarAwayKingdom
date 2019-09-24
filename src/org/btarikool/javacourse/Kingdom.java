@@ -21,6 +21,7 @@ public class Kingdom {
 
         //Heroes stats after 1st iteration
         Human.printListOfHumans();
+        Human.printListOfPeasants();
         System.out.println();
 
         //HealPoint's index change by coefficient (insert ur value)
@@ -35,6 +36,7 @@ public class Kingdom {
         //Heroes stats after doing some iterations
         System.out.println();
         Human.printListOfHumans();
+        Human.printListOfPeasants();
     }
 
     public static void iterationOfActions(Knight knightFirst, Knight knightSecond, Lord lordFirst, Lord lordSecond, King king) throws Exception {
