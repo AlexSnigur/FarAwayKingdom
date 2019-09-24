@@ -16,16 +16,22 @@ public class Kingdom {
         King king = new King(args[0]);
         System.out.println(" ***** 1 ***** ");
 
-        step(king, lord1, lord2, knight1, knight2, 1);
-        step(king, lord1, lord2, knight1, knight2, 2);
-        step(king, lord1, lord2, knight1, knight2, 3);
-        step(king, lord1, lord2, knight1, knight2, 4);
+        Person.IS_FIRST_ITERATION = true;
+        try {
+            step(king, lord1, lord2, knight1, knight2, 1);
+            Person.IS_FIRST_ITERATION = false;
+            step(king, lord1, lord2, knight1, knight2, 2);
+            step(king, lord1, lord2, knight1, knight2, 3);
+            step(king, lord1, lord2, knight1, knight2, 4);
+            step(king, lord1, lord2, knight1, knight2, 5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void step(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2, int stepCount) {
+    public static void step(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2, int stepCount) throws Exception {
         if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
+            throw new Exception("GAME OVER!");
         }
         System.out.println("REPORT" + stepCount);
         report(king, lord1, lord2, knight1, knight2);

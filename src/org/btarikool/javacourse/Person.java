@@ -7,26 +7,33 @@ public abstract class Person {
     double health;
     int power;
     private static final String TITLE = "";
+    private static double COEFICIENT_UP = 1.33;
+    private static double COEFICIENT_DOWN = 1.164993;
+    private static final double COEFICIENT = 0.8;
+    public static boolean IS_FIRST_ITERATION = true;
 
-
-
-    public Person() {}
+    public Person() {
+    }
 
     public Person(String name) {
         this.name = name;
     }
 
-    public String getTitleAndName()  {
+    public String getTitleAndName() {
         return title + name;
     }
 
     public void doAction(String actionContent, boolean isUpwards) throws Exception {
+        if (!IS_FIRST_ITERATION) {
+            COEFICIENT_UP /= COEFICIENT;
+            COEFICIENT_DOWN *= COEFICIENT;
+        }
         Action action = new Action();
         if (isUpwards) {
-            health *=  1.33;
+            health *= COEFICIENT_UP;
             power--;
         } else {
-            health /= 1.164993;
+            health /= COEFICIENT_DOWN;
             power++;
         }
         if (health < 0.2) {
@@ -34,7 +41,8 @@ public abstract class Person {
         }
         action.doAction(this.getTitleAndName(), actionContent);
     }
-    public void doAction(String actionContent) throws Exception{
+
+    public void doAction(String actionContent) throws Exception {
         doAction(actionContent, false);
     }
 
@@ -43,7 +51,7 @@ public abstract class Person {
     }
 
     public void sayHello(String name) {
-        System.out.println("Hello! I am the " + getTitleAndName() );
+        System.out.println("Hello! I am the " + getTitleAndName());
 
     }
 
