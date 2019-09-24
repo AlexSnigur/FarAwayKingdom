@@ -13,6 +13,7 @@ public class King extends Human {
         this.title = TITLE;
         this.authorityPoints = AUTHORITY;
         this.statusLevel = STATUS_LEVEL;
+        this.rank = HEALTH * AUTHORITY;
         System.out.println(this.toString());
     }
 

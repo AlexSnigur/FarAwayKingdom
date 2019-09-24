@@ -16,6 +16,7 @@ public class Peasant extends Human{
         this.title = TITLE;
         this.authorityPoints = AUTHORITY;
         this.statusLevel = STATUS_LEVEL;
+        this.rank = HEALTH * AUTHORITY;
 
     }
 
