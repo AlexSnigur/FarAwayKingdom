@@ -4,7 +4,7 @@ package org.btarikool.javacourse;
 public class Kingdom {
 
     public static void main(String[] args) {
-       System.out.println("Kingdom of Far Far Away");
+        System.out.println("Kingdom of Far Far Away");
         if (args.length < 5) {
             System.out.println("please pass 5 names as parameters to start ");
             return;
@@ -16,35 +16,19 @@ public class Kingdom {
         King king = new King(args[0]);
         System.out.println(" ***** 1 ***** ");
 
+        step(king, lord1, lord2, knight1, knight2, 1);
+        step(king, lord1, lord2, knight1, knight2, 2);
+        step(king, lord1, lord2, knight1, knight2, 3);
+        step(king, lord1, lord2, knight1, knight2, 4);
+    }
+
+    public static void step(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2, int stepCount) {
         if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
             System.out.println("GAME OVER!");
             return;
         }
-        System.out.println("REPORT 1");
+        System.out.println("REPORT" + stepCount);
         report(king, lord1, lord2, knight1, knight2);
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 2");
-        report(king, lord1, lord2, knight1, knight2);
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 3");
-        report(king, lord1, lord2, knight1, knight2);
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 4");
-        report(king, lord1, lord2, knight1, knight2);
-
-
     }
 
     public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
