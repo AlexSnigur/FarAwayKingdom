@@ -22,7 +22,6 @@ public class Kingdom {
         }
         System.out.println("REPORT 1");
         report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
 
         if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
             System.out.println("GAME OVER!");
@@ -30,8 +29,6 @@ public class Kingdom {
         }
         System.out.println("REPORT 2");
         report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
 
         if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
             System.out.println("GAME OVER!");
@@ -39,8 +36,6 @@ public class Kingdom {
         }
         System.out.println("REPORT 3");
         report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
 
         if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
             System.out.println("GAME OVER!");
@@ -48,16 +43,6 @@ public class Kingdom {
         }
         System.out.println("REPORT 4");
         report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 5");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
 
 
     }

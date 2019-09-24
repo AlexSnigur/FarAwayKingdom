@@ -7,10 +7,6 @@ public abstract class Person {
     double health;
     int power;
     private static final String TITLE = "";
-    private static final double HEALTH_CHANGE_COEFFICIENT = 0.98;
-    public static int runCounter = 0;
-    private double healthUpCoeff = 1.33;
-    private double healthDownCoeff = 1.164993;
 
 
 
@@ -26,15 +22,11 @@ public abstract class Person {
 
     public void doAction(String actionContent, boolean isUpwards) throws Exception {
         Action action = new Action();
-        if (Person.runCounter > 0) {
-            healthUpCoeff /= HEALTH_CHANGE_COEFFICIENT;
-            healthDownCoeff *= HEALTH_CHANGE_COEFFICIENT;
-        }
         if (isUpwards) {
-            health *= healthUpCoeff;
+            health *=  1.33;
             power--;
         } else {
-            health /= healthDownCoeff;
+            health /= 1.164993;
             power++;
         }
         if (health < 0.2) {
