@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Hooman {
-    private String name;
+    public String name;
     public String title;
     public double health;
     private static double healthUp = 1.3;
@@ -18,35 +18,35 @@ public abstract class Hooman {
     public static List<Hooman> deadList = new ArrayList<>();
 
 
-
     public Hooman(String name) {
         this.name = name;
-
-        hoomans.add(this);
+        if (!(this instanceof Enemy) && !(this instanceof Peasant)){
+            hoomans.add(this);
+        }
 
     }
 
-    public static double rank(Hooman hooman){
-       return hooman.power*hooman.health;
+    public static double rank(Hooman hooman) {
+        return hooman.power * hooman.health;
     }
 
-    public static void copyHealthAndPower(Hooman hooman1, Hooman hooman2){
-        if (rank(hooman1)>rank(hooman2)){
+    public static void copyHealthAndPower(Hooman hooman1, Hooman hooman2) {
+        if (rank(hooman1) > rank(hooman2)) {
             hooman2.health = hooman1.health;
             hooman2.power = hooman1.power;
-        } else if(rank(hooman1)<rank(hooman2)){
-            hooman1.health=hooman2.health;
-            hooman1.power=hooman2.power;
+        } else if (rank(hooman1) < rank(hooman2)) {
+            hooman1.health = hooman2.health;
+            hooman1.power = hooman2.power;
         }
     }
 
-    public static void addToDeadList(Hooman hooman){
+    public static void addToDeadList(Hooman hooman) {
         deadList.add(hooman);
         hoomans.remove(hooman);
     }
 
     public static void getDeadList() {
-        for (Hooman check : deadList){
+        for (Hooman check : deadList) {
             System.out.println(check);
         }
     }
@@ -115,6 +115,7 @@ public abstract class Hooman {
         System.out.println(this.getNameAndTitle() + ", Health status: " + this.health + ", Power status: " + this.power);
 
     }
+
     @Override
     public String toString() {
         return title + name;

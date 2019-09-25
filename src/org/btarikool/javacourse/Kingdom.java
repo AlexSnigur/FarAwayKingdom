@@ -13,6 +13,13 @@ public class Kingdom {
             System.out.println("Provide 5 names as arguments");
             return;
         }
+        Enemy enemyOne = new Enemy("Johnny B.", "Let's ", new StringBuffer());
+        System.out.println(enemyOne);
+        Enemy enemyTwo = enemyOne.createEnemy("Charles", "play ");
+        System.out.println(enemyTwo);
+        Enemy enemyThree = enemyOne.createEnemy("Joe", "chess");
+        System.out.println(enemyThree);
+        System.out.println();
         //create the King, two Lords and two Knights
         King theKing = new King(args[0]); //name - args[0] (e.g. "Arthur")
         Lord lordOne = new Lord(args[1]); //name - args[1]
