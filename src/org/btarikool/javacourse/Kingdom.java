@@ -1,97 +1,99 @@
-// Kingdom.java
 package org.btarikool.javacourse;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Kingdom {
+    private static List<Hooman> hoomans = new ArrayList<>();
 
     public static void main(String[] args) {
-       System.out.println("Kingdom of Far Far Away");
+
         if (args.length < 5) {
-            System.out.println("please pass 5 names as parameters to start ");
+            System.out.println("Provide 5 names as arguments");
             return;
         }
-        Knight knight1 = new Knight(args[3]);
-        Knight knight2 = new Knight(args[4]);
-        Lord lord1 = new Lord(args[2]);
-        Lord lord2 = new Lord(args[1]);
-        King king = new King(args[0]);
-        System.out.println(" ***** 1 ***** ");
+        //create the King, two Lords and two Knights
+        King theKing = new King(args[0], "King"); //name - args[0] (e.g. "Arthur")
+        Lord lordOne = new Lord(args[1], "Lord"); //name - args[1]
+        Lord lordTwo = new Lord(args[2], "Lord"); //name - args[2]
+        Knight knightOne = new Knight(args[3], "Knight"); //name - args[3]
+        Knight knightTwo = new Knight(args[4], "Knight"); //name - args[4]
+        hoomans.add(theKing);
+        hoomans.add(lordOne);
+        hoomans.add(lordTwo);
+        hoomans.add(knightOne);
+        hoomans.add(knightTwo);
 
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
+
+        //add white space
+        System.out.println("\n");
+
+        //main actions
+        System.out.println("--------------------");
+        //main actions
+        doActions(theKing, lordOne, lordTwo, knightOne, knightTwo);
+        System.out.println("\n");
+        //check status
+        System.out.println("Check Kingdom status");
+        report(theKing, lordOne, lordTwo, knightOne, knightTwo);
+        System.out.println("\n");
+
+        Hooman.changeHpLoss(0.6);
+
+        while (!statusCheck() && (theKing.power<20)) {
+
+            System.out.println("--------------------");
+            //main actions
+            doActions(theKing, lordOne, lordTwo, knightOne, knightTwo);
+            System.out.println("\n");
+            //check status
+            System.out.println("Check Kingdom status");
+            report(theKing, lordOne, lordTwo, knightOne, knightTwo);
+            System.out.println("\n");
+
+
+
+
         }
-        System.out.println("REPORT 1");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
+    }
 
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
+    public static boolean statusCheck() {
+        for (Hooman check : hoomans) {
+            if (check.getHealth() < 0.2) {
+                return true;
+            }
         }
-        System.out.println("REPORT 2");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
+        return false;
+    }
 
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 3");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 4");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 5");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
-
+    public static void report(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo) {
+        theKing.status();
+        lordOne.status();
+        lordTwo.status();
+        knightOne.status();
+        knightTwo.status();
 
     }
 
-    public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
-        try {
-            knight1.doAction("my hommage to " + lord1.getTitleAndName(), true);
-            knight2.doAction("my military service to " + lord2.getTitleAndName(), true);
-            lord1.doAction("my loyalty to " + king.getTitleAndName(), true);
-            lord2.doAction("my military aid to " + king.getTitleAndName(), true);
-            king.doAction("I give fief to " + lord1.getTitleAndName());
-            king.doAction("I give 2 peasants to " + lord2.getTitleAndName());
-            Peasant peasant1 = king.providePeasant(lord1.getTitleAndName());
-            Peasant peasant2 = king.providePeasant(lord1.getTitleAndName());
-            lord1.doAction("I give food to " + knight1.getTitleAndName());
-            lord2.doAction("I give protection to " + knight2.getTitleAndName());
-            knight1.doAction("I bring new lands to " + king.getTitleAndName(), true);
-            knight2.doAction("I bring new lands to " + king.getTitleAndName(), true);
-            peasant1.doAction("I give food to " + lord1.getTitleAndName(), true);
-            peasant2.doAction("I give food to " + lord2.getTitleAndName(), true);
-            peasant1.report();
-            peasant2.report();
-
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-
-    public static void report(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
-        king.report();
-        lord1.report();
-        lord2.report();
-        knight1.report();
-        knight2.report();
+    public static void doActions(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo) {
+        System.out.println(knightOne.getNameAndTitle() + ": " + knightOne.greetings(lordOne) + lordOne.getNameAndTitle());
+        System.out.println(knightTwo.getNameAndTitle() + knightTwo.protect(lordTwo) + lordTwo.getNameAndTitle());
+        System.out.println(lordOne.getNameAndTitle() + ": " + lordOne.greetings(theKing) + "King " + theKing.getNameAndTitle());
+        System.out.println(lordTwo.getNameAndTitle() + lordTwo.protect(theKing) + "King " + theKing.getNameAndTitle());
+        System.out.println(theKing.giveLand(lordOne));
+        theKing.givePeasants(lordTwo);
+        theKing.givePeasants(lordTwo);
+        Peasant peasantOne = new Peasant("number #1", "Peasant");
+        Peasant peasantTwo = new Peasant("number #2", "Peasant");
+        System.out.println(lordOne.getNameAndTitle() + lordOne.giveFood(knightOne));
+        System.out.println(lordTwo.getNameAndTitle() + lordTwo.protect(knightTwo) + knightTwo.getNameAndTitle());
+        System.out.println(knightOne.getNameAndTitle() + knightOne.conquerLand(theKing) + "King " + theKing.getNameAndTitle());
+        System.out.println(knightTwo.getNameAndTitle() + knightTwo.conquerLand(theKing) + "King " + theKing.getNameAndTitle());
+        System.out.println(peasantOne.getNameAndTitle() + peasantOne.giveFood(lordOne) + lordOne.getNameAndTitle());
+        System.out.println(peasantTwo.getNameAndTitle() + peasantTwo.giveFood(lordTwo) + lordTwo.getNameAndTitle());
+        if (statusCheck())
+            System.out.println("GAME OVER!!!!!");;
     }
 }
+

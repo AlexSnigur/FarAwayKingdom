@@ -1,14 +1,15 @@
 package org.btarikool.javacourse;
 
-public class Lord extends Person{
-    private static final String TITLE = "Lord ";
+public class Lord extends Hooman {
 
-    public Lord(String name) {
-        super(name);
-        this.title =  TITLE;
+    private String title;
+
+    public Lord(String name, String title) {
+        super(name, title);
+        this.levelOfDominance = 2;
+        this.title = "Lord";
         this.health = 0.7;
         this.power = 5;
-
+        System.out.println("Lord " + name + " is created.");
     }
-
 }
