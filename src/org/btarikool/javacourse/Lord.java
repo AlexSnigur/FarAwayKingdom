@@ -7,27 +7,22 @@ public class Lord extends Human {
     private final int STATUS_LEVEL = 2;
 
     public Lord(String name) {
-        super(name);
-        this.healPoints = HEALTH;
-        this.title = TITLE;
-        this.authorityPoints = AUTHORITY;
-        this.statusLevel = STATUS_LEVEL;
-        this.rank = HEALTH * AUTHORITY;
+        super(name, TITLE, 0.7d, 5, 2);
         System.out.println(this.toString());
     }
 
     public void reverence(Human person) {
-        System.out.println(this.TITLE + getName() + " gives homage " + person.title + " " + person.getName());
+        System.out.println(getTitle() + getName() + " gives homage " + person.getTitle() + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 
     public void defend(Human person) {
-        System.out.println(this.TITLE + getName() + " defends " + person.title + " " + person.getName());
+        System.out.println(getTitle() + getName() + " defends " + person.getTitle() + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 
     public void presents(Human person, String present) {
-        System.out.println(this.TITLE + getName() + " gives " + present + " " + person.title + " " + person.getName());
+        System.out.println(getTitle() + getName() + " gives " + present + " " + person.getTitle() + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 }

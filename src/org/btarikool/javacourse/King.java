@@ -8,23 +8,18 @@ public class King extends Human {
     private int numOfPeasants = 10;
 
     public King(String name){
-        super(name);
-        this.healPoints = HEALTH;
-        this.title = TITLE;
-        this.authorityPoints = AUTHORITY;
-        this.statusLevel = STATUS_LEVEL;
-        this.rank = HEALTH * AUTHORITY;
+        super(name, TITLE, 0.5d, 10, 1);
         System.out.println(this.toString());
     }
 
     public void presents(Human person, String present) {
-        System.out.println(TITLE + getName() + " gives " + present + " " + person.title + " " + person.getName());
+        System.out.println(getTitle() + getName() + " gives " + present + " " + person.getTitle() + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 
     public void presentsPeasant(Human person) {
-        Peasant peasant = new Peasant(person.title + person.getName());
-        System.out.println(TITLE + getName() + " gives " + peasant.getName());
+        Peasant peasant = new Peasant(person.getTitle() + person.getName());
+        System.out.println(getTitle() + getName() + " gives " + peasant.getName());
         this.numOfPeasants--;
     }
 }

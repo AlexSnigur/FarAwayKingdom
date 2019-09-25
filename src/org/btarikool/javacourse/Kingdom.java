@@ -28,7 +28,7 @@ public class Kingdom {
         Human.changeHpIndex(0.4);
 
         //Iteration using for cycle
-        while (king.authorityPoints < 20) {
+        while (king.getAuthorityPoints() < 20) {
             iterationOfActions(knightFirst, knightSecond, lordFirst, lordSecond, king);
             System.out.println();
         }
@@ -58,8 +58,8 @@ public class Kingdom {
         //If any of this conditions equals true, program ends throwing Game Over exception.
         for (Human x : Human.getHumansList()) {
             for (Peasant y : Human.getPeasantsList()){
-                if (x.healPoints < 0.2 || y.healPoints < 0.2) {
-                    System.out.println("\nGAME IS OVER! " + (x.healPoints>y.healPoints?y.getName():x.getName()) + "'s HealPoints level is under 0.2.");
+                if (x.getHealPoints() < 0.2 || y.getHealPoints() < 0.2) {
+                    System.out.println("\nGAME IS OVER! " + (x.getHealPoints()>y.getHealPoints()?y.getName():x.getName()) + "'s HealPoints level is under 0.2.");
                     Exception exception = new Exception("Game Over, one of the humans is dead.");
                     throw exception;
                 }

@@ -1,5 +1,7 @@
 package org.btarikool.javacourse;
 
+import org.omg.CORBA.TIMEOUT;
+
 import java.util.ArrayList;
 
 public class Peasant extends Human{
@@ -11,17 +13,12 @@ public class Peasant extends Human{
 
 
     public Peasant(String name){
-        super(name);
-        this.healPoints = HEALTH;
-        this.title = TITLE;
-        this.authorityPoints = AUTHORITY;
-        this.statusLevel = STATUS_LEVEL;
-        this.rank = HEALTH * AUTHORITY;
+        super(name, TITLE, 0.9d, 2, 3);
 
     }
 
     public void presents(Human person, String present) {
-        System.out.println(getName() + " даёт " + present + " " + person.title + " " + person.getName());
+        System.out.println(getName() + " даёт " + present + " " + person.getTitle() + " " + person.getName());
         this.changeHpAndAuthorityLevel(person);
     }
 }
