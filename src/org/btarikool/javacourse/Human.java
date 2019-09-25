@@ -61,9 +61,19 @@ public abstract class Human {
         return healPoints;
     }
 
+    //Set Heal Points
+    public void setHealPoints(double healPoints) {
+        this.healPoints = healPoints;
+    }
+
     //Get authorityPoints
     public int getAuthorityPoints() {
         return this.authorityPoints;
+    }
+
+    //Set authorityPoints
+    public void setAuthorityPoints(int authorityPoints) {
+        this.authorityPoints = authorityPoints;
     }
 
     //Get List of Humans
@@ -125,16 +135,16 @@ public abstract class Human {
 
     public void changeHpAndAuthorityLevel(Human person){
         if (this.statusLevel > person.statusLevel) {
-            this.healPoints *= healthIndexUp;
+            this.setHealPoints(this.getHealPoints()*healthIndexUp);
             this.authorityPoints--;
             removeFromAliveSetToDeadList(this);
-            person.healPoints /= healthIndexDown;
+            person.setHealPoints(person.getHealPoints()/healthIndexDown);
             person.authorityPoints++;
         }
         else if (this.statusLevel < person.statusLevel) {
-            this.healPoints /= healthIndexDown;
+            this.setHealPoints(this.getHealPoints()/healthIndexDown);
             this.authorityPoints++;
-            person.healPoints *= healthIndexUp;
+            person.setHealPoints(person.getHealPoints()*healthIndexUp);
             person.authorityPoints--;
             removeFromAliveSetToDeadList(person);
         }
@@ -144,17 +154,17 @@ public abstract class Human {
 
     public void changeHpAndAuthorityLevelVol2(Human person){
         if (this.statusLevel > person.statusLevel) {
-            this.healPoints *= healthIndexUp;
+            this.setHealPoints(this.getHealPoints()*healthIndexUp);
             this.authorityPoints--;
             removeFromAliveSetToDeadList(this);
-            person.healPoints /= healthIndexDown;
+            person.setHealPoints(person.getHealPoints()/healthIndexDown);
             person.authorityPoints++;
 
         }
         else if (this.statusLevel < person.statusLevel) {
-            this.healPoints /= healthIndexDown;
+            this.setHealPoints(this.getHealPoints()/healthIndexDown);
             this.authorityPoints++;
-            person.healPoints *= healthIndexUp;
+            person.setHealPoints(person.getHealPoints()*healthIndexUp);
             person.authorityPoints--;
             removeFromAliveSetToDeadList(person);
         }
@@ -180,10 +190,10 @@ public abstract class Human {
     //Copies Heal Points and Authority Points from higher to lower rank object
     public static void changeStats(Human person1, Human person2) {
         if (person1.rank < person2.rank) {
-            person1.healPoints = person2.getHealPoints();
+            person1.setHealPoints(person2.getHealPoints());
             person1.authorityPoints = person2.getAuthorityPoints();
         } else if (person1.rank > person2.rank) {
-            person2.healPoints = person1.getHealPoints();
+            person2.setHealPoints(person1.getHealPoints());
             person2.authorityPoints = person1.getAuthorityPoints();
         }
     }
@@ -191,6 +201,6 @@ public abstract class Human {
     //Use for all Human objects and extended classes
     @Override
     public String toString() {
-        return "I'm - " + this.title + " " + getName() + ". My HP level: " + this.getHealPoints() + ". My authority level: " + authorityPoints + ".";
+        return "I'm - " + this.getTitle() + " " + this.getName() + ". My HP level: " + this.getHealPoints() + ". My authority level: " + this.getAuthorityPoints() + ".";
     }
 }
