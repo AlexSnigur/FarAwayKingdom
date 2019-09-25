@@ -6,28 +6,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Hooman {
-    String name;
-    String title;
-    double health;
+    private String name;
+    public String title;
+    public double health;
     private static double healthUp = 1.3;
     private static double healthDown = 1.164993;
-    int power;
-    int levelOfDominance;
-    List<Hooman> hoomans = new ArrayList<>();
+    public final double HEALTH_MIN = 0.2;
+    public int power;
+    public int levelOfDominance;
+    public static List<Hooman> hoomans = new ArrayList<>();
+    public static List<Hooman> deadList = new ArrayList<>();
 
-    public Hooman(String name, String title) {
+
+
+    public Hooman(String name) {
         this.name = name;
-        this.title = title;
+
+        hoomans.add(this);
 
     }
 
-    public List<Hooman> getHoomans() {
+    public static double rank(Hooman hooman){
+       return hooman.power*hooman.health;
+    }
+
+    public static void copyHealthAndPower(Hooman hooman1, Hooman hooman2){
+        if (rank(hooman1)>rank(hooman2)){
+            hooman2.health = hooman1.health;
+            hooman2.power = hooman1.power;
+        } else if(rank(hooman1)<rank(hooman2)){
+            hooman1.health=hooman2.health;
+            hooman1.power=hooman2.power;
+        }
+    }
+
+    public static void addToDeadList(Hooman hooman){
+        deadList.add(hooman);
+        hoomans.remove(hooman);
+    }
+
+    public static void getDeadList() {
+        for (Hooman check : deadList){
+            System.out.println(check);
+        }
+    }
+
+    public static List<Hooman> getHoomans() {
         return hoomans;
     }
 
-    public int getLevelOfDominance() {
-        return levelOfDominance;
-    }
 
     public String getNameAndTitle() {
         return this.title + " " + this.name;
@@ -37,21 +64,13 @@ public abstract class Hooman {
         return health;
     }
 
-
-    public int getPower() {
-        return power;
-    }
-
-
     public String protect(Hooman human) {
         this.changeStatus(human);
-
         return " protects ";
     }
 
     public String greetings(Hooman human) {
         this.changeStatus(human);
-
         return "Greetings, ";
     }
 
@@ -61,10 +80,6 @@ public abstract class Hooman {
 
     }
 
-    public String payRent(Hooman human) {
-        this.changeStatus(human);
-        return " pays rent to";
-    }
 
     public String conquerLand(Hooman human) {
         this.changeStatus(human);
@@ -99,5 +114,9 @@ public abstract class Hooman {
     public void status() {
         System.out.println(this.getNameAndTitle() + ", Health status: " + this.health + ", Power status: " + this.power);
 
+    }
+    @Override
+    public String toString() {
+        return title + name;
     }
 }

@@ -2,12 +2,12 @@ package org.btarikool.javacourse;
 
 public class Lord extends Hooman {
 
-    private String title;
+    private final static String TITLE = "Lord";
 
-    public Lord(String name, String title) {
-        super(name, title);
+    public Lord(String name) {
+        super(name);
         this.levelOfDominance = 2;
-        this.title = "Lord";
+        this.title = TITLE;
         this.health = 0.7;
         this.power = 5;
         System.out.println("Lord " + name + " is created.");

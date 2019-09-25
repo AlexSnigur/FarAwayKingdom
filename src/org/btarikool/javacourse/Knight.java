@@ -1,14 +1,14 @@
 package org.btarikool.javacourse;
 
 public class Knight extends Hooman {
+private final static String TITLE = "Knight";
 
-    private String title;
 
-    public Knight(String name, String title) {
+    public Knight(String name) {
 
-        super(name, title);
+        super(name);
         this.levelOfDominance = 3;
-        this.title = "Knight";
+        this.title = TITLE;
         this.health = 0.7;
         this.power = 5;
 
