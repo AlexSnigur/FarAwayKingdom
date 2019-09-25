@@ -39,7 +39,7 @@ public class Kingdom {
         report(theKing, lordOne, lordTwo, knightOne, knightTwo);
         System.out.println("\n");
 
-        Hooman.changeHpLoss(0.6);
+        Hooman.changeHpLoss(0.7);
 
         while (!statusCheck() && (theKing.power<20)) {
 
@@ -93,7 +93,7 @@ public class Kingdom {
         System.out.println(peasantOne.getNameAndTitle() + peasantOne.giveFood(lordOne) + lordOne.getNameAndTitle());
         System.out.println(peasantTwo.getNameAndTitle() + peasantTwo.giveFood(lordTwo) + lordTwo.getNameAndTitle());
         if (statusCheck())
-            System.out.println("GAME OVER!!!!!");;
+            System.out.println("GAME OVER!!!!!");
     }
 }
 

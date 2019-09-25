@@ -97,10 +97,7 @@ public abstract class Hooman {
     }
 
     public void status() {
-        if (this.power <= 20) {
-            System.out.println(this.getNameAndTitle() + ", Health status: " + this.health + ", Power status: " + this.power);
-        } else {
-            System.out.println(this.getNameAndTitle() + ", Health status: " + this.health + ", Power status: 20");
-        }
+        System.out.println(this.getNameAndTitle() + ", Health status: " + this.health + ", Power status: " + this.power);
+
     }
 }
