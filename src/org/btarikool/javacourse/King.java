@@ -3,8 +3,11 @@ package org.btarikool.javacourse;
 
 public class King extends Person{
     int peasants = 10;
-    private static final String TITLE = "King ";
-
+    private static String TITLE = "King ";
+    public static class Sword {
+        public int lenth;
+        public double weight;
+    }
 
     public King(String name) {
         super(name);

@@ -4,59 +4,53 @@ package org.btarikool.javacourse;
 public class Kingdom {
 
     public static void main(String[] args) {
-       System.out.println("Kingdom of Far Far Away");
-        if (args.length < 5) {
-            System.out.println("please pass 5 names as parameters to start ");
-            return;
-        }
+
         Knight knight1 = new Knight(args[3]);
         Knight knight2 = new Knight(args[4]);
         Lord lord1 = new Lord(args[2]);
         Lord lord2 = new Lord(args[1]);
         King king = new King(args[0]);
-        System.out.println(" ***** 1 ***** ");
 
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
+        System.out.println(" ***** PRAKTIKUM 1-4 *****");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(" ***** " + i + " ***** ");
+
+            if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
+                System.out.println("GAME OVER!");
+                return;
+            }
+            System.out.println("REPORT " + i);
+            report(king, lord1, lord2, knight1, knight2);
+            Person.runCounter++;
+        }
+
+
+        System.out.println("Kingdom of Far Far Away");
+        if (args.length < 5) {
+            System.out.println("please pass 5 names as parameters to start ");
             return;
         }
-        System.out.println("REPORT 1");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
+        System.out.println("***** Praktikum 4 ******");
 
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
+        Lord lionel = new Lord("Lionel");
+        System.out.println("Lionel's rank:" + Person.getRank(lionel));
+        Peasant john = new Peasant("John");
+        System.out.println("John's rank:" + Person.getRank(john));
+
+        Person.copyPowerAndHealth(john, lionel);
+        System.out.println("John's rank:" + Person.getRank(john));
+        System.out.println("Lionel's rank:" + Person.getRank(lionel));
+
+        System.out.println("***** Praktikum 5 ******");
+        try {
+            Enemy jackBlack = new Enemy("Jack Sparrow", "Let's ", new StringBuffer());
+            jackBlack.doAction("Jack Black says: " + jackBlack.phrase.toString());
+            Enemy joeDoe = jackBlack.createEnemy("Joe Doe", "dance ");
+            joeDoe.doAction("Joe Doe says: " + joeDoe.phrase.toString());
+
+        } catch (Exception e) {
+
         }
-        System.out.println("REPORT 2");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 3");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 4");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
-
-        if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-            System.out.println("GAME OVER!");
-            return;
-        }
-        System.out.println("REPORT 5");
-        report(king, lord1, lord2, knight1, knight2);
-        Person.runCounter++;
 
 
 
