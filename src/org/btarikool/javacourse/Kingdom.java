@@ -1,84 +1,65 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
+import java.util.Arrays;
+
 public class Kingdom {
+    public Person[] persons;
 
-    public static void main(String[] args) {
-
-        Knight knight1 = new Knight(args[3]);
-        Knight knight2 = new Knight(args[4]);
-        Lord lord1 = new Lord(args[2]);
-        Lord lord2 = new Lord(args[1]);
-        King king = new King(args[0]);
-
-        System.out.println(" ***** PRAKTIKUM 1-4 *****");
-        for (int i = 0; i < 5; i++) {
-            System.out.println(" ***** " + i + " ***** ");
-
-            if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
-                System.out.println("GAME OVER!");
-                return;
-            }
-            System.out.println("REPORT " + i);
-            report(king, lord1, lord2, knight1, knight2);
-            Person.runCounter++;
-        }
-
-
-        System.out.println("Kingdom of Far Far Away");
-        if (args.length < 5) {
-            System.out.println("please pass 5 names as parameters to start ");
-            return;
-        }
-        System.out.println("***** Praktikum 4 ******");
-
-        Lord lionel = new Lord("Lionel");
-        System.out.println("Lionel's rank:" + Person.getRank(lionel));
-        Peasant john = new Peasant("John");
-        System.out.println("John's rank:" + Person.getRank(john));
-
-        Person.copyPowerAndHealth(john, lionel);
-        System.out.println("John's rank:" + Person.getRank(john));
-        System.out.println("Lionel's rank:" + Person.getRank(lionel));
-
-        System.out.println("***** Praktikum 5 ******");
-        try {
-            Enemy jackBlack = new Enemy("Jack Sparrow", "Let's ", new StringBuffer());
-            jackBlack.doAction("Jack Black says: " + jackBlack.phrase.toString());
-            Enemy joeDoe = jackBlack.createEnemy("Joe Doe", "dance ");
-            joeDoe.doAction("Joe Doe says: " + joeDoe.phrase.toString());
-
-        } catch (Exception e) {
-
-        }
-
-
-
+    public Kingdom() {
+        persons = new Person[0];
     }
 
-    public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
+    public void doActionsUp() {
         try {
-            knight1.doAction("my hommage to " + lord1.getTitleAndName(), true);
-            knight2.doAction("my military service to " + lord2.getTitleAndName(), true);
-            lord1.doAction("my loyalty to " + king.getTitleAndName(), true);
-            lord2.doAction("my military aid to " + king.getTitleAndName(), true);
-            king.doAction("I give fief to " + lord1.getTitleAndName());
-            king.doAction("I give 2 peasants to " + lord2.getTitleAndName());
-            Peasant peasant1 = king.providePeasant(lord1.getTitleAndName());
-            Peasant peasant2 = king.providePeasant(lord1.getTitleAndName());
-            lord1.doAction("I give food to " + knight1.getTitleAndName());
-            lord2.doAction("I give protection to " + knight2.getTitleAndName());
-            knight1.doAction("I bring new lands to " + king.getTitleAndName(), true);
-            knight2.doAction("I bring new lands to " + king.getTitleAndName(), true);
-            peasant1.doAction("I give food to " + lord1.getTitleAndName(), true);
-            peasant2.doAction("I give food to " + lord2.getTitleAndName(), true);
-            peasant1.report();
-            peasant2.report();
-
+            for (int i = persons.length - 1; i >= 0; i--) {
+                if (persons[i].getTitle() == "King ") {
+                    King king = (King) persons[i];
+                    king.givePeasantToLord(i);
+                    continue;
+                }
+                persons[i].doAction("STUB", true);
+            }
         } catch (Exception e) {
-            return false;
+            System.out.println("Action up gone wrong");
         }
-        return true;
+    }
+
+    public void doActionsDown() {
+        try {
+        for(int i = 0; i < persons.length; i++) {
+            if (persons[i].getTitle() == "King ") {
+                continue;
+            }
+            persons[i].doAction("STUB");
+
+        }
+        } catch (Exception e) {
+            System.out.println("Action down gone wrong");
+        }
+    }
+
+    public Person createPerson(String title, String name, Person chief) {
+        Person person;
+        switch (title.toLowerCase()) {
+            case "king":
+                person = new King(name, chief, this);
+                break;
+            case "lord":
+                person = new Lord(name, chief, this);
+                break;
+            case "knight":
+                person = new Knight(name, chief, this);
+                break;
+            default:
+                person = new Peasant(name, chief, this);
+                break;
+        }
+        int lastIndex = persons.length;
+        Person[] addedPersons = Arrays.copyOf(persons, lastIndex + 1);
+        addedPersons[lastIndex] = person;
+        this.persons = addedPersons;
+        return person;
     }
 
     public static void report(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
@@ -87,5 +68,14 @@ public class Kingdom {
         lord2.report();
         knight1.report();
         knight2.report();
+    }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        for (Person p : this.persons) {
+            ret += p.toString() + "\n";
+        }
+        return ret;
     }
 }
