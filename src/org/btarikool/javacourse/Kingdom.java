@@ -17,11 +17,16 @@ public class Kingdom {
 
         Person.IS_FIRST_ITERATION = true;
         try {
-            Enemy jackBlack = new Enemy("Jack Sparrow","Lets", new StringBuffer());
-            jackBlack.doAction("Jack says:" + jackBlack.phrase.toString());
-            Enemy joeDoe = jackBlack.createEnemy("Joe Doe", "dance");
-            joeDoe.doAction("Joe Doe says" + joeDoe.phrase.toString());
-            
+            Enemy kingOfNight = new Enemy("King of Night", "We will ", new StringBuffer());
+            kingOfNight.doAction("King of Night says:" + kingOfNight.phrase.toString());
+            Enemy knightOfNight = kingOfNight.createEnemy("Knight of Night", "take over ");
+            knightOfNight.doAction("Knight of Night says" + knightOfNight.phrase.toString());
+            Enemy whiteWalker = knightOfNight.createEnemy("White Walker", "the world!");
+            whiteWalker.doAction("White Walker says" + whiteWalker.phrase.toString());
+
+            System.out.println("Encrypted phrase: "+whiteWalker.getEncryptedPhrase());
+            System.out.println("Decrypted phrase: "+whiteWalker.getDecryptedPhrase());
+
             step(king, lord1, lord2, knight1, knight2, 1);
             Person.IS_FIRST_ITERATION = false;
             step(king, lord1, lord2, knight1, knight2, 2);
