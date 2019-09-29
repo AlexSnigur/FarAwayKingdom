@@ -53,7 +53,8 @@ public class Kingdom {
         }
 
 
-
+        System.out.println(Enemy.encoded("I will destroy your Kingdom"));
+        System.out.println(Enemy.encoded("modgniK ruoy yortsed lliw I"));
     }
 
     public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {

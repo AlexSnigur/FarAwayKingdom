@@ -19,4 +19,16 @@ public class Enemy extends Person{
         return new Enemy(name, phrasePart, this.phrase);
     }
 
+
+    public static String encoded (String cipher)
+    {
+        StringBuffer decode = new StringBuffer();
+        for (int i= 0; i< cipher.length(); i++)
+        {
+            decode.insert( 0, cipher.charAt(i));
+        }
+        return decode.toString();
+    }
+
+
 }
