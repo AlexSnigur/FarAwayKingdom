@@ -7,10 +7,11 @@ public abstract class Person {
     double health;
     int power;
     private static final String TITLE = "";
-    private static double COEFICIENT_UP = 1.33;
-    private static double COEFICIENT_DOWN = 1.164993;
-    private static final double COEFICIENT = 0.8;
+    private static double COEFFICIENT_UP = 1.33;
+    private static double COEFFICIENT_DOWN = 1.164993;
+    private static final double COEFFICIENT = 0.8;
     public static boolean IS_FIRST_ITERATION = true;
+    public static double LOWER_HEALTH_BOUNDARY = 0.2;
 
     public Person() {
     }
@@ -25,18 +26,18 @@ public abstract class Person {
 
     public void doAction(String actionContent, boolean isUpwards) throws Exception {
         if (!IS_FIRST_ITERATION) {
-            COEFICIENT_UP /= COEFICIENT;
-            COEFICIENT_DOWN *= COEFICIENT;
+            COEFFICIENT_UP /= COEFFICIENT;
+            COEFFICIENT_DOWN *= COEFFICIENT;
         }
         Action action = new Action();
         if (isUpwards) {
-            health *= COEFICIENT_UP;
+            health *= COEFFICIENT_UP;
             power--;
         } else {
-            health /= COEFICIENT_DOWN;
+            health /= COEFFICIENT_DOWN;
             power++;
         }
-        if (health < 0.2) {
+        if (health < LOWER_HEALTH_BOUNDARY) {
             throw new Exception("Game over!");
         }
         action.doAction(this.getTitleAndName(), actionContent);
@@ -55,5 +56,8 @@ public abstract class Person {
 
     }
 
+    public static double getRank(double power, double health) {
+        return power * health;
+    }
 
 }
