@@ -14,7 +14,6 @@ public class Kingdom {
         Lord lord1 = new Lord(args[2]);
         Lord lord2 = new Lord(args[1]);
         King king = new King(args[0]);
-        System.out.println(" ***** 1 ***** ");
 
         Person.IS_FIRST_ITERATION = true;
         try {
@@ -27,14 +26,17 @@ public class Kingdom {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Person.printDeadPeople();
     }
 
     public static void step(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2, int stepCount) throws Exception {
+        System.out.println(" ***** " + stepCount + " ***** ");
         if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
             throw new Exception("GAME OVER!");
         }
-        System.out.println("REPORT" + stepCount);
-        report(king, lord1, lord2, knight1, knight2);
+//        System.out.println("REPORT" + stepCount);
+//        report(king, lord1, lord2, knight1, knight2);
     }
 
     public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
@@ -53,8 +55,8 @@ public class Kingdom {
             knight2.doAction("I bring new lands to " + king.getTitleAndName(), true);
             peasant1.doAction("I give food to " + lord1.getTitleAndName(), true);
             peasant2.doAction("I give food to " + lord2.getTitleAndName(), true);
-            peasant1.report();
-            peasant2.report();
+//            peasant1.report();
+//            peasant2.report();
 
         } catch (Exception e) {
             return false;
