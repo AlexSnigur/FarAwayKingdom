@@ -15,6 +15,10 @@ public class Kingdom {
         System.out.println(b);
         Enemy c = b.createNewEnemy("Petja");
         System.out.println(c);
+        Enemy d = c.createNewEnemy("Roma");
+        System.out.println(d);
+        Enemy e = d.createNewEnemy("Roma");
+        System.out.println(e);
 
       /*  //Creating objects
         King king = new King(args[0]);

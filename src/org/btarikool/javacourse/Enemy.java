@@ -32,20 +32,23 @@ public class Enemy extends Human {
         BufferedReader reader = new BufferedReader(new FileReader("src\\org\\btarikool\\javacourse\\song.txt"));
         String returningLine;
         if (phraseCounter == 0) {
+            returningLine = "\n" + reader.readLine() + "\n";
+            reader.close();
             phraseCounter = 1;
-            return "\n" + reader.readLine() + "\n";
+            return returningLine;
 
         } else {
-            int counter = 1;
+            int counter = 0;
             while (counter <= phraseCounter) {
-                reader.readLine();
+                returningLine = reader.readLine();
                 if (counter == phraseCounter) {
-                    return reader.readLine() + "\n";
+                    reader.close();
+                    phraseCounter++;
+                    return returningLine + "\n";
                 }
                 counter++;
             }
         }
-        reader.close();
         return "empty";
     }
 
