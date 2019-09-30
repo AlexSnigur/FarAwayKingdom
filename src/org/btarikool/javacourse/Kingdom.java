@@ -4,18 +4,27 @@ package org.btarikool.javacourse;
 public class Kingdom {
 
     public static void main(String[] args) {
-       System.out.println("Kingdom of Far Far Away");
+        System.out.println("Kingdom of Far Far Away");
         if (args.length < 5) {
             System.out.println("please pass 5 names as parameters to start ");
             return;
         }
-        Knight knight1 = new Knight(args[3]);
-        Knight knight2 = new Knight(args[4]);
-        Lord lord1 = new Lord(args[2]);
-        Lord lord2 = new Lord(args[1]);
-        King king = new King(args[0]);
-        System.out.println(" ***** 1 ***** ");
+        try {
+            Enemy BlackJack = new Enemy("Jack Sparrow", "Let s ", new StringBuffer());
+            BlackJack.doAction( "BlackJack says:" + BlackJack.phrase.toString());
+            Enemy JohnDow = BlackJack.createNewEnemy("John Dow", "dance ");
+            JohnDow.doAction("John Dow says:" + JohnDow.phrase.toString());
+            Enemy DirtyBilly = JohnDow.createNewEnemy("Dirty Billy","in that Kingdom ");
+            DirtyBilly.doAction("Dirty Billy says:"+ DirtyBilly.phrase.toString());
+        } catch (Exception e) {
 
+            Knight knight1 = new Knight(args[3]);
+            Knight knight2 = new Knight(args[4]);
+            Lord lord1 = new Lord(args[2]);
+            Lord lord2 = new Lord(args[1]);
+            King king = new King(args[0]);
+            System.out.println(" ***** 1 ***** ");
+/*
         if (runActionsChain(king, lord1, lord2, knight1, knight2) == false) {
             System.out.println("GAME OVER!");
             return;
@@ -93,5 +102,8 @@ public class Kingdom {
         lord2.report();
         knight1.report();
         knight2.report();
+    }
+ */
+        }
     }
 }
