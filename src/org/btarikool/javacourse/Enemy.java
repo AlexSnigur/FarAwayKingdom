@@ -46,7 +46,7 @@ public class Enemy extends Human {
             }
         }
         reader.close();
-        return "ept";
+        return "empty";
     }
 
     public Enemy createNewEnemy(String name) throws IOException {
