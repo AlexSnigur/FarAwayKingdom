@@ -1,6 +1,8 @@
 package org.btarikool.javacourse;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Enemy extends Human {
 
@@ -11,12 +13,16 @@ public class Enemy extends Human {
     private byte[] receivedEncryptedPhrase;
     private static int phraseCounter;
     private static int enemiesCounter;
+    private int ownId;
+    private static List<Enemy> list = new ArrayList<>();
 
     public Enemy(String name) throws IOException {
         super(name, TITLE, 0, 0, 10);
         this.ownPhrase = getEachEnemyOwnPhraseFromFile();
         this.ownEncryptedPhrase = this.ownPhrase.getBytes();
+        this.ownId = enemiesCounter;
         this.enemiesCounter++;
+        list.add(this);
     }
 
     public Enemy(String name, byte[] phraseInBytes) throws IOException {
@@ -25,7 +31,9 @@ public class Enemy extends Human {
         this.receivedDecryptedPhrase = decryptMessage(this.receivedEncryptedPhrase);
         this.ownPhrase = receivedDecryptedPhrase + getEachEnemyOwnPhraseFromFile();
         this.ownEncryptedPhrase = this.ownPhrase.getBytes();
+        this.ownId = enemiesCounter;
         this.enemiesCounter++;
+        list.add(this);
     }
 
     public String getEachEnemyOwnPhraseFromFile() throws IOException {
@@ -67,6 +75,12 @@ public class Enemy extends Human {
         return new String(array);
     }
 
+    public int getOwnId() {
+        return this.ownId;
+    }
+    public static void removeEnemyFromList(int index) {
+        list.set(index, null);
+    }
     @Override
     public String toString() {
         if (this.enemiesCounter == 1) return "I am " + this.TITLE + ", my name is " + this.getName() + ".My phrase is: " + this.ownPhrase;
