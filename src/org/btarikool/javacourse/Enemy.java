@@ -9,7 +9,7 @@ public class Enemy extends Human {
     private String receivedDecryptedPhrase;
     private byte[] ownEncryptedPhrase;
     private byte[] receivedEncryptedPhrase;
-    private static int phraseCounter = 0;
+    private static int phraseCounter;
     private static int enemiesCounter;
 
     public Enemy(String name) throws IOException {
