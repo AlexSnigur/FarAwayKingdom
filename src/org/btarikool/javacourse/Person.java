@@ -23,6 +23,7 @@ public abstract class Person {
         this.name = name;
     }
 
+
     public static double getRank(Person person) {
         return person.health * person.power;
     }
@@ -69,10 +70,9 @@ public abstract class Person {
         System.out.println(getTitleAndName() + "'s health: " + health + "; power: " + power);
     }
 
-    public void sayHello(String name) {
-        System.out.println("Hello! I am the " + getTitleAndName() );
-
+    @Override
+    public String toString() {
+        return this.title + " " + this.name + " " + this.health + " " + this.power;
     }
-
 
 }

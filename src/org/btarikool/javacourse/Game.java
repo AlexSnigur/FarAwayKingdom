@@ -1,25 +1,27 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
-public class Kingdom {
-    private String name;
-    Person[] people = new Person[10];
-    public Kingdom(String name) {
-        this.name = name;
+public class Game {
+
+    public static void main(String[] args) {
+
+        Kingdom kingdom1 = new Kingdom("FarAway");
+        King richard = (King) kingdom1.createPerson("Richard", "King" );
+        System.out.println(richard);
+        Lord lionel = (Lord) kingdom1.createPerson("Lionel", "Lord");
+        System.out.println(lionel);
+        Lord lee = (Lord) kingdom1.createPerson("Lee", "Lord");
+        System.out.println(lee);
+        Knight keeney = (Knight) kingdom1.createPerson("Keeney", "kNIGHT");
+        System.out.println(keeney);
+        Knight koosey = (Knight) kingdom1.createPerson("koosey", "knight");
+        System.out.println(koosey);
+
+
     }
 
-    public Person createPerson(String name, String title){
-        if(title.toLowerCase().equals("king")) {
-            return new King(name);
-        } else if(title.toLowerCase().equals("lord")) {
-            return new Lord(name);
-        } else if(title.toLowerCase().equals("knight")) {
-            return new Knight(name);
-        } else {
-            return new Peasant(name);
-        }
-    }
     public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
+/*
         try {
             knight1.doAction("my hommage to " + lord1.getTitleAndName(), true);
             knight2.doAction("my military service to " + lord2.getTitleAndName(), true);
@@ -41,6 +43,7 @@ public class Kingdom {
         } catch (Exception e) {
             return false;
         }
+        */
         return true;
     }
 
