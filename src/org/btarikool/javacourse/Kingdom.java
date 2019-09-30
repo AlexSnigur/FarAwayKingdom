@@ -3,11 +3,20 @@ package org.btarikool.javacourse;
 // Program arguments:
 // "Robert Baratheon" "Eddard Stark" "Petyr Baelish" "Rodrik Cassel" "Jorah Mormont"
 
+import java.io.IOException;
+
 public class Kingdom {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
 
-        //Creating objects
+        Enemy a = new Enemy("Artur");
+        System.out.println(a);
+        Enemy b = a.createNewEnemy("Vasja");
+        System.out.println(b);
+        Enemy c = b.createNewEnemy("Petja");
+        System.out.println(c);
+
+      /*  //Creating objects
         King king = new King(args[0]);
         Lord lordFirst = new Lord(args[1]);
         Lord lordSecond = new Lord(args[2]);
@@ -64,6 +73,6 @@ public class Kingdom {
                     throw exception;
                 }
             }
-        }
+        }*/
     }
 }

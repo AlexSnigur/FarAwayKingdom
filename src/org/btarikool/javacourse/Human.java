@@ -5,8 +5,8 @@ import java.util.List;
 
 public abstract class Human {
     private String name;
-    private double healPoints;
     private String title;
+    private double healPoints;
     private int authorityPoints;
     private int statusLevel;
     private double rank;
@@ -14,28 +14,31 @@ public abstract class Human {
     private final double MINIMUM_HP_LEVEL = 0.2d;
     private static double healthIndexDown = 1.164993d;
     private static double healthIndexUp = 1.3d;
-    private static List<Human> humansList = new ArrayList<>();
+    private static final List<Human> HUMAN_LIST = new ArrayList<>();
     private int indexByHumansList;
-    private static List<Peasant> peasantsList = new ArrayList<>();
+    private static final List<Peasant> PEASANT_LIST = new ArrayList<>();
     private int indexByPeasantsList;
-    private static List<Human> deadList = new ArrayList<>();
+    private static final List<Human> DEAD_LIST = new ArrayList<>();
 
 
     //Default constructor
     public Human() {
     }
 
+    public Human(String name, String phrase) {
+    }
+
     //Constructor for Human & Peasant objects
     public Human(String name, String title, double healPoints, int authorityPoints, int statusLevel) {
         // // If object is is instance of class Peasant
         if (this instanceof Peasant) {
-            this.indexByPeasantsList = peasantsList.size();
-            peasantsList.add((Peasant)this);
+            this.indexByPeasantsList = PEASANT_LIST.size();
+            PEASANT_LIST.add((Peasant)this);
             this.name = name + " with Own ID: " + getIndexByList();
         // If object is is instance of class Human
         } else {
-            this.indexByHumansList = humansList.size();
-            humansList.add(this);
+            this.indexByHumansList = HUMAN_LIST.size();
+            HUMAN_LIST.add(this);
             this.name = name;
         }
         this.statusLevel = statusLevel;
@@ -66,6 +69,21 @@ public abstract class Human {
         this.healPoints = healPoints;
     }
 
+    //Get Status Level
+    public int getStatusLevel() {
+        return this.statusLevel;
+    }
+
+    //Get Status
+    public boolean getStatus() {
+        return this.status;
+    }
+
+    //Set status
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     //Get authorityPoints
     public int getAuthorityPoints() {
         return this.authorityPoints;
@@ -78,17 +96,17 @@ public abstract class Human {
 
     //Get List of Humans
     public static List<Human> getHumansList() {
-        return humansList;
+        return HUMAN_LIST;
     }
 
     //Get List of Peasants
     public static List<Peasant> getPeasantsList() {
-        return peasantsList;
+        return PEASANT_LIST;
     }
 
     //Get List of Dead Humans
     public static List<Human> getDeadList() {
-        return deadList;
+        return DEAD_LIST;
     }
 
     //Get Peasant's or Human's ID from their own list
@@ -99,17 +117,17 @@ public abstract class Human {
 
     //Print list of Humans
     public static void printListOfHumans() {
-        for (Human human : humansList) System.out.println(human);
+        for (Human human : HUMAN_LIST) System.out.println(human);
     }
 
     //Print list of Peasants
     public static void printListOfPeasants() {
-        for (Peasant peasant : peasantsList) System.out.println(peasant);
+        for (Peasant peasant : PEASANT_LIST) System.out.println(peasant);
     }
 
     //Print list of dead humans
     public static void printListOfDead() {
-        for (Human deadHuman : deadList) System.out.println(deadHuman);
+        for (Human deadHuman : DEAD_LIST) System.out.println(deadHuman);
     }
 
     //Set alternative HealPoints Index by changing the coefficient
@@ -124,7 +142,7 @@ public abstract class Human {
     }
 
     //Get rank by field
-    public double getRankByField(Human human) {
+    public double getRankByField() {
         return this.rank;
     }
 
@@ -134,18 +152,18 @@ public abstract class Human {
     }
 
     public void changeHpAndAuthorityLevel(Human person){
-        if (this.statusLevel > person.statusLevel) {
+        if (this.statusLevel > person.getStatusLevel()) {
             this.setHealPoints(this.getHealPoints()*healthIndexUp);
             this.authorityPoints--;
             removeFromAliveSetToDeadList(this);
             person.setHealPoints(person.getHealPoints()/healthIndexDown);
-            person.authorityPoints++;
+            person.setAuthorityPoints(person.getAuthorityPoints() + 1);
         }
-        else if (this.statusLevel < person.statusLevel) {
+        else if (this.statusLevel < person.getStatusLevel()) {
             this.setHealPoints(this.getHealPoints()/healthIndexDown);
             this.authorityPoints++;
             person.setHealPoints(person.getHealPoints()*healthIndexUp);
-            person.authorityPoints--;
+            person.setAuthorityPoints(getAuthorityPoints() - 1);
             removeFromAliveSetToDeadList(person);
         }
         setRank(person);
@@ -153,19 +171,19 @@ public abstract class Human {
     }
 
     public void changeHpAndAuthorityLevelVol2(Human person){
-        if (this.statusLevel > person.statusLevel) {
-            this.setHealPoints(this.getHealPoints()*healthIndexUp);
+        if (this.statusLevel > person.getStatusLevel()) {
+            this.healPoints *= healthIndexUp;
             this.authorityPoints--;
             removeFromAliveSetToDeadList(this);
             person.setHealPoints(person.getHealPoints()/healthIndexDown);
-            person.authorityPoints++;
+            person.setAuthorityPoints(person.getAuthorityPoints() + 1);
 
         }
-        else if (this.statusLevel < person.statusLevel) {
-            this.setHealPoints(this.getHealPoints()/healthIndexDown);
+        else if (this.statusLevel < person.getStatusLevel()) {
+            this.healPoints /= healthIndexDown;
             this.authorityPoints++;
             person.setHealPoints(person.getHealPoints()*healthIndexUp);
-            person.authorityPoints--;
+            person.setAuthorityPoints(person.getAuthorityPoints() - 1);
             removeFromAliveSetToDeadList(person);
         }
         setRank(person);
@@ -176,12 +194,12 @@ public abstract class Human {
     public void removeFromAliveSetToDeadList(Human person) {
         if (person.getHealPoints() < MINIMUM_HP_LEVEL) {
             if (person instanceof Peasant) {
-                deadList.add(person);
-                peasantsList.set(person.getIndexByList(), null);
+                DEAD_LIST.add(person);
+                PEASANT_LIST.set(person.getIndexByList(), null);
                 person.status = false;
             } else if (person instanceof Human) {
-                deadList.add(person);
-                humansList.set(person.getIndexByList(), null);
+                DEAD_LIST.add(person);
+                HUMAN_LIST.set(person.getIndexByList(), null);
                 person.status = false;
             }
         }
@@ -189,18 +207,18 @@ public abstract class Human {
 
     //Copies Heal Points and Authority Points from higher to lower rank object
     public static void changeStats(Human person1, Human person2) {
-        if (person1.rank < person2.rank) {
+        if (person1.getRankByField() < person2.getRankByField()) {
             person1.setHealPoints(person2.getHealPoints());
-            person1.authorityPoints = person2.getAuthorityPoints();
-        } else if (person1.rank > person2.rank) {
+            person1.setAuthorityPoints(person2.getAuthorityPoints());
+        } else if (person1.getRankByField() > person2.getRankByField()) {
             person2.setHealPoints(person1.getHealPoints());
-            person2.authorityPoints = person1.getAuthorityPoints();
+            person2.setAuthorityPoints(person1.getAuthorityPoints());
         }
     }
 
     //Use for all Human objects and extended classes
     @Override
     public String toString() {
-        return "I'm - " + this.getTitle() + " " + this.getName() + ". My HP level: " + this.getHealPoints() + ". My authority level: " + this.getAuthorityPoints() + ".";
+        return "I'm - " + this.title + " " + this.name + ". My HP level: " + this.healPoints + ". My authority level: " + this.authorityPoints + ".";
     }
 }
