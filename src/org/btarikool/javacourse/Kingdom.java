@@ -13,13 +13,19 @@ public class Kingdom {
             System.out.println("Provide 5 names as arguments");
             return;
         }
-        Enemy enemyOne = new Enemy("Johnny B.", "Let's ", new StringBuffer());
+        Enemy enemyOne = new Enemy("Johnny B.", "I am", new StringBuffer());
         System.out.println(enemyOne);
-        Enemy enemyTwo = enemyOne.createEnemy("Charles", "play ");
+        Enemy enemyTwo = enemyOne.createEnemy("Charles", " the ");
         System.out.println(enemyTwo);
-        Enemy enemyThree = enemyOne.createEnemy("Joe", "chess");
+        Enemy enemyThree = enemyOne.createEnemy("Joe", "King");
         System.out.println(enemyThree);
         System.out.println();
+        enemyOne.decodeReverse();
+        System.out.println(enemyOne);
+
+        System.out.printf("\n");
+        enemyOne.decodeGroups();
+        System.out.printf("\n");
         //create the King, two Lords and two Knights
         King theKing = new King(args[0]); //name - args[0] (e.g. "Arthur")
         Lord lordOne = new Lord(args[1]); //name - args[1]
@@ -94,10 +100,9 @@ public class Kingdom {
         System.out.println(peasantOne.getNameAndTitle() + peasantOne.giveFood(lordOne) + lordOne.getNameAndTitle());
         System.out.println(peasantTwo.getNameAndTitle() + peasantTwo.giveFood(lordTwo) + lordTwo.getNameAndTitle());
         statusCheck();
-        /*if (statusCheck()){
+        if (statusCheck()){
             System.out.println("GAME OVER!!!!!");
-        }*/
-
+        }
 
     }
 }
