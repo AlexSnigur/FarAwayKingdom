@@ -2,10 +2,14 @@
 package org.btarikool.javacourse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public abstract class Person {
     String name;
+    int id;
     String title;
     double health;
     int power;
@@ -17,14 +21,14 @@ public abstract class Person {
     private static final double HEALTH_THRESHOLD = 0.2;
     private static final List<Person> DEAD_LIST = new ArrayList<>();
     Person chief;
-    Person[] subordinate;
+    Person[] subordinates;
+    String[][] actions;
 
     public Person() {}
 
     public Person(String name) {
         this.name = name;
     }
-
 
     public static double getRank(Person person) {
         return person.health * person.power;
@@ -44,41 +48,73 @@ public abstract class Person {
     public void setChief(Person chief) {
         this.chief = chief;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitleAndName()  {
         return title + name;
     }
 
-    public void doAction(String actionContent, boolean isUpwards) throws Exception {
+
+    public void doAction() {
+        doAction(null);
+    }
+
+
+    public void doAction(Person subordinate) {
         Action action = new Action();
         if (Person.runCounter > 0) {
             healthUpCoeff /= HEALTH_CHANGE_COEFFICIENT;
             healthDownCoeff *= HEALTH_CHANGE_COEFFICIENT;
         }
-        if (isUpwards) {
+        if (subordinate == null) {
             health *= healthUpCoeff;
             power--;
         } else {
             health /= healthDownCoeff;
             power++;
         }
-        action.doAction(this.getTitleAndName(), actionContent);
+        action.doAction(this, subordinate);
         if (health < HEALTH_THRESHOLD) {
             DEAD_LIST.add(this);
         }
 
     }
-    public void doAction(String actionContent) throws Exception{
-        doAction(actionContent, false);
+    public void addSubordinate(Person p) {
+        if (this.subordinates == null) {
+            this.subordinates = new Person[] {p};
+        } else {
+            int nextIndex = this.subordinates.length;
+            this.subordinates = Arrays.copyOf(this.subordinates, nextIndex + 1);
+            this.subordinates[nextIndex] = p;
+        }
     }
 
     public void report() {
         System.out.println(getTitleAndName() + "'s health: " + health + "; power: " + power);
     }
 
+    public String printSubordinates() {
+        if (this.subordinates == null) {
+            return "";
+        }
+        String ret = Arrays.stream(this.subordinates)
+                .filter(Objects::nonNull)
+                .map(Person::getTitleAndName)
+                .collect(Collectors.joining(", "));
+        return " [" + ret + "]";
+    }
+
     @Override
     public String toString() {
-        return this.title + " " + this.name + " " + this.health + " " + this.power + " chief: " + this.chief;
+        return this.title
+                + " " + this.name
+                + " (" + this.health
+                + " - " + this.power + ")"
+                + this.printSubordinates()
+                + (this.chief != null ? " CHIEF: " +  this.chief : "")
+                ;
     }
 
 }

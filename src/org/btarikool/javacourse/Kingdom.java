@@ -27,56 +27,52 @@ public class Kingdom {
 
         }
         createdPerson.setChief(chief);
+        if (chief != null){
+            chief.addSubordinate(createdPerson);
+        }
         addToPeople(createdPerson);
         return createdPerson;
     }
 
     private void addToPeople(Person p) {
+        p.setId(this.people.length);
         int arrayLen = this.people.length;
         Person [] newPeopleArray = Arrays.copyOf(this.people, arrayLen + 1);
         newPeopleArray[arrayLen] = p;
         this.people = newPeopleArray;
     }
 
-    public void runActions() {
+    public void runActionsUp() {
         int lastIndex = this.people.length - 1;
         for(int i = lastIndex; i >= 0; i-- ) {
-            System.out.println(i + " : " + this.people[i]);
+            if (this.people[i] instanceof King) {
+                ((King) this.people[i]).providePeasantToSubordinates(this);
+                continue;
+            }
+            this.people[i].doAction ();
+
         }
     }
 
-    public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
-        try {
-            knight1.doAction("my hommage to " + lord1.getTitleAndName(), true);
-            knight2.doAction("my military service to " + lord2.getTitleAndName(), true);
-            lord1.doAction("my loyalty to " + king.getTitleAndName(), true);
-            lord2.doAction("my military aid to " + king.getTitleAndName(), true);
-            king.doAction("I give fief to " + lord1.getTitleAndName());
-            king.doAction("I give 2 peasants to " + lord2.getTitleAndName());
-            Peasant peasant1 = king.providePeasant(lord1.getTitleAndName());
-            Peasant peasant2 = king.providePeasant(lord1.getTitleAndName());
-            lord1.doAction("I give food to " + knight1.getTitleAndName());
-            lord2.doAction("I give protection to " + knight2.getTitleAndName());
-            knight1.doAction("I bring new lands to " + king.getTitleAndName(), true);
-            knight2.doAction("I bring new lands to " + king.getTitleAndName(), true);
-            peasant1.doAction("I give food to " + lord1.getTitleAndName(), true);
-            peasant2.doAction("I give food to " + lord2.getTitleAndName(), true);
-            peasant1.report();
-            peasant2.report();
+    public void runActionsDown() {
+        for(Person p: this.people) {
+            if (p.subordinates == null || p.subordinates.length == 0) {
+                continue;
+            }
+            for (Person subordinate: p.subordinates) {
+                p.doAction(subordinate);
+            }
 
-        } catch (Exception e) {
-            return false;
+
         }
-        return true;
     }
 
     @Override
     public String toString() {
-        String kingdom = "";
+        String kingdom = "***" +  this.name + " Kingdom *** \n";
         for (Person p : this.people) {
             kingdom = kingdom + p + "; \n";
         }
         return kingdom;
     }
-
 }
