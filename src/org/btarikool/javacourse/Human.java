@@ -3,7 +3,7 @@ package org.btarikool.javacourse;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Human {
+public abstract class Human implements Actions {
     private String name;
     private String title;
     private double healPoints;
@@ -20,7 +20,7 @@ public abstract class Human {
     private List<Peasant> myPeasantsList = new ArrayList<>();
     private List<Human> subordinateList = new ArrayList<>();
     private Human chief;
-    private boolean evenOrOdd = kingdom.getHumanList().size()%2==0?true:false;
+    private boolean evenOrOdd;
 
     public Human() {
     }
@@ -123,7 +123,7 @@ public abstract class Human {
 
     //Get even or odd
     public boolean isEvenOrOdd() {
-        return evenOrOdd;
+        return kingdom.getHumanList().size() % 2 == 0 || kingdom.getHumanList().size() == 0 ? true : false;
     }
 
     public Human getChief() {
@@ -206,6 +206,26 @@ public abstract class Human {
         }
         setRank(person);
         setRank(this);
+    }
+
+    @Override
+    public void doPresentPeasant(Human person) {
+        if (this.getMyPeasantsList().size() > 0) {
+            this.getMyPeasantsList().get(0).setChief(person);
+            person.getMyPeasantsList().add(this.getMyPeasantsList().get(0));
+            person.getSubordinateList().add(this.getMyPeasantsList().get(0));
+            System.out.println(this.getTitleAndName() + " presents " + this.getMyPeasantsList().get(0).getTitleAndName() + " to " + person.getTitleAndName() + ".");
+            this.getSubordinateList().remove(this.getMyPeasantsList().get(0));
+            this.getMyPeasantsList().remove(this.getMyPeasantsList().get(0));
+        } else {
+            System.out.println(this.getTitleAndName() + " doesnt present any peasant to " + person.getTitleAndName() + ", because he owns 0 peasants.");
+        }
+    }
+
+    @Override
+    public void doAction(Human person, String action) {
+        System.out.println(this.getTitleAndName() + " " + action + " " + person.getTitleAndName() + ".");
+        this.changeHpAndAuthorityLevel(person);
     }
 
     @Override

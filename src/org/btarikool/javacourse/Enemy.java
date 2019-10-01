@@ -2,7 +2,7 @@ package org.btarikool.javacourse;
 
 import java.io.*;
 
-public class Enemy extends Actions {
+public class Enemy extends Human {
 
     private final static String TITLE = "Enemy of the king";
     private String ownPhrase;

@@ -1,6 +1,6 @@
 package org.btarikool.javacourse;
 
-public class Lord extends Actions {
+public class Lord extends Human {
     private final static String TITLE = "Lord";
     private final static double HEALTH = 0.7d;
     private final static int AUTHORITY = 5;

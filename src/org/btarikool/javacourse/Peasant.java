@@ -1,6 +1,6 @@
 package org.btarikool.javacourse;
 
-public class Peasant extends Actions{
+public class Peasant extends Human{
     private final static String TITLE = "Peasant";
     private final static double HEALTH = 0.9d;
     private final static int AUTHORITY = 2;

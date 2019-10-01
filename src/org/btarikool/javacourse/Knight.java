@@ -1,6 +1,6 @@
 package org.btarikool.javacourse;
 
-public class Knight extends Actions {
+public class Knight extends Human {
     private final static String TITLE = "Knight";
     private final static double HEALTH = 0.7d;
     private final static int AUTHORITY = 5;
