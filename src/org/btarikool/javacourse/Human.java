@@ -38,6 +38,7 @@ public abstract class Human implements Actions {
         this.rank = healPoints * authorityPoints;
         this.kingdom = kingdom;
         this.chief = chief;
+        this.evenOrOdd = collectiveListId%2==0?true:false;
         if (!(this instanceof King || this instanceof Enemy)) chief.getSubordinateList().add(this);
     }
 
@@ -121,9 +122,8 @@ public abstract class Human implements Actions {
         return myPeasantsList.size() + 1;
     }
 
-    //Get even or odd
     public boolean isEvenOrOdd() {
-        return kingdom.getHumanList().size() % 2 == 0 || kingdom.getHumanList().size() == 0 ? true : false;
+        return evenOrOdd;
     }
 
     public Human getChief() {
