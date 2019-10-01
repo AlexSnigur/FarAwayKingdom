@@ -6,16 +6,15 @@ public class Game {
     public static void main(String[] args) {
 
         Kingdom kingdom1 = new Kingdom("FarAway");
-        King richard = (King) kingdom1.createPerson("Richard", "King" );
-        System.out.println(richard);
-        Lord lionel = (Lord) kingdom1.createPerson("Lionel", "Lord");
-        System.out.println(lionel);
-        Lord lee = (Lord) kingdom1.createPerson("Lee", "Lord");
-        System.out.println(lee);
-        Knight keeney = (Knight) kingdom1.createPerson("Keeney", "kNIGHT");
-        System.out.println(keeney);
-        Knight koosey = (Knight) kingdom1.createPerson("koosey", "knight");
-        System.out.println(koosey);
+        King richard = (King) kingdom1.createPerson("Richard", "King", null);
+        Lord lionel = (Lord) kingdom1.createPerson("Lionel", "Lord", richard);
+        Lord lee = (Lord) kingdom1.createPerson("Lee", "Lord", richard);
+        Knight keeney = (Knight) kingdom1.createPerson("Keeney", "kNIGHT", lionel);
+        Knight koosey = (Knight) kingdom1.createPerson("koosey", "knight", lee);
+
+        System.out.println(kingdom1);
+
+        kingdom1.runActions();
 
 
     }

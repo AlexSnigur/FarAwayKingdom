@@ -16,6 +16,8 @@ public abstract class Person {
     private double healthDownCoeff = 1.164993;
     private static final double HEALTH_THRESHOLD = 0.2;
     private static final List<Person> DEAD_LIST = new ArrayList<>();
+    Person chief;
+    Person[] subordinate;
 
     public Person() {}
 
@@ -37,6 +39,10 @@ public abstract class Person {
             person1.power = person2.power;
             person1.health = person2.health;
         }
+    }
+
+    public void setChief(Person chief) {
+        this.chief = chief;
     }
 
     public String getTitleAndName()  {
@@ -72,7 +78,7 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return this.title + " " + this.name + " " + this.health + " " + this.power;
+        return this.title + " " + this.name + " " + this.health + " " + this.power + " chief: " + this.chief;
     }
 
 }

@@ -1,24 +1,50 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
+import java.util.Arrays;
+
 public class Kingdom {
     private String name;
-    Person[] people = new Person[10];
+    Person[] people = {};
     public Kingdom(String name) {
         this.name = name;
     }
 
-    public Person createPerson(String name, String title){
-        if(title.toLowerCase().equals("king")) {
-            return new King(name);
-        } else if(title.toLowerCase().equals("lord")) {
-            return new Lord(name);
-        } else if(title.toLowerCase().equals("knight")) {
-            return new Knight(name);
-        } else {
-            return new Peasant(name);
+    public Person createPerson(String name, String title, Person chief){
+        Person createdPerson;
+        switch (title.toLowerCase()) {
+            case "king":
+                createdPerson = new King(name);
+                break;
+            case "lord":
+                createdPerson = new Lord(name);
+                break;
+            case "knight":
+                createdPerson = new Knight(name);
+                break;
+            default:
+                createdPerson = new Peasant(name);
+
+        }
+        createdPerson.setChief(chief);
+        addToPeople(createdPerson);
+        return createdPerson;
+    }
+
+    private void addToPeople(Person p) {
+        int arrayLen = this.people.length;
+        Person [] newPeopleArray = Arrays.copyOf(this.people, arrayLen + 1);
+        newPeopleArray[arrayLen] = p;
+        this.people = newPeopleArray;
+    }
+
+    public void runActions() {
+        int lastIndex = this.people.length - 1;
+        for(int i = lastIndex; i >= 0; i-- ) {
+            System.out.println(i + " : " + this.people[i]);
         }
     }
+
     public static boolean runActionsChain(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
         try {
             knight1.doAction("my hommage to " + lord1.getTitleAndName(), true);
@@ -44,11 +70,13 @@ public class Kingdom {
         return true;
     }
 
-    public static void report(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
-        king.report();
-        lord1.report();
-        lord2.report();
-        knight1.report();
-        knight2.report();
+    @Override
+    public String toString() {
+        String kingdom = "";
+        for (Person p : this.people) {
+            kingdom = kingdom + p + "; \n";
+        }
+        return kingdom;
     }
+
 }
