@@ -1,10 +1,8 @@
 package org.btarikool.javacourse;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Enemy extends Human {
+public class Enemy extends Actions {
 
     private final static String TITLE = "Enemy of the king";
     private String ownPhrase;
@@ -12,28 +10,27 @@ public class Enemy extends Human {
     private byte[] ownEncryptedPhrase;
     private byte[] receivedEncryptedPhrase;
     private static int phraseCounter;
-    private static int enemiesCounter;
-    private int ownId;
-    private static List<Enemy> list = new ArrayList<>();
+    private Enemy createdBy;
+    private final static double HEALTH = 0.0d;
+    private final static int AUTHORITY = 0;
+    private final static int STATUS_LEVEL = 10;
 
-    public Enemy(String name) throws IOException {
-        super(name, TITLE, 0, 0, 10);
-        this.ownPhrase = getEachEnemyOwnPhraseFromFile();
+    public Enemy(String name, int idFromCollectiveList, int idFromOwnList, Kingdom kingdom) throws IOException {
+        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, idFromCollectiveList, idFromOwnList, kingdom);
+        this.ownPhrase = this.getEachEnemyOwnPhraseFromFile();
         this.ownEncryptedPhrase = this.ownPhrase.getBytes();
-        this.ownId = enemiesCounter;
-        this.enemiesCounter++;
-        list.add(this);
+        System.out.println(toString());
     }
 
-    public Enemy(String name, byte[] phraseInBytes) throws IOException {
-        super(name, TITLE, 0, 0, 10);
+    public Enemy(String name, byte[] phraseInBytes, Kingdom kingdom, Enemy createdBy) throws IOException {
+        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, kingdom.getHumanList().size(), kingdom.getHumanList().size(), kingdom);
         this.receivedEncryptedPhrase = phraseInBytes;
         this.receivedDecryptedPhrase = decryptMessage(this.receivedEncryptedPhrase);
-        this.ownPhrase = receivedDecryptedPhrase + getEachEnemyOwnPhraseFromFile();
+        this.ownPhrase = this.receivedDecryptedPhrase + getEachEnemyOwnPhraseFromFile();
         this.ownEncryptedPhrase = this.ownPhrase.getBytes();
-        this.ownId = enemiesCounter;
-        this.enemiesCounter++;
-        list.add(this);
+        this.createdBy = createdBy;
+        kingdom.addToLists(this);
+        System.out.println(toString());
     }
 
     public String getEachEnemyOwnPhraseFromFile() throws IOException {
@@ -52,7 +49,7 @@ public class Enemy extends Human {
                 if (counter == phraseCounter) {
                     reader.close();
                     phraseCounter++;
-                    return returningLine + "\n";
+                    return returningLine + "\nbb";
                 }
                 counter++;
             }
@@ -61,30 +58,24 @@ public class Enemy extends Human {
     }
 
     public Enemy createNewEnemy(String name) throws IOException {
-        return new Enemy(name, ownEncryptedPhrase);
+        return new Enemy(name, ownEncryptedPhrase, this.getKingdom(), this);
     }
 
     public String receivedEncryptedMessage(byte[] array) {
         String s = "";
-        for (byte x : array) s =  s + new String (x + " ");
+        try {
+            for (byte x : array) s = s + new String(x + " ");
+        } catch (NullPointerException a) {}
         return s;
     }
-
 
     public String decryptMessage(byte[] array) {
         return new String(array);
     }
 
-    public int getOwnId() {
-        return this.ownId;
-    }
-    public static void removeEnemyFromList(int index) {
-        list.set(index, null);
-    }
     @Override
     public String toString() {
-        if (this.enemiesCounter == 1) return "I am " + this.TITLE + ", my name is " + this.getName() + ".My phrase is: " + this.ownPhrase;
-        else return "I am " + this.TITLE + ", my name is " + this.getName() + ". \nReceived encrypted phrase: " + receivedEncryptedMessage(receivedEncryptedPhrase) + " \nSo it looks like a song: " + this.receivedDecryptedPhrase;
-
+        if (this.getOwnListId() == 0) return "I'm " + this.getTitleAndName() +". My HP level: " + this.getHealPoints() + ". My authority level: " + this.getAuthorityPoints() + ".\nMy phrase is: " + this.ownPhrase;
+        else return "I'm " + this.getTitleAndName() + ", I was created by " + this.createdBy.getTitleAndName() +". My HP level: " + this.getHealPoints() + ". My authority level: " + this.getAuthorityPoints() + ".\nReceived encrypted phrase: " + receivedEncryptedMessage(receivedEncryptedPhrase) + " \nSo it looks like a song: " + this.receivedDecryptedPhrase;
     }
 }

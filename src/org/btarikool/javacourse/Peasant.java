@@ -1,24 +1,26 @@
 package org.btarikool.javacourse;
 
-import org.omg.CORBA.TIMEOUT;
+public class Peasant extends Actions{
+    private final static String TITLE = "Peasant";
+    private final static double HEALTH = 0.9d;
+    private final static int AUTHORITY = 2;
+    private final static int STATUS_LEVEL = 3;
+    private Human owner;
 
-import java.util.ArrayList;
-
-public class Peasant extends Human{
-    private final static String TITLE = "Peasant of";
-    private String name;
-    private final double HEALTH = 0.9d;
-    private final int AUTHORITY = 2;
-    private final int STATUS_LEVEL = 3;
-
-
-    public Peasant(String name){
-        super(name, TITLE, 0.9d, 2, 3);
-
+    public Peasant(int idFromCollectiveList, int idFromOwnList, Kingdom kingdom, Human owner){
+        super("#" + idFromOwnList, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, idFromCollectiveList, idFromOwnList, kingdom);
+        this.owner = owner;
+        kingdom.getPeasantList().add(this);
+        kingdom.getHumanList().add(this);
+        System.out.println(toString());
     }
 
-    public void presents(Human person, String present) {
-        System.out.println(getName() + " даёт " + present + " " + person.getTitle() + " " + person.getName());
-        this.changeHpAndAuthorityLevel(person);
+    public void setOwner(Human owner) {
+        this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "I'm - " + this.getTitleAndName() + ", my owner is " + this.owner.getTitleAndName() + ". My HP level: " + this.getHealPoints() + ". My authority level: " + this.getAuthorityPoints() + ".";
     }
 }

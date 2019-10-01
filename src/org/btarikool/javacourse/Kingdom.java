@@ -4,31 +4,105 @@ package org.btarikool.javacourse;
 // "Robert Baratheon" "Eddard Stark" "Petyr Baelish" "Rodrik Cassel" "Jorah Mormont"
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Kingdom {
+    private String name;
+    private final List<Human> HUMAN_LIST = new ArrayList<>();
+    private final List<Human> KING_LIST = new ArrayList<>();
+    private final List<Human> LORD_LIST = new ArrayList<>();
+    private final List<Human> KNIGHT_LIST = new ArrayList<>();
+    private final List<Human> PEASANT_LIST = new ArrayList<>();
+    private final List<Human> ENEMY_LIST = new ArrayList<>();
+    private final List<Human> DEAD_LIST = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
+    public Kingdom() {
+    }
 
-        Enemy a = new Enemy("Artur");
-        System.out.println(a);
-        Enemy b = a.createNewEnemy("Vasja");
-        System.out.println(b);
-        Enemy c = b.createNewEnemy("Petja");
-        System.out.println(c);
-        Enemy d = c.createNewEnemy("Roma");
-        System.out.println(d);
-        Enemy e = d.createNewEnemy("Roma");
-        System.out.println(e);
+    public Kingdom(String name) {
+        this.name = name;
+    }
 
-      /*  //Creating objects
-        King king = new King(args[0]);
-        Lord lordFirst = new Lord(args[1]);
-        Lord lordSecond = new Lord(args[2]);
-        Knight knightFirst = new Knight(args[3]);
-        Knight knightSecond = new Knight(args[4]);
-        System.out.println();
+    public Human createHuman(String name, String title) throws IOException {
+        Human human = null;
+        switch (title.toLowerCase()) {
+            case "king":
+                human = new King(name, HUMAN_LIST.size(), KING_LIST.size(), this);
+                addToLists(human);
+                break;
+            case "lord":
+                human = new Lord(name, HUMAN_LIST.size(), LORD_LIST.size(), this);
+                addToLists(human);
+                break;
+            case "knight":
+                human = new Knight(name, HUMAN_LIST.size(), KNIGHT_LIST.size(), this);
+                addToLists(human);
+                break;
+            case "enemy":
+                human = new Enemy(name, HUMAN_LIST.size(), ENEMY_LIST.size(), this);
+                addToLists(human);
+                break;
+        }
+        return human;
+    }
 
-        //Iterate actions 1st time
+    public List<Human> getHumanList() {
+        return HUMAN_LIST;
+    }
+
+    public List<Human> getKingList() {
+        return KING_LIST;
+    }
+
+    public List<Human> getLordList() {
+        return LORD_LIST;
+    }
+
+    public List<Human> getKnightList() {
+        return KNIGHT_LIST;
+    }
+
+    public List<Human> getPeasantList() {
+        return PEASANT_LIST;
+    }
+
+    public List<Human> getEnemyList() {
+        return ENEMY_LIST;
+    }
+
+    public List<Human> getDeadList() {
+        return DEAD_LIST;
+    }
+
+    public void printHumanList() {
+        HUMAN_LIST.stream().forEach(System.out::println);
+    }
+
+    public void addToLists(Human human) {
+        HUMAN_LIST.add(human);
+        if (human instanceof King) KING_LIST.add(human);
+        else if (human instanceof Lord) LORD_LIST.add(human);
+        else if (human instanceof Knight) KNIGHT_LIST.add(human);
+        else if (human instanceof Peasant) PEASANT_LIST.add(human);
+        else if (human instanceof Enemy) ENEMY_LIST.add(human);
+    }
+
+    public void removeFromAliveSetToDeadList(Human human) {
+        if (human.getHealPoints() < Human.getMINIMUM_HP_LEVEL()) {
+            human.setStatus(false);
+            DEAD_LIST.add(human);
+            HUMAN_LIST.set(human.getCollectiveListId(), null);
+            if (human instanceof King) KING_LIST.set(human.getOwnListId(), null);
+            else if (human instanceof Lord) LORD_LIST.set(human.getOwnListId(), null);
+            else if (human instanceof Knight) KNIGHT_LIST.set(human.getOwnListId(), null);
+            else if (human instanceof Peasant) PEASANT_LIST.set(human.getOwnListId(), null);
+            else if (human instanceof Enemy) ENEMY_LIST.set(human.getOwnListId(), null);
+        }
+    }
+
+
+/*        //Iterate actions 1st time
         iterationOfActions(knightFirst, knightSecond, lordFirst, lordSecond, king);
         System.out.println();
 
@@ -78,5 +152,4 @@ public class Kingdom {
                 }
             }
         }*/
-    }
 }
