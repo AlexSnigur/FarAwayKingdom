@@ -1,6 +1,5 @@
 package org.btarikool.javacourse;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +18,15 @@ public abstract class Human {
     private int collectiveListId;
     private Kingdom kingdom;
     private List<Peasant> myPeasantsList = new ArrayList<>();
+    private List<Human> subordinateList = new ArrayList<>();
     private Human chief;
-    private Human subordinate;
-    private boolean evenOrOdd;
+    private boolean evenOrOdd = kingdom.getHumanList().size()%2==0?true:false;
+
+    public Human() {
+    }
 
     //Constructor for Human & Peasant objects
-    public Human(String name, String title, double healPoints, int authorityPoints, int statusLevel, int collectiveListId, int ownListId, Kingdom kingdom) {
+    public Human(String name, String title, double healPoints, int authorityPoints, int statusLevel, int collectiveListId, int ownListId, Kingdom kingdom, Human chief) {
         this.name = name;
         this.statusLevel = statusLevel;
         this.ownListId = ownListId;
@@ -35,7 +37,8 @@ public abstract class Human {
         this.status = true;
         this.rank = healPoints * authorityPoints;
         this.kingdom = kingdom;
-        this.evenOrOdd = collectiveListId%2==0?true:false;
+        this.chief = chief;
+        if (!(this instanceof King || this instanceof Enemy)) chief.getSubordinateList().add(this);
     }
 
     //Get name
@@ -123,6 +126,15 @@ public abstract class Human {
         return evenOrOdd;
     }
 
+    public Human getChief() {
+        return chief;
+    }
+
+    //Set chief
+    public void setChief(Human chief) {
+        this.chief = chief;
+    }
+
     //Get healthIndexDown
     public static double getHealthIndexDown() {
         return healthIndexDown;
@@ -152,6 +164,18 @@ public abstract class Human {
     //Get rank by calculation
     public static double getRank(Human human) {
         return human.getAuthorityPoints() * human.getHealPoints();
+    }
+
+    //Get subordinates list
+    public List<Human> getSubordinateList() {
+        return subordinateList;
+    }
+
+    //Get subordinates (string)
+    public String getStringOfSubordinateList() {
+        String allSubordinates = "";
+        for (int x = 0; x < this.subordinateList.size(); x++) allSubordinates = allSubordinates + " " + this.subordinateList.get(x).getTitleAndName() + (this.subordinateList.size()-1==x?".":", ");
+        return allSubordinates;
     }
 
     //Copies Heal Points and Authority Points from higher to lower rank object
@@ -186,6 +210,6 @@ public abstract class Human {
 
     @Override
     public String toString() {
-        return "I'm - " + this.getTitleAndName() + ". My HP level: " + this.healPoints + ". My authority level: " + this.authorityPoints + ".";
+        return "I'm - " + this.getTitleAndName() + ". My HP level: " + this.healPoints + ". My authority level: " + this.authorityPoints + (this instanceof King?"":". My chief is " + this.chief.getTitleAndName()) + ". My subordinate" + (this.subordinateList.size()>1?"s are:":" is:") + (this.subordinateList.size()==0?" nobody at the moment.":this.getStringOfSubordinateList());
     }
 }

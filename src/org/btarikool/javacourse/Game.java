@@ -3,64 +3,71 @@ package org.btarikool.javacourse;
 import java.io.IOException;
 
 public class Game {
+
     public static void main(String[] args) throws IOException {
         Kingdom kingdom = new Kingdom("Far Far Away Kingdom");
-        System.out.println("Creating persons:");
-        King king = (King)kingdom.createHuman("Artur", "king");
-        Lord lord = (Lord)kingdom.createHuman("Andrei", "lord");
-        Lord lord2 = (Lord)kingdom.createHuman("Andrei", "lord");
-        Lord lord3 = (Lord)kingdom.createHuman("Andrei", "lord");
-        Knight knight1 = (Knight)kingdom.createHuman("Vasja", "knight");
-        Enemy enemy = (Enemy)kingdom.createHuman("Vasja", "enemy");
-        Enemy enemy2 = enemy.createNewEnemy("Marina");
-        king.doPresentPeasant(lord2);
-        king.doPresentPeasant(knight1);
-        knight1.doPresentPeasant(king);
-        System.out.println("Humans: " + kingdom.getHumanList().size());
-        System.out.println("Kings: " + kingdom.getKingList().size());
-        System.out.println("Lords: " + kingdom.getLordList().size());
-        System.out.println("Knights: " + kingdom.getKnightList().size());
-        System.out.println("Enemies: " + kingdom.getEnemyList().size());
-        System.out.println("Peasants: " + kingdom.getPeasantList().size());
-        System.out.println("Dead: " + kingdom.getDeadList().size());
-        System.out.println();
-        System.out.println("Lords Andrei Peasants: " + lord2.getMyPeasantsList().size());
-        for (Peasant x : lord2.getMyPeasantsList()) System.out.println(x);
-        System.out.println();
-        System.out.println("Knight Vasja Peasants: " + knight1.getMyPeasantsList().size());
-        for (Peasant x : knight1.getMyPeasantsList()) System.out.println(x);
-        System.out.println();
-        System.out.println("Kings Andrei Peasants: " + king.getMyPeasantsList().size());
-        for (Peasant x : king.getMyPeasantsList()) System.out.println(x);
+        King king = (King)kingdom.createHuman("Artur", "king", null);
+        Lord lord1 = (Lord)kingdom.createHuman("Daniel", "Lord", king);
+        Lord lord2 = (Lord)kingdom.createHuman("Jack", "Lord", king);
+        Knight knight1 = (Knight)kingdom.createHuman("Michael", "Knight", lord1);
+        Knight knight2 = (Knight)kingdom.createHuman("Fionna", "Knight", lord2);
+        runActions(kingdom, king, lord1, lord2, knight1, knight2);
+        System.out.println("                               RESULTS:                               ");
+        kingdom.getHumanList().stream().forEach(System.out::println);
 
 
-
-        Kingdom kingdom2 = new Kingdom("Far Far Away Kingdom2");
-        King king2 = (King)kingdom2.createHuman("Artur", "king");
-        Lord lord22 = (Lord)kingdom2.createHuman("Andrei", "lord");
-        Lord lord222 = (Lord)kingdom2.createHuman("Andrei", "lord");
-        Knight knight12 = (Knight)kingdom2.createHuman("Vasja", "knight");
-        Enemy enemy222 = (Enemy)kingdom2.createHuman("Vasja", "enemy");
-        Enemy enemy22 = enemy222.createNewEnemy("Marina");
-        king2.doPresentPeasant(lord22);
-        king2.doPresentPeasant(knight12);
-        king2.doPresentPeasant(knight12);
-        knight12.doPresentPeasant(king2);
-        System.out.println("Humans: " + kingdom2.getHumanList().size());
-        System.out.println("Kings: " + kingdom2.getKingList().size());
-        System.out.println("Lords: " + kingdom2.getLordList().size());
-        System.out.println("Knights: " + kingdom2.getKnightList().size());
-        System.out.println("Enemies: " + kingdom2.getEnemyList().size());
-        System.out.println("Peasants: " + kingdom2.getPeasantList().size());
-        System.out.println("Dead: " + kingdom2.getDeadList().size());
-        System.out.println();
-        System.out.println("Lords Andrei Peasants: " + lord22.getMyPeasantsList().size());
-        for (Peasant x : lord22.getMyPeasantsList()) System.out.println(x);
-        System.out.println();
-        System.out.println("Knight Vasja Peasants: " + knight12.getMyPeasantsList().size());
-        for (Peasant x : knight12.getMyPeasantsList()) System.out.println(x);
-        System.out.println();
-        System.out.println("Kings Andrei Peasants: " + king2.getMyPeasantsList().size());
-        for (Peasant x : king2.getMyPeasantsList()) System.out.println(x);
     }
+    public static void runActions(Kingdom kingdom, King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {
+
+        System.out.println("                               S -> C                               ");
+
+        if (kingdom.isEvenOrOdd()) {
+            Peasant peasant1 = king.createPeasant();
+            Peasant peasant2 = king.createPeasant();
+            king.doPresentPeasant(lord1);
+            king.doPresentPeasant(lord2);
+            lord1.doAction(lord1.getChief(),"swears loyalty to the");
+            lord2.doAction(lord2.getChief(),"swears loyalty to the");
+            knight1.doAction(knight1.getChief(),"do homage to");
+            knight2.doAction(knight2.getChief(),"do homage to");
+            peasant1.doAction(peasant1.getChief(), "farms the land for");
+            peasant2.doAction(peasant2.getChief(), "farms the land for");
+        } else {
+            Peasant peasant1 = king.createPeasant();
+            Peasant peasant2 = king.createPeasant();
+            king.doPresentPeasant(lord1);
+            king.doPresentPeasant(lord2);
+            lord1.doAction(lord1.getChief(),"gives military aid to the");
+            lord2.doAction(lord2.getChief(),"gives military aid to the");
+            knight1.doAction(knight1.getChief(),"do military service to");
+            knight2.doAction(knight2.getChief(),"do military service to");
+            peasant1.doAction(peasant1.getChief(), "pays rent to");
+            peasant2.doAction(peasant2.getChief(), "pays rent to");
+        }
+
+        System.out.println("                               C -> S                               ");
+
+        if (kingdom.isEvenOrOdd()) {
+            Peasant peasant2 = king.createPeasant();
+            Peasant peasant3 = king.createPeasant();
+            king.doPresentPeasant(lord1);
+            king.doPresentPeasant(lord2);
+            king.doAction(lord1, "presents a fief to");
+            king.doAction(lord2, "presents a fief to");
+            lord1.doAction(knight1, "provide shelter to");
+            lord2.doAction(knight2, "provide shelter to");
+            for (Human peasant : knight1.getChief().getMyPeasantsList()) knight1.doAction(peasant, "gives food to");
+            for (Human peasant : knight2.getChief().getMyPeasantsList()) knight2.doAction(peasant, "gives food to");
+        } else {
+            king.doPresentPeasant(lord1);
+            king.doPresentPeasant(lord2);
+            king.doAction(lord1, "presents a fief to");
+            king.doAction(lord2, "presents a fief to");
+            lord1.doAction(knight1, "provide protection to");
+            lord2.doAction(knight2, "provide protection to");
+            for (Human peasant : knight1.getChief().getMyPeasantsList()) knight1.doAction(peasant, "provide protection to");
+            for (Human peasant : knight2.getChief().getMyPeasantsList()) knight2.doAction(peasant, "provide protection to");
+        }
+    }
+
 }
