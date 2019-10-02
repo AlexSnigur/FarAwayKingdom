@@ -37,6 +37,15 @@ public class Kingdom {
         return createdPerson;
     }
 
+    public void replacePerson(Person oldie, Person newbie) {
+        for(int i = 0; i < this.people.length; i++) {
+            if(this.people[i].equals(oldie)) {
+                this.people[i] = newbie;
+                this.people[i].setId(oldie.id);
+            }
+        }
+    }
+
     private void addToPeople(Person p) {
         p.setId(this.people.length);
         int arrayLen = this.people.length;

@@ -30,9 +30,8 @@ public class King extends Person {
             createPeasantWithName(lord, kingdom);
         }
     }
-    public void createPeasantWithName(Person p, Kingdom k) {
+    public Person createPeasantWithName(Person p, Kingdom k) {
         String name = p.getTitleAndName() + "'s peasant";
-        k.createPerson(name, "", p);
-
+        return k.createPerson(name, "", p);
     }
 }
