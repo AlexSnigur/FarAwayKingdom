@@ -22,6 +22,9 @@ public class Kingdom {
             case "knight":
                 createdPerson = new Knight(name);
                 break;
+            case "wizard":
+                createdPerson = new Wizard(name);
+                break;
             default:
                 createdPerson = new Peasant(name);
 

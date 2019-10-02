@@ -11,7 +11,7 @@ public abstract class Person {
     String name;
     int id;
     String title;
-    double health;
+    private double health;
     int power;
     private static final String TITLE = "";
     private static final Double HEALTH_CHANGE_COEFFICIENT = 0.98;
@@ -50,6 +50,14 @@ public abstract class Person {
     }
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getHealth(){
+        return this.health;
+    }
+
+    public void setHealth(double health) {
+        this.health = health;
     }
 
     public String getTitleAndName()  {

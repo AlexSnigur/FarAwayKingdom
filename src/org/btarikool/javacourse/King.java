@@ -9,7 +9,7 @@ public class King extends Person {
     public King(String name) {
         super(name);
         this.title = TITLE;
-        this.health = 0.5;
+        this.setHealth(0.5);
         this.power = 10;
         this.actions = new String[][]{
                 {null, null},
@@ -24,8 +24,15 @@ public class King extends Person {
 
     public void providePeasantToSubordinates(Kingdom kingdom) {
         for (Person lord : this.subordinates) {
-            String name = lord.getTitleAndName() + "'s peasant";
-            kingdom.createPerson(name, "", lord);
+            if (!(lord instanceof Lord)) {
+                continue;
+            }
+            createPeasantWithName(lord, kingdom);
         }
+    }
+    public void createPeasantWithName(Person p, Kingdom k) {
+        String name = p.getTitleAndName() + "'s peasant";
+        k.createPerson(name, "", p);
+
     }
 }

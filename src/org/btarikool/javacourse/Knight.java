@@ -6,7 +6,7 @@ public class Knight extends Person {
     public Knight(String name) {
         super(name);
         this.title = TITLE;
-        this.health = 0.7;
+        this.setHealth(0.7);
         this.power = 5;
         this.actions = new String[][]{
                 {"homage", "military service"},
