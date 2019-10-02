@@ -1,109 +1,138 @@
 package org.btarikool.javacourse;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Kingdom {
+    private String name;
+    public static List<Hooman> hoomansList = new ArrayList<>();
+    public static List<Hooman> deadList = new ArrayList<>();
+    public static final double HEALTH_MIN = 0.2;
+    private int peasantNumber = 1;
 
 
-    public static void main(String[] args) {
 
-        if (args.length < 5) {
-            System.out.println("Provide 5 names as arguments");
-            return;
-        }
-        Enemy enemyOne = new Enemy("Johnny B.", "I am", new StringBuffer());
-        System.out.println(enemyOne);
-        Enemy enemyTwo = enemyOne.createEnemy("Charles", " the ");
-        System.out.println(enemyTwo);
-        Enemy enemyThree = enemyOne.createEnemy("Joe", "King");
-        System.out.println(enemyThree);
-        System.out.println();
-        enemyOne.decodeReverse();
-        System.out.println(enemyOne);
-
-        System.out.printf("\n");
-        enemyOne.decodeGroups();
-        System.out.printf("\n");
-        //create the King, two Lords and two Knights
-        King theKing = new King(args[0]); //name - args[0] (e.g. "Arthur")
-        Lord lordOne = new Lord(args[1]); //name - args[1]
-        Lord lordTwo = new Lord(args[2]); //name - args[2]
-        Knight knightOne = new Knight(args[3]); //name - args[3]
-        Knight knightTwo = new Knight(args[4]); //name - args[4]
-
-        //add white space
-        System.out.println("\n");
-
-        //main actions
-        System.out.println("--------------------");
-        doActions(theKing, lordOne, lordTwo, knightOne, knightTwo);
-        System.out.println("\n");
-
-        //check status
-        System.out.println("Check Kingdom status");
-        report(theKing, lordOne, lordTwo, knightOne, knightTwo);
-        System.out.println("\n");
-
-        //coefficient to reach King 20 power without any deaths
-        Hooman.changeHpLoss(0.6);
-
-        //loop to reach King's 20 power
-        while ((theKing.power<20)) {
-            System.out.println("--------------------");
-            doActions(theKing, lordOne, lordTwo, knightOne, knightTwo);
-            System.out.println("\n");
-            //check status
-            System.out.println("Check Kingdom status");
-            report(theKing, lordOne, lordTwo, knightOne, knightTwo);
-            System.out.println("\n");
-        }
-
-        System.out.println("Deadlist: ");
-        Hooman.getDeadList();
+    public Kingdom(String theName) {
+        this.name = theName;
     }
 
-    public static boolean statusCheck() {
-        for (Hooman check : Hooman.getHoomans()) {
-            if (check.getHealth() < 0.2) {
-                Hooman.addToDeadList(check);
-                return true;
-            }
+    public Hooman createHooman(String name, String title) {
+        Hooman hooman;
+        switch (title.toLowerCase()) {
+            case "king":
+                hooman = new King(name, hoomansList.size());
+                break;
+            case "lord":
+                hooman = new Lord(name, hoomansList.size());
+                break;
+            case "knight":
+                hooman = new Knight(name, hoomansList.size());
+                break;
+            default:
+                hooman = new Peasant(name, hoomansList.size());
+                break;
+        }
+        hoomansList.add(hooman);
+        return hooman;
+    }
+
+    public Hooman createHooman(String name, String title, Hooman chief) {
+        Hooman hooman;
+        switch (title.toLowerCase()) {
+            case "king":
+                hooman = new King(name, hoomansList.size());
+                break;
+            case "lord":
+                hooman = new Lord(name, hoomansList.size());
+                break;
+            case "knight":
+                hooman = new Knight(name, hoomansList.size());
+                break;
+            default:
+                hooman = new Peasant(name, hoomansList.size());
+                break;
+        }
+        hooman.setChief(chief);
+        hoomansList.add(hooman);
+        return hooman;
+    }
+
+
+    public void status() {
+        for (Hooman h : hoomansList) {
+                if (h.title.equals("King")) {
+                    System.out.println(h + " [health: "
+                            + h.getHealth() + ", power: " + h.getPower() + "]");
+                } else if (!h.title.equals("King")) {
+                    System.out.println(h + " [health: "
+                            + h.getHealth() + ", power: " + h.getPower() + "], chief: " + h.getChief());
+                }
+        }
+    }
+
+    public static boolean lifeCheck() {
+        for (Hooman check : hoomansList) {
+                if (check.getHealth() < HEALTH_MIN) {
+                    addToDeadList(check);
+                    return true;
+                }
         }
         return false;
     }
 
-    public static void report(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo) {
-        theKing.status();
-        lordOne.status();
-        lordTwo.status();
-        knightOne.status();
-        knightTwo.status();
-
+    public static void addToDeadList(Hooman hooman) {
+        deadList.add(hooman);
+        hoomansList.set(hooman.getIdNumber(), null);
     }
 
-    public static void doActions(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo) {
-        System.out.println(knightOne.getNameAndTitle() + ": " + knightOne.greetings(lordOne) + lordOne.getNameAndTitle());
-        System.out.println(knightTwo.getNameAndTitle() + knightTwo.protect(lordTwo) + lordTwo.getNameAndTitle());
-        System.out.println(lordOne.getNameAndTitle() + ": " + lordOne.greetings(theKing) + "King " + theKing.getNameAndTitle());
-        System.out.println(lordTwo.getNameAndTitle() + lordTwo.protect(theKing) + "King " + theKing.getNameAndTitle());
-        theKing.giveLand(lordOne);
-        theKing.givePeasants(lordTwo);
-        theKing.givePeasants(lordTwo);
-        Peasant peasantOne = new Peasant("number #1");
-        Peasant peasantTwo = new Peasant("number #2");
-        System.out.println(lordOne.getNameAndTitle() + lordOne.giveFood(knightOne));
-        System.out.println(lordTwo.getNameAndTitle() + lordTwo.protect(knightTwo) + knightTwo.getNameAndTitle());
-        System.out.println(knightOne.getNameAndTitle() + knightOne.conquerLand(theKing) + "King " + theKing.getNameAndTitle());
-        System.out.println(knightTwo.getNameAndTitle() + knightTwo.conquerLand(theKing) + "King " + theKing.getNameAndTitle());
-        System.out.println(peasantOne.getNameAndTitle() + peasantOne.giveFood(lordOne) + lordOne.getNameAndTitle());
-        System.out.println(peasantTwo.getNameAndTitle() + peasantTwo.giveFood(lordTwo) + lordTwo.getNameAndTitle());
-        statusCheck();
-        if (statusCheck()){
-            System.out.println("GAME OVER!!!!!");
-        }
+    public void doActions(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo) {
 
+        System.out.println("\n---->>> Actions form S to C:");
+            theKing.givePeasants(lordOne);
+            theKing.givePeasants(lordTwo);
+            Hooman peasantOne = createHooman("number #"+ peasantNumber, "Peasant", lordOne);
+            Hooman peasantTwo = createHooman("number #"+ (peasantNumber +1), "Peasant", lordTwo);
+
+            System.out.println(lordOne.getNameAndTitle()
+                    + (lordOne.isCheckEven() ? lordOne.loyalty(lordOne.getChief()) : lordOne.militaryAid(lordOne.getChief()))
+                    + lordOne.getChief());
+            System.out.println(lordTwo.getNameAndTitle()
+                    + (lordTwo.isCheckEven() ? lordTwo.loyalty(lordTwo.getChief()) : lordTwo.militaryAid(lordTwo.getChief()))
+                    + lordTwo.getChief());
+            System.out.println(knightOne.getNameAndTitle()
+                    + (knightOne.isCheckEven() ? knightOne.greetings(knightOne.getChief()) : knightOne.militaryService(knightOne.getChief()))
+                    + knightOne.getChief());
+            System.out.println(knightTwo.getNameAndTitle()
+                    + (knightTwo.isCheckEven() ? knightTwo.greetings(knightTwo.getChief()) : knightTwo.militaryService(knightTwo.getChief()))
+                    + knightTwo.getChief());
+            System.out.println(peasantOne.getNameAndTitle()
+                    + (peasantOne.isCheckEven() ? peasantOne.farmLand(peasantOne.getChief()) : peasantOne.paysRent(peasantOne.getChief()))
+                    + peasantOne.getChief());
+            System.out.println(peasantTwo.getNameAndTitle()
+                    + (peasantTwo.isCheckEven() ? peasantTwo.farmLand(peasantTwo.getChief()) : peasantTwo.paysRent(peasantTwo.getChief()))
+                    + peasantTwo.getChief());
+            peasantNumber +=2;
+
+            System.out.println("\n---->>> Actions form C to S:");
+            theKing.givePeasants(lordOne);
+            theKing.givePeasants(lordTwo);
+            Hooman peasantThree = createHooman("number #"+ peasantNumber, "Peasant", lordOne);
+            Hooman peasantFour = createHooman("number #"+ + (peasantNumber +1), "Peasant", lordTwo);
+            System.out.println(lordOne.getNameAndTitle()
+                    + (lordOne.isCheckEven() ? lordOne.shelter(knightOne) : lordOne.protect(knightOne))
+                    + knightOne.getNameAndTitle());
+            System.out.println(lordTwo.getNameAndTitle()
+                    + (lordTwo.isCheckEven() ? lordTwo.shelter(knightTwo) : lordTwo.protect(knightTwo))
+                    + knightTwo.getNameAndTitle());
+            System.out.println(knightOne.getNameAndTitle()
+                    + (knightOne.isCheckEven() ? knightOne.giveFood(peasantThree) : knightOne.protect(peasantThree))
+                    + peasantThree.getNameAndTitle());
+            System.out.println(knightTwo.getNameAndTitle()
+                    + (knightTwo.isCheckEven() ? knightTwo.giveFood(peasantFour) : knightTwo.protect(peasantFour))
+                    + peasantFour.getNameAndTitle());
+            peasantNumber +=2;
+
+        lifeCheck();
     }
 }
 

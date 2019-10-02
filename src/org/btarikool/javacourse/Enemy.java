@@ -8,8 +8,8 @@ public class Enemy extends Hooman {
     private StringBuffer phrase;
 
 
-    public Enemy(String name, String phrasePart, StringBuffer phrase) {
-        super(name);
+    public Enemy(String name, String phrasePart, StringBuffer phrase, int idNumber) {
+        super(name, idNumber);
         this.title = TITLE;
         this.health = 0.0;
         this.power = 0;
@@ -19,7 +19,7 @@ public class Enemy extends Hooman {
 
     public Enemy createEnemy(String name, String phrasePart) {
 
-        return new Enemy(name, phrasePart, this.phrase);
+        return new Enemy(name, phrasePart, this.phrase, idNumber);
     }
 
     public void decodeReverse() {

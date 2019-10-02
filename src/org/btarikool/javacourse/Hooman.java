@@ -3,6 +3,7 @@ package org.btarikool.javacourse;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Hooman {
@@ -11,24 +12,33 @@ public abstract class Hooman {
     public double health;
     private static double healthUp = 1.3;
     private static double healthDown = 1.164993;
-    public final double HEALTH_MIN = 0.2;
     public int power;
     public int levelOfDominance;
-    public static List<Hooman> hoomans = new ArrayList<>();
-    public static List<Hooman> deadList = new ArrayList<>();
+    public int idNumber;
+    private Hooman chief;
+    private Hooman subordinate;
+    public boolean checkEven;
 
 
-    public Hooman(String name) {
+    public Hooman(String name, int idNumber) {
         this.name = name;
-        if (!(this instanceof Enemy) && !(this instanceof Peasant)){
-            hoomans.add(this);
+        this.idNumber = idNumber;
+        if (idNumber % 2 == 0) {
+            this.checkEven = true;
+        } else {
+            this.checkEven = false;
         }
-
     }
+
+    public void setChief(Hooman chief) {
+        this.chief = chief;
+    }
+
 
     public static double rank(Hooman hooman) {
         return hooman.power * hooman.health;
     }
+
 
     public static void copyHealthAndPower(Hooman hooman1, Hooman hooman2) {
         if (rank(hooman1) > rank(hooman2)) {
@@ -40,21 +50,13 @@ public abstract class Hooman {
         }
     }
 
-    public static void addToDeadList(Hooman hooman) {
-        deadList.add(hooman);
-        hoomans.remove(hooman);
+    public boolean isCheckEven() {
+        return this.checkEven;
     }
 
-    public static void getDeadList() {
-        for (Hooman check : deadList) {
-            System.out.println(check);
-        }
+    public int getIdNumber() {
+        return idNumber;
     }
-
-    public static List<Hooman> getHoomans() {
-        return hoomans;
-    }
-
 
     public String getNameAndTitle() {
         return this.title + " " + this.name;
@@ -64,6 +66,18 @@ public abstract class Hooman {
         return health;
     }
 
+    public int getPower() {
+        return this.power;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Hooman getChief() {
+        return this.chief;
+    }
+
     public String protect(Hooman human) {
         this.changeStatus(human);
         return " protects ";
@@ -71,53 +85,64 @@ public abstract class Hooman {
 
     public String greetings(Hooman human) {
         this.changeStatus(human);
-        return "Greetings, ";
+        return " Greetings, ";
+    }
+
+    public String shelter(Hooman human) {
+        this.changeStatus(human);
+        return " gives shelter to ";
     }
 
     public String giveFood(Hooman human) {
         this.changeStatus(human);
         return " gives food to ";
-
     }
 
-
-    public String conquerLand(Hooman human) {
+    public String militaryService(Hooman human) {
         this.changeStatus(human);
-        return " conquers land for ";
+        return " provides military service to ";
     }
 
+    public String militaryAid(Hooman human) {
+        this.changeStatus(human);
+        return " provides military aid to ";
+    }
+
+    public String loyalty(Hooman human) {
+        this.changeStatus(human);
+        return " gives loyalty to ";
+    }
+
+
+    public String farmLand(Hooman human) {
+        this.changeStatus(human);
+        return " farms land for ";
+    }
+
+    public String paysRent(Hooman human) {
+        this.changeStatus(human);
+        return " pays rent to ";
+    }
+
+    //coefficient for King power 20. Not used further than task 1
     public static void changeHpLoss(double x) {
         healthUp *= x;
         healthDown *= x;
     }
 
     public void changeStatus(Hooman human) {
-
         if (this.levelOfDominance > human.levelOfDominance) {
-
             this.health *= healthUp;
             this.power--;
-
         } else if (this.levelOfDominance < human.levelOfDominance) {
-
             this.health /= healthDown;
             this.power++;
         }
     }
 
-    public static void healthCheck(Hooman hooman) {
-        if (hooman.health < 0.2) {
-
-        }
-    }
-
-    public void status() {
-        System.out.println(this.getNameAndTitle() + ", Health status: " + this.health + ", Power status: " + this.power);
-
-    }
-
     @Override
     public String toString() {
-        return title + name;
+        return this.title + " " + this.name;
+
     }
 }

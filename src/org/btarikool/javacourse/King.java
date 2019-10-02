@@ -9,13 +9,12 @@ public class King extends Hooman {
 
 
 
-    public King(String name) {
-        super(name);
+    public King(String name, int idNumber) {
+        super(name, idNumber);
         this.title = TITLE;
         this.health = 0.5;
         this.power = 10;
         this.levelOfDominance = 1;
-        System.out.println("King " + name + " is created.");
     }
 
     public void giveLand(Hooman human) {
@@ -27,7 +26,7 @@ public class King extends Hooman {
     }
 
     public void givePeasants(Hooman human) {
-
+        this.changeStatus(human);
             peasantQuantity--;
             System.out.println("King gives peasant to " + human.getNameAndTitle());
 
