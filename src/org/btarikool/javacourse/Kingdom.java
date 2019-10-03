@@ -57,11 +57,12 @@ public class Kingdom {
     public void status() {
         System.out.println("\n");
         for (Hooman h : hoomansList) {
-            if (h==null) {
+            if (h == null) {
                 hoomansList.stream().skip(hoomansList.indexOf(h));
-            }else if (h.title.equals("King") || h.title.equals("Wizard")) {
+            } else if (h.title.equals("King") || h.title.equals("Wizard")) {
                 System.out.println(h + " [health: "
-                        + h.getHealth() + ", power: " + h.getPower());
+                        + h.getHealth() + ", power: " + h.getPower() + ", Subordinates: "
+                        + h.getSubordinateListString());
             } else {
                 System.out.println(h + " [health: "
                         + h.getHealth() + ", power: " + h.getPower() + "], chief: " + h.getChief() + ", Subordinates: "
@@ -72,7 +73,7 @@ public class Kingdom {
 
     public void lifeCheck() {
         for (Hooman check : hoomansList) {
-            if (check==null) {
+            if (check == null) {
                 hoomansList.stream().skip(hoomansList.indexOf(check));
             } else if (check.getHealth() < HEALTH_MIN) {
                 addToDeadList(check);
@@ -82,55 +83,70 @@ public class Kingdom {
 
     public void addToDeadList(Hooman hooman) {
         deadList.add(hooman);
+        hooman.setAlive(false);
         hoomansList.set(hooman.getIdNumber(), null);
     }
 
-    public void doActions(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo) {
+    public void doActions(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo, Kingdom kingdom1) {
 
         System.out.println("\n---->>> Actions form S to C:");
-        theKing.givePeasants(lordOne);
-        theKing.givePeasants(lordTwo);
-        Hooman peasantOne = createHooman("number #" + peasantNameNumber, "Peasant", lordOne);
-        Hooman peasantTwo = createHooman("number #" + (peasantNameNumber + 1), "Peasant", lordTwo);
-
-        System.out.println(lordOne.getNameAndTitle()
-                + (lordOne.isCheckEven() ? lordOne.loyalty(lordOne.getChief()) : lordOne.militaryAid(lordOne.getChief()))
-                + lordOne.getChief());
-        System.out.println(lordTwo.getNameAndTitle()
-                + (lordTwo.isCheckEven() ? lordTwo.loyalty(lordTwo.getChief()) : lordTwo.militaryAid(lordTwo.getChief()))
-                + lordTwo.getChief());
-        System.out.println(knightOne.getNameAndTitle()
-                + (knightOne.isCheckEven() ? knightOne.greetings(knightOne.getChief()) : knightOne.militaryService(knightOne.getChief()))
-                + knightOne.getChief());
-        System.out.println(knightTwo.getNameAndTitle()
-                + (knightTwo.isCheckEven() ? knightTwo.greetings(knightTwo.getChief()) : knightTwo.militaryService(knightTwo.getChief()))
-                + knightTwo.getChief());
-        System.out.println(peasantOne.getNameAndTitle()
-                + (peasantOne.isCheckEven() ? peasantOne.farmLand(peasantOne.getChief()) : peasantOne.paysRent(peasantOne.getChief()))
-                + peasantOne.getChief());
-        System.out.println(peasantTwo.getNameAndTitle()
-                + (peasantTwo.isCheckEven() ? peasantTwo.farmLand(peasantTwo.getChief()) : peasantTwo.paysRent(peasantTwo.getChief()))
-                + peasantTwo.getChief());
-        peasantNameNumber += 2;
+        if (theKing.isAlive()) {
+            theKing.givePeasants(lordOne, kingdom1);
+            theKing.givePeasants(lordTwo, kingdom1);
+        }
+        if (lordOne.isAlive()&& lordOne.getChief().isAlive()) {
+            System.out.println(lordOne.getNameAndTitle()
+                    + (lordOne.isCheckEven() ? lordOne.loyalty(lordOne.getChief()) : lordOne.militaryAid(lordOne.getChief()))
+                    + lordOne.getChief());
+        }
+        if (lordTwo.isAlive()&& lordTwo.getChief().isAlive()) {
+            System.out.println(lordTwo.getNameAndTitle()
+                    + (lordTwo.isCheckEven() ? lordTwo.loyalty(lordTwo.getChief()) : lordTwo.militaryAid(lordTwo.getChief()))
+                    + lordTwo.getChief());
+        }
+        if (knightOne.isAlive()&& knightOne.getChief().isAlive()) {
+            System.out.println(knightOne.getNameAndTitle()
+                    + (knightOne.isCheckEven() ? knightOne.greetings(knightOne.getChief()) : knightOne.militaryService(knightOne.getChief()))
+                    + knightOne.getChief());
+        }
+        if (knightTwo.isAlive()&& knightTwo.getChief().isAlive()) {
+            System.out.println(knightTwo.getNameAndTitle()
+                    + (knightTwo.isCheckEven() ? knightTwo.greetings(knightTwo.getChief()) : knightTwo.militaryService(knightTwo.getChief()))
+                    + knightTwo.getChief());
+        }
+        for (Hooman h : lordOne.getSubordinateList()) {
+            if (h instanceof Peasant && h.isAlive() && h.getChief().isAlive())
+                System.out.println(h.getName()
+                        + (h.isCheckEven() ? h.farmLand(h.getChief()) : h.paysRent(h.getChief()))
+                        + h.getChief());
+        }
+        for (Hooman g : lordTwo.getSubordinateList() ) {
+            if (g instanceof Peasant && g.isAlive()&& g.getChief().isAlive())
+                System.out.println(g.getName()
+                        + (g.isCheckEven() ? g.farmLand(g.getChief()) : g.paysRent(g.getChief()))
+                        + g.getChief());
+        }
 
         System.out.println("\n---->>> Actions form C to S:");
-        theKing.givePeasants(lordOne);
-        theKing.givePeasants(lordTwo);
-        Hooman peasantThree = createHooman("number #" + peasantNameNumber, "Peasant", lordOne);
-        Hooman peasantFour = createHooman("number #" + +(peasantNameNumber + 1), "Peasant", lordTwo);
-        System.out.println(lordOne.getNameAndTitle()
-                + (lordOne.isCheckEven() ? lordOne.shelter(knightOne) : lordOne.protect(knightOne))
-                + knightOne.getNameAndTitle());
-        System.out.println(lordTwo.getNameAndTitle()
-                + (lordTwo.isCheckEven() ? lordTwo.shelter(knightTwo) : lordTwo.protect(knightTwo))
-                + knightTwo.getNameAndTitle());
-        System.out.println(knightOne.getNameAndTitle()
-                + (knightOne.isCheckEven() ? knightOne.giveFood(peasantThree) : knightOne.protect(peasantThree))
-                + peasantThree.getNameAndTitle());
-        System.out.println(knightTwo.getNameAndTitle()
-                + (knightTwo.isCheckEven() ? knightTwo.giveFood(peasantFour) : knightTwo.protect(peasantFour))
-                + peasantFour.getNameAndTitle());
-        peasantNameNumber += 2;
+        if (theKing.isAlive()) {
+            System.out.println(theKing.getNameAndTitle() + theKing.fief(theKing.getSubordinateList()));
+        }
+        if (lordOne.isAlive()) {
+            System.out.println(lordOne.getNameAndTitle()
+                    + (lordOne.isCheckEven() ? lordOne.shelter(lordOne.getSubordinateList()) : lordOne.protect(lordOne.getSubordinateList())));
+        }
+        if (lordTwo.isAlive()) {
+            System.out.println(lordTwo.getNameAndTitle()
+                    + (lordTwo.isCheckEven() ? lordTwo.shelter(lordTwo.getSubordinateList()) : lordTwo.protect(lordTwo.getSubordinateList())));
+        }
+        if (!knightOne.getSubordinateList().isEmpty() && knightOne.isAlive()) {
+            System.out.println(knightOne.getNameAndTitle()
+                    + (knightOne.isCheckEven() ? knightOne.giveFood(knightOne.getSubordinateList()) : knightOne.protect(knightOne.getSubordinateList())));
+        }
+        if (!knightTwo.getSubordinateList().isEmpty() && knightTwo.isAlive()) {
+            System.out.println(knightTwo.getNameAndTitle()
+                    + (knightTwo.isCheckEven() ? knightTwo.giveFood(knightTwo.getSubordinateList()) : knightTwo.protect(knightTwo.getSubordinateList())));
+        }
         lifeCheck();
     }
 }

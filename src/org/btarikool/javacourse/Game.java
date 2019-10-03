@@ -14,7 +14,8 @@ public class Game {
         Knight knightTwo = (Knight) kingdom1.createHooman("Victor", "knight", lordTwo);
 
         kingdom1.status();
-        kingdom1.doActions(kingErebor, lordOne, lordTwo, knightOne, knightTwo);
+        wizardOne.healKing(kingdom1);
+       // kingdom1.doActions(kingErebor, lordOne, lordTwo, knightOne, knightTwo, kingdom1);
         kingdom1.status();
     }
 

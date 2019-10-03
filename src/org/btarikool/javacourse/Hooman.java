@@ -15,7 +15,8 @@ public abstract class Hooman {
     int power;
     int levelOfDominance;
     int idNumber;
-    private Hooman chief;
+    boolean isAlive;
+     Hooman chief;
     private boolean checkEven;
     private List<Hooman> subordinateList = new ArrayList<>();
 
@@ -24,6 +25,7 @@ public abstract class Hooman {
         this.name = name;
         this.idNumber = idNumber;
         this.chief = chief;
+        isAlive = true;
         if (idNumber % 2 == 0) {
             this.checkEven = true;
         } else {
@@ -70,6 +72,21 @@ public abstract class Hooman {
         return forReturn;
     }
 
+    public void setCheckEven(boolean checkEven) {
+        this.checkEven = checkEven;
+    }
+
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
 
     public boolean isCheckEven() {
         return this.checkEven;
@@ -103,9 +120,13 @@ public abstract class Hooman {
         return this.chief;
     }
 
-    public String protect(Hooman human) {
-        this.changeStatus(human);
-        return " protects ";
+    public String protect(List<Hooman> list) {
+        String s = "";
+        for (Hooman h : list) {
+            this.changeStatus(h);
+            s += h.getNameAndTitle() +" ";
+        }
+        return " protects " +s;
     }
 
     public String greetings(Hooman human) {
@@ -113,14 +134,30 @@ public abstract class Hooman {
         return " Greetings, ";
     }
 
-    public String shelter(Hooman human) {
-        this.changeStatus(human);
-        return " gives shelter to ";
+    public String shelter(List<Hooman> list) {
+        String s = "";
+        for (Hooman h : list) {
+            this.changeStatus(h);
+            s += h.getNameAndTitle() +" ";
+        }
+        return " gives shelter to " + s;
+    }
+    public String fief(List<Hooman> list) {
+        String s = "";
+        for (Hooman h : list) {
+            this.changeStatus(h);
+            s += h.getNameAndTitle() +" ";
+        }
+        return " gives fief to " + s;
     }
 
-    public String giveFood(Hooman human) {
-        this.changeStatus(human);
-        return " gives food to ";
+    public String giveFood(List<Hooman> list) {
+        String s = "";
+        for (Hooman h : list) {
+            this.changeStatus(h);
+            s += h.getNameAndTitle() +" ";
+        }
+        return " gives food to " + s;
     }
 
     public String militaryService(Hooman human) {
