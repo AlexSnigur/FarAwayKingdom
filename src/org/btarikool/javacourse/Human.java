@@ -39,7 +39,11 @@ public abstract class Human implements Actions {
         this.kingdom = kingdom;
         this.chief = chief;
         this.evenOrOdd = collectiveListId%2==0?true:false;
-        if (!(this instanceof King || this instanceof Enemy)) chief.getSubordinateList().add(this);
+        if (!(this instanceof King || this instanceof Enemy || this instanceof Wizard)) chief.getSubordinateList().add(this);
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     //Get name
@@ -50,6 +54,12 @@ public abstract class Human implements Actions {
     //Get title
     public String getTitle() {
         return this.title;
+    }
+
+    //Set title
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     //Get title and name
@@ -70,6 +80,11 @@ public abstract class Human implements Actions {
     //Get Status Level
     public int getStatusLevel() {
         return this.statusLevel;
+    }
+
+    //Set StatusLevel
+    public void setStatusLevel(int statusLevel) {
+        this.statusLevel = statusLevel;
     }
 
     //Get MINIMUM_HP_LEVEL
@@ -105,6 +120,10 @@ public abstract class Human implements Actions {
     //Get own list's ID
     public int getOwnListId() {
         return ownListId;
+    }
+
+    public void setOwnListId(int ownListId) {
+        this.ownListId = ownListId;
     }
 
     //Get collective lit's ID
@@ -230,6 +249,13 @@ public abstract class Human implements Actions {
 
     @Override
     public String toString() {
-        return "I'm - " + this.getTitleAndName() + ". My HP level: " + this.healPoints + ". My authority level: " + this.authorityPoints + (this instanceof King?"":". My chief is " + this.chief.getTitleAndName()) + ". My subordinate" + (this.subordinateList.size()>1?"s are:":" is:") + (this.subordinateList.size()==0?" nobody at the moment.":this.getStringOfSubordinateList());
+        return "I'm - " +
+                this.getTitleAndName() +
+                ". My HP level: " +
+                this.healPoints + ". My authority level: " +
+                this.authorityPoints + (this instanceof King?"":". My chief is " +
+                this.chief.getTitleAndName()) + ". My subordinate" +
+                (this.subordinateList.size()>1?"s are:":" is:") +
+                (this.subordinateList.size()==0?" nobody at the moment.":this.getStringOfSubordinateList());
     }
 }

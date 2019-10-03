@@ -7,13 +7,25 @@ public class Game {
     public static void main(String[] args) throws IOException {
         Kingdom kingdom = new Kingdom("Far Far Away Kingdom");
         King king = (King)kingdom.createHuman("Artur", "king", null);
-        Lord lord1 = (Lord)kingdom.createHuman("Daniel", "Lord", king);
+        Wizard wizard = (Wizard)kingdom.createHuman("Marina", "wizard", king);
+        Knight knight = (Knight)kingdom.createHuman("PUPS", "knight", king);
+
+        for(int x = 0; x < 5; x++) {
+            wizard.doToHeal(king);
+            System.out.println(wizard);
+        }
+        System.out.println("                               RESULTS:                               ");
+        kingdom.getHumanList().stream().forEach(System.out::println);
+
+
+
+        /*Lord lord1 = (Lord)kingdom.createHuman("Daniel", "Lord", king);
         Lord lord2 = (Lord)kingdom.createHuman("Jack", "Lord", king);
         Knight knight1 = (Knight)kingdom.createHuman("Michael", "Knight", lord1);
         Knight knight2 = (Knight)kingdom.createHuman("Fionna", "Knight", lord2);
         runActions(king, lord1, lord2, knight1, knight2);
         System.out.println("                               RESULTS:                               ");
-        kingdom.getHumanList().stream().forEach(System.out::println);
+        kingdom.getHumanList().stream().forEach(System.out::println);*/
         
     }
     public static void runActions(King king, Lord lord1, Lord lord2, Knight knight1, Knight knight2) {

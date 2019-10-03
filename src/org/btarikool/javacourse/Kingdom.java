@@ -10,10 +10,10 @@ public class Kingdom {
     private final List<Human> KING_LIST = new ArrayList<>();
     private final List<Human> LORD_LIST = new ArrayList<>();
     private final List<Human> KNIGHT_LIST = new ArrayList<>();
+    private final List<Human> WIZARD_LIST = new ArrayList<>();
     private final List<Human> PEASANT_LIST = new ArrayList<>();
     private final List<Human> ENEMY_LIST = new ArrayList<>();
     private final List<Human> DEAD_LIST = new ArrayList<>();
-    private boolean evenOrOdd = HUMAN_LIST.size()%2==0?true:false;
 
     public Kingdom() {
     }
@@ -35,6 +35,10 @@ public class Kingdom {
                 break;
             case "knight":
                 human = new Knight(name, HUMAN_LIST.size(), KNIGHT_LIST.size(), this, chief);
+                addToLists(human);
+                break;
+            case "wizard":
+                human = new Wizard(name, HUMAN_LIST.size(), WIZARD_LIST.size(), this, chief);
                 addToLists(human);
                 break;
             case "enemy":
@@ -65,6 +69,10 @@ public class Kingdom {
         return PEASANT_LIST;
     }
 
+    public List<Human> getWizardList() {
+        return WIZARD_LIST;
+    }
+
     public List<Human> getEnemyList() {
         return ENEMY_LIST;
     }
@@ -77,15 +85,13 @@ public class Kingdom {
         HUMAN_LIST.stream().forEach(System.out::println);
     }
 
-    public boolean isEvenOrOdd() {
-        return evenOrOdd;
-    }
 
     public void addToLists(Human human) {
         HUMAN_LIST.add(human);
         if (human instanceof King) KING_LIST.add(human);
         else if (human instanceof Lord) LORD_LIST.add(human);
         else if (human instanceof Knight) KNIGHT_LIST.add(human);
+        else if (human instanceof Wizard) WIZARD_LIST.add(human);
         else if (human instanceof Peasant) PEASANT_LIST.add(human);
         else if (human instanceof Enemy) ENEMY_LIST.add(human);
     }
@@ -98,6 +104,7 @@ public class Kingdom {
             if (human instanceof King) KING_LIST.set(human.getOwnListId(), null);
             else if (human instanceof Lord) LORD_LIST.set(human.getOwnListId(), null);
             else if (human instanceof Knight) KNIGHT_LIST.set(human.getOwnListId(), null);
+            else if (human instanceof Wizard) WIZARD_LIST.set(human.getOwnListId(), null);
             else if (human instanceof Peasant) PEASANT_LIST.set(human.getOwnListId(), null);
             else if (human instanceof Enemy) ENEMY_LIST.set(human.getOwnListId(), null);
 

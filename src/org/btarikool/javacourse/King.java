@@ -1,6 +1,7 @@
 package org.btarikool.javacourse;
 
 public class King extends Human {
+
     private final static String TITLE = "King";
     private final static double HEALTH = 0.5d;
     private final static  int AUTHORITY = 10;

@@ -1,6 +1,6 @@
 package org.btarikool.javacourse;
 
-public class Peasant extends Human{
+public class Peasant extends Knight{
     private final static String TITLE = "Peasant";
     private final static double HEALTH = 0.9d;
     private final static int AUTHORITY = 2;
@@ -13,9 +13,26 @@ public class Peasant extends Human{
         System.out.println(toString());
     }
 
-
     @Override
     public String toString() {
-        return "I'm - " + this.getTitleAndName() + ". My HP level: " + this.getHealPoints() + ". My authority level: " + this.getAuthorityPoints() + ". My chief is " + this.getChief().getTitleAndName() +".";
+        if (this.getTitle().equals("Knight"))
+            return "I'm - " +
+                    this.getTitleAndName() +
+                    ". My HP level: " +
+                    this.getHealPoints() + ". My authority level: " +
+                    this.getAuthorityPoints() + ". My chief is " +
+                    this.getChief().getTitleAndName() + ". My subordinate" +
+                    (this.getSubordinateList().size()>1?"s are:":" is:") +
+                    (this.getSubordinateList().size()==0?" nobody at the moment.":this.getStringOfSubordinateList());
+        else return
+                "I'm - " +
+                this.getTitleAndName() +
+                ". My HP level: " +
+                this.getHealPoints() +
+                ". My authority level: " +
+                this.getAuthorityPoints() +
+                ". My chief is " +
+                this.getChief().getTitleAndName() +
+                ".";
     }
 }
