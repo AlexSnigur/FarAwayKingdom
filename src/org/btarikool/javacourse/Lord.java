@@ -4,8 +4,8 @@ public class Lord extends Hooman {
 
     private final static String TITLE = "Lord";
 
-    public Lord(String name, int idNumber) {
-        super(name, idNumber);
+    public Lord(String name, int idNumber, Hooman chief) {
+        super(name, idNumber, chief);
         this.levelOfDominance = 2;
         this.title = TITLE;
         this.health = 0.7;

@@ -7,26 +7,30 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class Hooman {
-    public String name;
-    public String title;
-    public double health;
+    String name;
+    String title;
+    double health;
     private static double healthUp = 1.3;
     private static double healthDown = 1.164993;
-    public int power;
-    public int levelOfDominance;
-    public int idNumber;
+    int power;
+    int levelOfDominance;
+    int idNumber;
     private Hooman chief;
-    private Hooman subordinate;
-    public boolean checkEven;
+    private boolean checkEven;
+    private List<Hooman> subordinateList = new ArrayList<>();
 
 
-    public Hooman(String name, int idNumber) {
+    public Hooman(String name, int idNumber, Hooman chief) {
         this.name = name;
         this.idNumber = idNumber;
+        this.chief = chief;
         if (idNumber % 2 == 0) {
             this.checkEven = true;
         } else {
             this.checkEven = false;
+        }
+        if (!(this instanceof King || this instanceof Wizard)) {
+            this.chief.getSubordinateList().add(this);
         }
     }
 
@@ -50,6 +54,23 @@ public abstract class Hooman {
         }
     }
 
+    public List<Hooman> getSubordinateList() {
+        return subordinateList;
+    }
+
+    public String getSubordinateListString() {
+        String forReturn = "";
+        for (Hooman h : this.subordinateList) {
+            forReturn += h.getNameAndTitle() + " ";
+        }
+        if (forReturn.isEmpty()) {
+            String emptyString = "none ";
+            return emptyString;
+        }
+        return forReturn;
+    }
+
+
     public boolean isCheckEven() {
         return this.checkEven;
     }
@@ -64,6 +85,10 @@ public abstract class Hooman {
 
     public double getHealth() {
         return health;
+    }
+
+    public void setHealth(double health) {
+        this.health = health;
     }
 
     public int getPower() {

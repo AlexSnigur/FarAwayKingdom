@@ -9,7 +9,7 @@ public class Enemy extends Hooman {
 
 
     public Enemy(String name, String phrasePart, StringBuffer phrase, int idNumber) {
-        super(name, idNumber);
+        super(name, idNumber,null);
         this.title = TITLE;
         this.health = 0.0;
         this.power = 0;

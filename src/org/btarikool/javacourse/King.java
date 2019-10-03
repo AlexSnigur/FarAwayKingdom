@@ -7,10 +7,8 @@ public class King extends Hooman {
     private int totalLandQuantity = 5;
 
 
-
-
     public King(String name, int idNumber) {
-        super(name, idNumber);
+        super(name, idNumber, null);
         this.title = TITLE;
         this.health = 0.5;
         this.power = 10;
@@ -18,17 +16,14 @@ public class King extends Hooman {
     }
 
     public void giveLand(Hooman human) {
-
             this.changeStatus(human);
             totalLandQuantity--;
             System.out.println("King gives land to " + human.getNameAndTitle());
-
     }
 
     public void givePeasants(Hooman human) {
         this.changeStatus(human);
             peasantQuantity--;
             System.out.println("King gives peasant to " + human.getNameAndTitle());
-
     }
 }
