@@ -23,7 +23,8 @@ public class Wizard extends Hooman {
         peasant.setHealth(getHealth() - 0.1);
         peasant.setPower(getPower() + 1);
         if(this.getSubordinateList().size()==5);{
-            //Knight knight = (Knight) peasant;
+           Knight knight = (Knight) peasant;
+
         }
 
 

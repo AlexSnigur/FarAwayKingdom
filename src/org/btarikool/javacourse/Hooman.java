@@ -21,6 +21,7 @@ public abstract class Hooman {
     private List<Hooman> subordinateList = new ArrayList<>();
 
 
+
     public Hooman(String name, int idNumber, Hooman chief) {
         this.name = name;
         this.idNumber = idNumber;
