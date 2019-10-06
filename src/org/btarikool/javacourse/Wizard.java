@@ -26,7 +26,7 @@ public class Wizard extends Person {
         peasant.power++;
         int peasantsNum = this.subordinates.length;
         if(peasantsNum == 5) {
-            Knight newbie = (Knight) peasant;
+//            Knight newbie = (Knight) peasant;
         }
     }
 
