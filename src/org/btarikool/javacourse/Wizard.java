@@ -13,18 +13,18 @@ public class Wizard extends Hooman {
         this.levelOfDominance = 2;
     }
 
-    public void transformToKnight(Hooman human) {
-    }
-
     public void healKing(Kingdom k) {
         King king = (King) this.chief;
         king.setHealth(king.getHealth() + 0.2);
         Peasant peasant = (Peasant) king.givePeasants(this, k);
         peasant.setHealth(getHealth() - 0.1);
         peasant.setPower(getPower() + 1);
-        if(this.getSubordinateList().size()==5);{
-           Knight knight = (Knight) peasant;
-
+        this.getListOfPeasants().add(peasant);
+        if (this.getListOfPeasants().size() == 5){
+            Hooman theKnight = k.createHooman("Promoted #" + k.hoomansList.size(),
+                    "Knight", this);
+            this.getListOfPeasants().remove(0);
+            k.hoomansList.remove(this.getListOfPeasants().get(0));
         }
 
 

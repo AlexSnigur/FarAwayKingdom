@@ -19,6 +19,7 @@ public abstract class Hooman {
      Hooman chief;
     private boolean checkEven;
     private List<Hooman> subordinateList = new ArrayList<>();
+    private List<Hooman> listOfPeasants = new ArrayList<>();
 
 
 
@@ -59,6 +60,14 @@ public abstract class Hooman {
 
     public List<Hooman> getSubordinateList() {
         return subordinateList;
+    }
+
+    public List<Hooman> getListOfPeasants() {
+        return listOfPeasants;
+    }
+
+    public void setListOfPeasants(List<Hooman> listOfPeasants) {
+        this.listOfPeasants = listOfPeasants;
     }
 
     public String getSubordinateListString() {
