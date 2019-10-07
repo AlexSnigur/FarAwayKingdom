@@ -21,7 +21,14 @@ public class Wizard extends Person {
     public void cureKing(Kingdom kingdom) {
         King king = (King) this.chief;
         king.setHealth(king.getHealth() + 0.2);
-        king.createPeasantWithName(this, kingdom);
+        Person peasant = king.createPeasantWithName(this, kingdom);
+        peasant.setHealth(peasant.getHealth() - 0.1);
+        peasant.power++;
+
+        int peasantsNum = this.subordinates.length;
+        if(peasantsNum ==5){
+           Knight newbie = (Knight) peasant;
+        }
 
     }
 
