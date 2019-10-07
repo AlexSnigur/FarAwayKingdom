@@ -13,11 +13,18 @@ public class Wizard extends Person {
         this.actions = new String[2][2];
     }
 
-    public Peasant transformToKnight(String masterName) {
-        return null;
-//        return new Peasant(masterName + "'s peasant #" + (10 - peasants));
-    }
 
+
+
+//        return new Peasant(masterName + "'s peasant #" + (10 - peasants));
+
+    public Knight transformKnight (Peasant peasant, Kingdom kingdom) {
+        Knight newKnight = new Knight( "Young Knight #" + peasant.id);
+        kingdom.people [peasant.id]=newKnight;
+        newKnight.setId(peasant.id);
+        newKnight.setChief(this);
+        return newKnight;
+    }
     public void cureKing(Kingdom kingdom) {
         King king = (King) this.chief;
         king.setHealth(king.getHealth() + 0.2);
@@ -25,9 +32,12 @@ public class Wizard extends Person {
         peasant.setHealth(peasant.getHealth() - 0.1);
         peasant.power++;
         int peasantsNum = this.subordinates.length;
-        if(peasantsNum == 5) {
-//            Knight newbie = (Knight) peasant;
-        }
+        boolean  isTimeToCreateKnight = this.subordinates.length % 5 ==0;
+        if(isTimeToCreateKnight)
+
+       if(peasantsNum == 5) {
+           Knight newbie = transformKnight ((Peasant) peasant, kingdom);
+           this.subordinates[this.subordinates.length - 1] = newbie;
     }
 
 }
