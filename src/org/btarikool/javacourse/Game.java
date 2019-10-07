@@ -18,7 +18,7 @@ public class Game {
         kingdom1.runActionsDown();
         System.out.println(kingdom1);
 
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 34; i++){
             wally.cureKing(kingdom1);
         }
         System.out.println(kingdom1);

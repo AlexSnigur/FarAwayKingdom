@@ -1,7 +1,10 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Kingdom {
     private String name;
@@ -37,14 +40,7 @@ public class Kingdom {
         return createdPerson;
     }
 
-    public void replacePerson(Person oldie, Person newbie) {
-        for(int i = 0; i < this.people.length; i++) {
-            if(this.people[i].equals(oldie)) {
-                this.people[i] = newbie;
-                this.people[i].setId(oldie.id);
-            }
-        }
-    }
+
 
     private void addToPeople(Person p) {
         p.setId(this.people.length);
@@ -78,6 +74,23 @@ public class Kingdom {
 
         }
     }
+
+    public Knight[] chooseRandomPair() {
+        List<Person> allKnights = new ArrayList<>();
+        for (Person p : this.people) {
+            if (p instanceof Knight) {
+                allKnights.add(p);
+            }
+        }
+        
+        return new Knight[2];
+    }
+
+    public void doFight(Knight[] knightPair) {
+        //TODO: Нужно будет сравнить, насколько отличается ранг рыцарей и в
+        //TODO: В зависимости от этого выбрать победителя
+    }
+
 
     @Override
     public String toString() {
