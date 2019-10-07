@@ -28,16 +28,16 @@ public class Wizard extends Person {
     public void cureKing(Kingdom kingdom) {
         King king = (King) this.chief;
         king.setHealth(king.getHealth() + 0.2);
-        Person peasant  = king.createPeasantWithName(this, kingdom);
+        Person peasant = king.createPeasantWithName(this, kingdom);
         peasant.setHealth(peasant.getHealth() - 0.1);
         peasant.power++;
         int peasantsNum = this.subordinates.length;
-        boolean  isTimeToCreateKnight = this.subordinates.length % 5 ==0;
-        if(isTimeToCreateKnight)
+        boolean isTimeToCreateKnight = this.subordinates.length % 5 == 0;
+        if (isTimeToCreateKnight)
 
-       if(peasantsNum == 5) {
-           Knight newbie = transformKnight ((Peasant) peasant, kingdom);
-           this.subordinates[this.subordinates.length - 1] = newbie;
+            if (peasantsNum == 5) {
+                Knight newbie = transformKnight((Peasant) peasant, kingdom);
+                this.subordinates[this.subordinates.length - 1] = newbie;
+            }
     }
-
 }
