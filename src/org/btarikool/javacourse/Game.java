@@ -18,9 +18,13 @@ public class Game {
         kingdom1.runActionsDown();
         System.out.println(kingdom1);
 
-        for (int i = 0; i < 34; i++){
+        for (int i = 0; i < 41; i++){
             wally.cureKing(kingdom1);
         }
+
+        Knight[] youngKnightRandomPair = kingdom1.chooseYoungKnightRandomPair();
+        kingdom1.doFight(youngKnightRandomPair);
+
         System.out.println(kingdom1);
 
     }

@@ -75,10 +75,10 @@ public class Kingdom {
         }
     }
 
-    public Knight[] chooseRandomPair() {
+    public Knight[] chooseYoungKnightRandomPair() {
         List<Person> allKnights = new ArrayList<>();
         for (Person p : this.people) {
-            if (p instanceof Knight) {
+            if (p instanceof Knight && p.chief.title == Wizard.TITLE ) {
                 allKnights.add(p);
             }
         }
@@ -87,6 +87,8 @@ public class Kingdom {
     }
 
     public void doFight(Knight[] knightPair) {
+        double knight1Rank = Person.getRank(knightPair[0]);
+        double kinght2Rank = Person.getRank(knightPair[1]);
         //TODO: Нужно будет сравнить, насколько отличается ранг рыцарей и в
         //TODO: В зависимости от этого выбрать победителя
     }

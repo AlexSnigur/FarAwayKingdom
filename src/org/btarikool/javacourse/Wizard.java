@@ -2,7 +2,7 @@
 package org.btarikool.javacourse;
 
 public class Wizard extends Person {
-    private static String TITLE = "Wizard ";
+    public static String TITLE = "Wizard ";
 
 
     public Wizard(String name) {
@@ -31,7 +31,7 @@ public class Wizard extends Person {
 
     private int getRandomPower() {
         int base = 4;
-        int random = (int) (Math.random() * 5); // from 0.0 to 0.6
+        int random = (int) (Math.random() * 5);
         return base + random;
     }
 
