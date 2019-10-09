@@ -78,7 +78,9 @@ public class Kingdom {
     public Knight[] chooseRandomPair() {
         List<Person> allKnights = new ArrayList<>();
         for (Person p : this.people) {
-            if (p instanceof Knight && p.chief instanceof Wizard) {
+            if (p instanceof Knight
+                    && !p.isDead
+                    && p.chief instanceof Wizard) {
                 allKnights.add(p);
             }
         }
@@ -113,12 +115,15 @@ public class Kingdom {
             loser = pair[0].power > pair[1].power ? pair[1] : pair[0];
         }
         updateKnights(winner, loser);
+        System.out.println("Winner is: " + winner);
+        System.out.println("Loser is: " + loser);
 
-
-        //TODO: Нужно будет сравнить, насколько отличается ранг рыцарей и в
-        //TODO: В зависимости от этого выбрать победителя
     }
-    private void updateKnights(Knight winner, Knight looser) {
+    private void updateKnights(Knight winner, Knight loser) {
+        winner.setHealth(winner.getHealth() - loser.getHealth() / 2);
+        winner.power += loser.power / 2;
+        loser.setHealth(0);
+        loser.isDead = true;
 
     }
 

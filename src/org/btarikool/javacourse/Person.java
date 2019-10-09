@@ -13,6 +13,7 @@ public abstract class Person {
     String title;
     private double health;
     int power;
+    public boolean isDead;
     private static final String TITLE = "";
     private static final Double HEALTH_CHANGE_COEFFICIENT = 0.98;
     public static int runCounter = 0;
@@ -120,7 +121,8 @@ public abstract class Person {
                 + " " + this.name
                 + " (" + this.health
                 + " - " + this.power + ")"
-                + this.printSubordinates()
+                + " is dead: " + this.isDead
+//                + this.printSubordinates()
                 + (this.chief != null ? " CHIEF: " +  this.chief : "")
                 ;
     }
