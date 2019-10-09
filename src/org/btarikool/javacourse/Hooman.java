@@ -16,11 +16,11 @@ public abstract class Hooman {
     int levelOfDominance;
     int idNumber;
     boolean isAlive;
-     Hooman chief;
+    double rank;
+    Hooman chief;
     private boolean checkEven;
     private List<Hooman> subordinateList = new ArrayList<>();
     private List<Hooman> listOfPeasants = new ArrayList<>();
-
 
 
     public Hooman(String name, int idNumber, Hooman chief) {
@@ -33,8 +33,16 @@ public abstract class Hooman {
         } else {
             this.checkEven = false;
         }
-        if (!(this instanceof King || this instanceof Wizard)) {
+        if (!(this instanceof King || this instanceof Wizard || this instanceof Enemy)) {
             this.chief.getSubordinateList().add(this);
+        }
+    }
+
+    public boolean checkRankDifference(Hooman hooman1) {
+        if ((this.getRank() - hooman1.getRank()) >= 0.5) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -42,17 +50,15 @@ public abstract class Hooman {
         this.chief = chief;
     }
 
-
-    public static double rank(Hooman hooman) {
-        return hooman.power * hooman.health;
+    public double getRank() {
+        return this.rank;
     }
 
-
-    public static void copyHealthAndPower(Hooman hooman1, Hooman hooman2) {
-        if (rank(hooman1) > rank(hooman2)) {
+    public void copyHealthAndPower(Hooman hooman1, Hooman hooman2) {
+        if (hooman1.getRank() > hooman2.getRank()) {
             hooman2.health = hooman1.health;
             hooman2.power = hooman1.power;
-        } else if (rank(hooman1) < rank(hooman2)) {
+        } else if (hooman1.getRank() < hooman2.getRank()) {
             hooman1.health = hooman2.health;
             hooman1.power = hooman2.power;
         }
@@ -134,9 +140,9 @@ public abstract class Hooman {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() +" ";
+            s += h.getNameAndTitle() + " ";
         }
-        return " protects " +s;
+        return " protects " + s;
     }
 
     public String greetings(Hooman human) {
@@ -148,15 +154,16 @@ public abstract class Hooman {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() +" ";
+            s += h.getNameAndTitle() + " ";
         }
         return " gives shelter to " + s;
     }
+
     public String fief(List<Hooman> list) {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() +" ";
+            s += h.getNameAndTitle() + " ";
         }
         return " gives fief to " + s;
     }
@@ -165,7 +172,7 @@ public abstract class Hooman {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() +" ";
+            s += h.getNameAndTitle() + " ";
         }
         return " gives food to " + s;
     }

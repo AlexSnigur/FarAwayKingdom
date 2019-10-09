@@ -11,6 +11,7 @@ public class Wizard extends Hooman {
         this.health = 1.0;
         this.power = 10;
         this.levelOfDominance = 2;
+        this.rank = this.health * this.power;
     }
 
     public void healKing(Kingdom k) {
@@ -20,13 +21,28 @@ public class Wizard extends Hooman {
         peasant.setHealth(getHealth() - 0.1);
         peasant.setPower(getPower() + 1);
         this.getListOfPeasants().add(peasant);
-        if (this.getListOfPeasants().size() == 5){
-            Hooman theKnight = k.createHooman("Promoted #" + k.hoomansList.size(),
-                    "Knight", this);
+        if (this.getListOfPeasants().size() % 5 == 0) {
+            Knight knight = new Knight("Promoted #" + this.getListOfPeasants().get(0).idNumber,
+                    this.getListOfPeasants().get(0).idNumber, this);
+            int x = k.hoomansList.indexOf(this.getListOfPeasants().get(0));
+            knight.setHealth(getRandomHealth());
+            knight.setPower(getRandomPower());
+            knight.rank = knight.health * knight.power;
+            k.hoomansList.set(x, knight);
+            k.knightList.add(knight);
             this.getListOfPeasants().remove(0);
-            k.hoomansList.remove(this.getListOfPeasants().get(0));
         }
+    }
 
+    public double getRandomHealth() {
+        double base = 0.3;
+        double rand = Math.random() * 0.6; //from 0.0 to 0.6
+        return base + rand;
+    }
 
+    public int getRandomPower() {
+        int base = 4;
+        int rand = (int) (Math.random() * 5); //from 0.0 to 5
+        return base + rand;
     }
 }

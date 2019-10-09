@@ -13,6 +13,7 @@ public class King extends Hooman {
         this.health = 0.5;
         this.power = 10;
         this.levelOfDominance = 1;
+        this.rank = this.health * this.power;
     }
 
     public void giveLand(Hooman human) {

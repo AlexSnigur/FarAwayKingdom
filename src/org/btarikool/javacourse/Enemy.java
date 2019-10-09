@@ -9,12 +9,13 @@ public class Enemy extends Hooman {
 
 
     public Enemy(String name, String phrasePart, StringBuffer phrase, int idNumber) {
-        super(name, idNumber,null);
+        super(name, idNumber, null);
         this.title = TITLE;
         this.health = 0.0;
         this.power = 0;
         this.phrasePart = phrasePart;
         this.phrase = phrase.append(phrasePart);
+        this.rank = this.health * this.power;
     }
 
     public Enemy createEnemy(String name, String phrasePart) {
@@ -35,35 +36,16 @@ public class Enemy extends Hooman {
         String decodedPhraseOne = "";
 
         if (phrase.length() < 20) {
-            for (int i = 7; i < phrase.length(); i++) {
-                decodedPhraseOne += phrase.charAt(i);
-                if (i > 8) {
-                    break;
-                }
-            }
-            for (int i = 0; i < phrase.length(); i++) {
-                decodedPhraseOne += phrase.charAt(i);
-                if (i > 5) {
-                    break;
-                }
-            }
+
+            decodedPhraseOne += decodeGroupsHelper();
+
             for (int i = 10; i < phrase.length(); i++) {
                 decodedPhraseOne += phrase.charAt(i);
             }
-        } else if(phrase.length()>=20){
-            for (int i = 7; i < phrase.length(); i++) {
-                decodedPhraseOne += phrase.charAt(i);
-                if (i > 8) {
-                    break;
-                }
-            }
-            for (int i = 0; i < phrase.length(); i++) {
-                decodedPhraseOne += phrase.charAt(i);
-                if (i > 5) {
-                    break;
-                }
+        } else if (phrase.length() >= 20) {
 
-            }
+            decodedPhraseOne += decodeGroupsHelper();
+
             for (int i = 17; i < phrase.length(); i++) {
                 decodedPhraseOne += phrase.charAt(i);
                 if (i > 18) {
@@ -82,6 +64,23 @@ public class Enemy extends Hooman {
         }
         System.out.println(decodedPhraseOne);
 
+    }
+
+    public String decodeGroupsHelper() {
+        String decodedPhraseOne = "";
+        for (int i = 7; i < phrase.length(); i++) {
+            decodedPhraseOne += phrase.charAt(i);
+            if (i > 8) {
+                break;
+            }
+        }
+        for (int i = 0; i < phrase.length(); i++) {
+            decodedPhraseOne += phrase.charAt(i);
+            if (i > 5) {
+                break;
+            }
+        }
+        return decodedPhraseOne;
     }
 
     @Override

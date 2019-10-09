@@ -2,11 +2,13 @@ package org.btarikool.javacourse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Kingdom {
     private String name;
     public List<Hooman> hoomansList = new ArrayList<>();
     public List<Hooman> deadList = new ArrayList<>();
+    public List<Hooman> knightList = new ArrayList<>();
     public static final double HEALTH_MIN = 0.2;
     private int peasantNameNumber = 1;
 
@@ -87,6 +89,29 @@ public class Kingdom {
         hoomansList.set(hooman.getIdNumber(), null);
     }
 
+    public void fight() {
+        Random r = new Random();
+        Hooman hooman1 = knightList.get(r.nextInt(knightList.size()));
+        knightList.remove(hooman1);
+        Hooman hooman2 = knightList.get(r.nextInt(knightList.size()));
+        knightList.remove(hooman2);
+        System.out.println("\nFight between " + hooman1 + " and " + hooman2 + " is started!");
+        if (hooman1.checkRankDifference(hooman2) || hooman1.getPower() > hooman2.getPower()) {
+            hooman1.setHealth(hooman1.getHealth() - (hooman2.getHealth() / 2));
+            hooman1.setPower(hooman1.getPower() + (hooman2.getPower() / 2));
+            addToDeadList(hooman2);
+            knightList.add(hooman1);
+            System.out.println(hooman1 + " wins the fight");
+        } else if (hooman2.checkRankDifference(hooman1) || hooman2.getPower() > hooman1.getPower()) {
+            hooman2.setHealth(hooman2.getHealth() - (hooman1.getHealth() / 2));
+            hooman2.setPower(hooman2.getPower() + (hooman1.getPower() / 2));
+            addToDeadList(hooman1);
+            System.out.println(hooman2 + " wins the fight");
+        } else {
+            System.out.println("Since participants are even, the fight is cancelled");
+        }
+    }
+
     public void doActions(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo, Kingdom kingdom1) {
 
         System.out.println("\n---->>> Actions form S to C:");
@@ -94,22 +119,22 @@ public class Kingdom {
             theKing.givePeasants(lordOne, kingdom1);
             theKing.givePeasants(lordTwo, kingdom1);
         }
-        if (lordOne.isAlive()&& lordOne.getChief().isAlive()) {
+        if (lordOne.isAlive() && lordOne.getChief().isAlive()) {
             System.out.println(lordOne.getNameAndTitle()
                     + (lordOne.isCheckEven() ? lordOne.loyalty(lordOne.getChief()) : lordOne.militaryAid(lordOne.getChief()))
                     + lordOne.getChief());
         }
-        if (lordTwo.isAlive()&& lordTwo.getChief().isAlive()) {
+        if (lordTwo.isAlive() && lordTwo.getChief().isAlive()) {
             System.out.println(lordTwo.getNameAndTitle()
                     + (lordTwo.isCheckEven() ? lordTwo.loyalty(lordTwo.getChief()) : lordTwo.militaryAid(lordTwo.getChief()))
                     + lordTwo.getChief());
         }
-        if (knightOne.isAlive()&& knightOne.getChief().isAlive()) {
+        if (knightOne.isAlive() && knightOne.getChief().isAlive()) {
             System.out.println(knightOne.getNameAndTitle()
                     + (knightOne.isCheckEven() ? knightOne.greetings(knightOne.getChief()) : knightOne.militaryService(knightOne.getChief()))
                     + knightOne.getChief());
         }
-        if (knightTwo.isAlive()&& knightTwo.getChief().isAlive()) {
+        if (knightTwo.isAlive() && knightTwo.getChief().isAlive()) {
             System.out.println(knightTwo.getNameAndTitle()
                     + (knightTwo.isCheckEven() ? knightTwo.greetings(knightTwo.getChief()) : knightTwo.militaryService(knightTwo.getChief()))
                     + knightTwo.getChief());
@@ -120,8 +145,8 @@ public class Kingdom {
                         + (h.isCheckEven() ? h.farmLand(h.getChief()) : h.paysRent(h.getChief()))
                         + h.getChief());
         }
-        for (Hooman g : lordTwo.getSubordinateList() ) {
-            if (g instanceof Peasant && g.isAlive()&& g.getChief().isAlive())
+        for (Hooman g : lordTwo.getSubordinateList()) {
+            if (g instanceof Peasant && g.isAlive() && g.getChief().isAlive())
                 System.out.println(g.getName()
                         + (g.isCheckEven() ? g.farmLand(g.getChief()) : g.paysRent(g.getChief()))
                         + g.getChief());

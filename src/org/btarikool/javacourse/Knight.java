@@ -10,5 +10,6 @@ private final static String TITLE = "Knight";
         this.title = TITLE;
         this.health = 0.7;
         this.power = 5;
+        this.rank = this.health * this.power;
     }
 }

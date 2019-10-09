@@ -10,5 +10,6 @@ public class Peasant extends Hooman {
         this.title = TITLE;
         this.health = 0.9;
         this.power = 2;
+        this.rank = this.health * this.power;
     }
 }
