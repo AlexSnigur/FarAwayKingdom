@@ -1,7 +1,9 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Kingdom {
     private String name;
@@ -78,6 +80,20 @@ public class Kingdom {
 
         }
     }
+    public Knight[] chooseRandomPair(){
+        List<Person> allKnights = new ArrayList<>();
+        for(Person p: this.people){
+            if(p instanceof Knight){
+                allKnights.add(p);
+            }
+        }
+       return new Knight[2];
+    }
+
+    public void doFight(Knight[] knightPair){
+        //TODO: сравнить насколько отличается ранг рыцарей и в зависимости от этого выбрать победителя
+    }
+
 
     @Override
     public String toString() {

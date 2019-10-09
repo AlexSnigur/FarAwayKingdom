@@ -17,12 +17,21 @@ public class Wizard extends Person {
         Knight newKnight = new Knight("Young Knight #" + peasant.id);
         kingdom.people[peasant.id] = newKnight;
         newKnight.setId(peasant.id);
+        newKnight.setHealth(getRandomHealth());
+       // newKnight.setPower(getRandomPower());
         newKnight.setChief(this);
         return newKnight;
 
-
-
-//        return new Peasant(masterName + "'s peasant #" + (10 - peasants));
+    }
+    private double getRandomHealth(){
+        double base = 0.3;
+        double random =Math.random()*0.6; //from 0.0 to 0.6
+        return base +random;
+    }
+    private int getRandomPower(){
+        int base = 4;
+        int random =(int) (Math.random()*5);
+        return base + random;
     }
 
     public void cureKing(Kingdom kingdom) {
