@@ -106,7 +106,7 @@ public class Kingdom {
         return pair;
     }
 
-    public void doFight(Knight[] knight) {
+    public void doFightRand(Knight[] knight) {
         Knight looser;
         Knight winner;
         boolean isMore = Math.abs(knight[0].getRankByField() - knight[1].getRankByField()) > 0.5d ? true : false;
@@ -117,7 +117,24 @@ public class Kingdom {
         winner.setAuthorityPoints(winner.getAuthorityPoints() + looser.getAuthorityPoints() / 2);
         Human.setRank(winner);
         looser.setHealPoints(0);
+        System.out.println(winner.getTitleAndName() + " fights with " + looser.getTitleAndName() + ", winner is: " + winner.getTitleAndName());
         this.removeFromAliveSetToDeadList(looser);
+    }
+
+    public Human doFight(Knight knight1, Knight knight2) {
+        Knight looser;
+        Knight winner;
+        boolean isMore = Math.abs(knight1.getRankByField() - knight2.getRankByField()) > 0.5d ? true : false;
+        if (isMore) looser = knight1.getRankByField() > knight2.getRankByField() ? knight2 : knight1;
+        else looser = knight1.getAuthorityPoints() > knight2.getAuthorityPoints() ? knight2 : knight1;
+        winner = looser == knight1 ? knight2 : knight1;
+        winner.setHealPoints(winner.getHealPoints() - (looser.getHealPoints() / 2));
+        winner.setAuthorityPoints(winner.getAuthorityPoints() + (looser.getAuthorityPoints() / 2));
+        Human.setRank(winner);
+        looser.setHealPoints(0);
+        System.out.println(winner.getTitleAndName() + " fights with " + looser.getTitleAndName() + ", winner is: " + winner.getTitleAndName());
+        this.removeFromAliveSetToDeadList(looser);
+        return winner;
     }
 
     public void removeFromAliveSetToDeadList(Human human) {

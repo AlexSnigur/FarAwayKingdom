@@ -7,7 +7,7 @@ public class Peasant extends Knight{
     private final static int STATUS_LEVEL = 3;
 
     public Peasant(int idFromCollectiveList, int idFromOwnList, Kingdom kingdom, Human chief){
-        super("#" + idFromOwnList, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, idFromCollectiveList, idFromOwnList, kingdom, chief);
+        super("#" + idFromCollectiveList, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, idFromCollectiveList, idFromOwnList, kingdom, chief);
         kingdom.getPeasantList().add(this);
         kingdom.getHumanList().add(this);
         System.out.println(toString());
