@@ -26,10 +26,6 @@ public class Game {
         }
         kingdom1.doActions(kingErebor, lordOne, lordTwo, knightOne, knightTwo, kingdom1);
         kingdom1.status();
-        System.out.println("\n");
-
-        System.out.println(kingdom1.knightList);
-        System.out.println("\n");
 
         kingdom1.fight();
 

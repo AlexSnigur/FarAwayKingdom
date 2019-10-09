@@ -87,29 +87,40 @@ public class Kingdom {
         deadList.add(hooman);
         hooman.setAlive(false);
         hoomansList.set(hooman.getIdNumber(), null);
+        if (hooman instanceof Knight) {
+            knightList.remove(hooman);
+        }
+    }
+
+    public Hooman pickRandomKnight() {
+        Random r = new Random();
+        Hooman hooman = knightList.get(r.nextInt(knightList.size()));
+        return hooman;
     }
 
     public void fight() {
-        Random r = new Random();
-        Hooman hooman1 = knightList.get(r.nextInt(knightList.size()));
-        knightList.remove(hooman1);
-        Hooman hooman2 = knightList.get(r.nextInt(knightList.size()));
-        knightList.remove(hooman2);
-        System.out.println("\nFight between " + hooman1 + " and " + hooman2 + " is started!");
-        if (hooman1.checkRankDifference(hooman2) || hooman1.getPower() > hooman2.getPower()) {
-            hooman1.setHealth(hooman1.getHealth() - (hooman2.getHealth() / 2));
-            hooman1.setPower(hooman1.getPower() + (hooman2.getPower() / 2));
-            addToDeadList(hooman2);
-            knightList.add(hooman1);
-            System.out.println(hooman1 + " wins the fight");
-        } else if (hooman2.checkRankDifference(hooman1) || hooman2.getPower() > hooman1.getPower()) {
-            hooman2.setHealth(hooman2.getHealth() - (hooman1.getHealth() / 2));
-            hooman2.setPower(hooman2.getPower() + (hooman1.getPower() / 2));
-            addToDeadList(hooman1);
-            System.out.println(hooman2 + " wins the fight");
-        } else {
-            System.out.println("Since participants are even, the fight is cancelled");
+        while (knightList.size() > 1) {
+            Hooman hooman1 = pickRandomKnight();
+            Hooman hooman2 = pickRandomKnight();
+            while (hooman2.equals(hooman1)) {
+                hooman2 = pickRandomKnight();
+            }
+            System.out.println("\nFight between " + hooman1 + " and " + hooman2 + " is started!");
+            if (hooman1.checkRankDifference(hooman2) || hooman1.getPower() > hooman2.getPower()) {
+                hooman1.setHealth(hooman1.getHealth() - (hooman2.getHealth() / 2));
+                hooman1.setPower(hooman1.getPower() + (hooman2.getPower() / 2));
+                addToDeadList(hooman2);
+                System.out.println(hooman1 + " wins the fight!");
+            } else if (hooman2.checkRankDifference(hooman1) || hooman2.getPower() > hooman1.getPower()) {
+                hooman2.setHealth(hooman2.getHealth() - (hooman1.getHealth() / 2));
+                hooman2.setPower(hooman2.getPower() + (hooman1.getPower() / 2));
+                addToDeadList(hooman1);
+                System.out.println(hooman2 + " wins the fight!");
+            } else {
+                System.out.println("Since participants are even, the fight is cancelled");
+            }
         }
+        System.out.println("\nThe winner of the championship is: " + knightList + ", Congratulations!!!");
     }
 
     public void doActions(King theKing, Lord lordOne, Lord lordTwo, Knight knightOne, Knight knightTwo, Kingdom kingdom1) {
