@@ -23,5 +23,8 @@ public class Game {
         }
         System.out.println(kingdom1);
 
+        Knight[] pair = kingdom1.chooseRandomPair();
+        kingdom1.doFight(pair);
+
     }
 }

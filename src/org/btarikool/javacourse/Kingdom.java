@@ -78,17 +78,48 @@ public class Kingdom {
     public Knight[] chooseRandomPair() {
         List<Person> allKnights = new ArrayList<>();
         for (Person p : this.people) {
-            if (p instanceof Knight) {
+            if (p instanceof Knight && p.chief instanceof Wizard) {
                 allKnights.add(p);
             }
         }
-        
-        return new Knight[2];
+        int knightLen = allKnights.size();
+        if(knightLen < 2) {
+            return null;
+        }
+        int firstIndex = (int) (Math.random() * knightLen);
+        Knight kn1 = (Knight) allKnights.get(firstIndex);
+        int secIndex;
+        do {
+            secIndex = (int) (Math.random() * knightLen);
+        } while (firstIndex == secIndex);
+        Knight kn2 = (Knight) allKnights.get(secIndex);
+        return new Knight[]{kn1, kn2};
     }
 
-    public void doFight(Knight[] knightPair) {
+    public void doFight(Knight[] pair) {
+        Knight winner;
+        Knight loser;
+        if (pair == null) {
+            System.out.println("Invalid pair of fighters!");
+        }
+        System.out.println("Knights will fight: d");
+        System.out.println(pair[0] + "\n" + pair[1]);
+        double delta = pair[0].getRank() - pair[1].getRank();
+        if (Math.abs(delta) > 0.5) {
+            winner = delta > 0 ? pair[0] : pair[1];
+            loser = delta > 0 ? pair[1] : pair[0];
+        } else {
+            winner = pair[0].power > pair[1].power ? pair[0] : pair[1];
+            loser = pair[0].power > pair[1].power ? pair[1] : pair[0];
+        }
+        updateKnights(winner, loser);
+
+
         //TODO: Нужно будет сравнить, насколько отличается ранг рыцарей и в
         //TODO: В зависимости от этого выбрать победителя
+    }
+    private void updateKnights(Knight winner, Knight looser) {
+
     }
 
 

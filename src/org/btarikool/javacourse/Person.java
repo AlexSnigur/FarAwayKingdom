@@ -30,12 +30,12 @@ public abstract class Person {
         this.name = name;
     }
 
-    public static double getRank(Person person) {
-        return person.health * person.power;
+    public double getRank() {
+        return this.health * this.power;
     }
 
     public static void copyPowerAndHealth(Person person1, Person person2) {
-        boolean isFirstHigher = getRank(person1) > getRank(person2);
+        boolean isFirstHigher = person1.getRank() > person2.getRank();
         if(isFirstHigher) {
             person2.power = person1.power;
             person2.health = person1.health;
