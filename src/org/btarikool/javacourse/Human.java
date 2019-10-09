@@ -171,7 +171,7 @@ public abstract class Human implements Actions {
     }
 
     //Set rank
-    public void setRank(Human human) {
+    public static void setRank(Human human) {
         human.rank = human.getAuthorityPoints() * human.getHealPoints();
     }
 

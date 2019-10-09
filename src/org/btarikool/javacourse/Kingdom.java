@@ -96,7 +96,7 @@ public class Kingdom {
         else if (human instanceof Enemy) ENEMY_LIST.add(human);
     }
 
-    public Knight[] chooseRandomPair() {
+    public Knight[] getRandomPair() {
         Random random = new Random();
         int a = 0;
         int b = a;
@@ -106,7 +106,7 @@ public class Kingdom {
         return pair;
     }
 
-    public void doAttack(Knight[] knight) {
+    public void doFight(Knight[] knight) {
         Knight looser;
         Knight winner;
         boolean isMore = Math.abs(knight[0].getRankByField() - knight[1].getRankByField()) > 0.5d ? true : false;
@@ -115,6 +115,7 @@ public class Kingdom {
         winner = looser == knight[0] ? knight[1] : knight[0];
         winner.setHealPoints(winner.getHealPoints() - looser.getHealPoints() / 2);
         winner.setAuthorityPoints(winner.getAuthorityPoints() + looser.getAuthorityPoints() / 2);
+        Human.setRank(winner);
         looser.setHealPoints(0);
         this.removeFromAliveSetToDeadList(looser);
     }
@@ -123,7 +124,10 @@ public class Kingdom {
         if (human.getHealPoints() < Human.getMINIMUM_HP_LEVEL()) {
             human.setStatus(false);
             DEAD_LIST.add(human);
-            if (human.getChief()!=null) human.getChief().getSubordinateList().remove(human);
+            if (human.getChief()!=null) {
+                human.getChief().getSubordinateList().remove(human);
+                human.getChief().getMyPeasantsList().removeIf(x -> x == human);
+            }
             HUMAN_LIST.remove(human);
             KING_LIST.removeIf(x-> x == human);
             LORD_LIST.removeIf(x-> x == human);
