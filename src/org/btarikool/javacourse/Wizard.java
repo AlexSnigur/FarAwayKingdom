@@ -31,8 +31,8 @@ public class Wizard extends Human {
 
         if (this.getMyPeasantsList().size()==5) {
             Knight thisPeasant = this.getMyPeasantsList().get(0);
-            thisPeasant.setHealPoints(0.7d);
-            thisPeasant.setAuthorityPoints(5);
+            thisPeasant.setHealPoints(getRandomHP());
+            thisPeasant.setAuthorityPoints(getRandomAuth());
             thisPeasant.setName("EP" + thisPeasant.getName());
             thisPeasant.setTitle("Knight");
             thisPeasant.setStatusLevel(2);
@@ -42,5 +42,17 @@ public class Wizard extends Human {
             this.getKingdom().getPeasantList().remove(thisPeasant);
             this.getMyPeasantsList().remove(thisPeasant);
         }
+    }
+
+    private double getRandomHP() {
+        double base = 0.3;
+        double random = Math.random() * 0.6;
+        return base + random;
+    }
+
+    private int getRandomAuth() {
+        int base = 4;
+        int random = (int) (Math.random() * 5);
+        return base + random;
     }
 }

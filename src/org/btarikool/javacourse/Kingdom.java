@@ -3,6 +3,7 @@ package org.btarikool.javacourse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Kingdom {
     private String name;
@@ -85,7 +86,6 @@ public class Kingdom {
         HUMAN_LIST.stream().forEach(System.out::println);
     }
 
-
     public void addToLists(Human human) {
         HUMAN_LIST.add(human);
         if (human instanceof King) KING_LIST.add(human);
@@ -96,18 +96,41 @@ public class Kingdom {
         else if (human instanceof Enemy) ENEMY_LIST.add(human);
     }
 
+    public Knight[] chooseRandomPair() {
+        Random random = new Random();
+        int a = 0;
+        int b = a;
+        a = random.nextInt(KNIGHT_LIST.size());
+        while (a == b) b = random.nextInt(KNIGHT_LIST.size());
+        Knight[] pair = new Knight[] {(Knight)KNIGHT_LIST.get(a), (Knight)KNIGHT_LIST.get(b)};
+        return pair;
+    }
+
+    public void doAttack(Knight[] knight) {
+        Knight looser;
+        Knight winner;
+        boolean isMore = Math.abs(knight[0].getRankByField() - knight[1].getRankByField()) > 0.5d ? true : false;
+        if (isMore) looser = knight[0].getRankByField() > knight[1].getRankByField() ? knight[1] : knight[0];
+        else looser = knight[0].getAuthorityPoints() > knight[1].getAuthorityPoints() ? knight[1] : knight[0];
+        winner = looser == knight[0] ? knight[1] : knight[0];
+        winner.setHealPoints(winner.getHealPoints() - looser.getHealPoints() / 2);
+        winner.setAuthorityPoints(winner.getAuthorityPoints() + looser.getAuthorityPoints() / 2);
+        looser.setHealPoints(0);
+        this.removeFromAliveSetToDeadList(looser);
+    }
+
     public void removeFromAliveSetToDeadList(Human human) {
         if (human.getHealPoints() < Human.getMINIMUM_HP_LEVEL()) {
             human.setStatus(false);
             DEAD_LIST.add(human);
-            HUMAN_LIST.set(human.getCollectiveListId(), null);
-            if (human instanceof King) KING_LIST.set(human.getOwnListId(), null);
-            else if (human instanceof Lord) LORD_LIST.set(human.getOwnListId(), null);
-            else if (human instanceof Knight) KNIGHT_LIST.set(human.getOwnListId(), null);
-            else if (human instanceof Wizard) WIZARD_LIST.set(human.getOwnListId(), null);
-            else if (human instanceof Peasant) PEASANT_LIST.set(human.getOwnListId(), null);
-            else if (human instanceof Enemy) ENEMY_LIST.set(human.getOwnListId(), null);
-
+            if (human.getChief()!=null) human.getChief().getSubordinateList().remove(human);
+            HUMAN_LIST.remove(human);
+            KING_LIST.removeIf(x-> x == human);
+            LORD_LIST.removeIf(x-> x == human);
+            KNIGHT_LIST.removeIf(x-> x == human);
+            WIZARD_LIST.removeIf(x-> x == human);
+            PEASANT_LIST.removeIf(x-> x == human);
+            ENEMY_LIST.removeIf(x-> x == human);
         }
     }
 }
