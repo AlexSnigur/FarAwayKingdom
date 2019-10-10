@@ -1,9 +1,16 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
+import com.sun.deploy.util.ArrayUtil;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Kingdom {
@@ -70,8 +77,6 @@ public class Kingdom {
             for (Person subordinate: p.subordinates) {
                 p.doAction(subordinate);
             }
-
-
         }
     }
 
@@ -126,7 +131,34 @@ public class Kingdom {
         loser.isDead = true;
 
     }
+    public void printSubordinates (Person[] persons, int level, PrintWriter writer) {
+        if (persons == null) {
+            return;
+        }
+        for(Person p: persons) {
+            String tabs = p.isDead ? "☠" : "";
+            if (level == 0 && p.chief != null) {
+                continue;
+            } else {
+                for(int i = 0; i < level; i++) {
+                    tabs += "\t";
+                }
+            }
+            writer.println(tabs + p);
+            printSubordinates(p.subordinates, level + 1, writer);
+        }
+    }
 
+    public void saveKingdomState() {
+        try {
+            FileWriter writer = new FileWriter("kingdom_out.log");
+            PrintWriter printWriter = new PrintWriter(writer);
+            printSubordinates(this.people, 0, printWriter);
+            printWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public String toString() {

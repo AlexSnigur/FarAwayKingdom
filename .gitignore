@@ -1,5 +1,6 @@
 .idea
 *.iml
+*_out.log
 out
 /out/
 out/

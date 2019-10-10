@@ -16,6 +16,10 @@ public class Game {
 
         kingdom1.runActionsUp();
         kingdom1.runActionsDown();
+
+        keeney.setHealth(0.1);
+        keeney.isDead = true;
+        kingdom1.saveKingdomState();
         System.out.println(kingdom1);
 
         for (int i = 0; i < 34; i++){
@@ -27,4 +31,5 @@ public class Game {
         kingdom1.doFight(pair);
 
     }
+
 }

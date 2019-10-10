@@ -117,14 +117,11 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return this.title
-                + " " + this.name
+        return (this.title.length() > 0 ? this.title + " " : "")
+                + this.name
                 + " (" + this.health
                 + " - " + this.power + ")"
-                + " is dead: " + this.isDead
-//                + this.printSubordinates()
-                + (this.chief != null ? " CHIEF: " +  this.chief : "")
-                ;
+                + (isDead ? " is dead " : "" );
     }
 
 }
