@@ -75,10 +75,10 @@ public class Kingdom {
         }
     }
 
-    public Knight[] chooseYoungKnightRandomPair() {
+    public Knight[] choosetRandomPair() {
         List<Person> allKnights = new ArrayList<>();
         for (Person p : this.people) {
-            if (p instanceof Knight && p.chief.title == Wizard.TITLE ) {
+            if (p instanceof Knight & p.chief.title == Wizard.TITLE ) {
                 allKnights.add(p);
             }
         }
