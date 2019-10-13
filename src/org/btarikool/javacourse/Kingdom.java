@@ -103,7 +103,7 @@ public class Kingdom {
         return new Knight[]{kn1, kn2};
     }
 
-    public void doFight(Knight[] pair) {
+    public static void doFight(Knight[] pair) {
         Knight winner;
         Knight loser;
         if (pair == null) {
@@ -124,7 +124,7 @@ public class Kingdom {
         System.out.println("Loser is: " + loser);
 
     }
-    private void updateKnights(Knight winner, Knight loser) {
+    private static void updateKnights(Knight winner, Knight loser) {
         winner.setHealth(winner.getHealth() - loser.getHealth() / 2);
         winner.power += loser.power / 2;
         loser.setHealth(0);
