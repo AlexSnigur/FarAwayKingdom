@@ -6,11 +6,10 @@ import java.util.Random;
 
 
 public class Settings {
-
     private static final String LOCAL_DIR = System.getProperty("user.dir").concat("\\conf\\config.properties");
     private static Properties prop = new Properties();
-    private int countOnStartKnight;
     private int iterationsCount;
+    private int countOnStartKnight;
     private int countOnStartWizard;
     private int countOnStartLord;
     private int countOfWizardsHeals;
@@ -63,13 +62,15 @@ public class Settings {
     }
 
     public void setInputSettingsForStart() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        this.iterationsCount = setPropInt(reader, "Please enter count of iterations for our actions: ");
-        this.countOnStartLord = setPropInt(reader, "Please enter Lords count on start: ");
-        this.countOnStartKnight = setPropInt(reader, "Please enter Knights count on start: ");
-        this.countOnStartWizard = setPropInt(reader, "Please enter Wizards count on start: ");
-        this.countOfWizardsHeals = setPropInt(reader, "Please enter Wizards heals count: ");
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            this.iterationsCount = setPropInt(reader, "Please enter count of iterations for our actions: ");
+            this.countOnStartLord = setPropInt(reader, "Please enter Lords count on start: ");
+            this.countOnStartKnight = setPropInt(reader, "Please enter Knights count on start: ");
+            this.countOnStartWizard = setPropInt(reader, "Please enter Wizards count on start: ");
+            this.countOfWizardsHeals = setPropInt(reader, "Please enter Wizards heals count: ");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.print("Well done! Game will start in a ");
         try {
             for (int x = 3; x > 0; x--) {
