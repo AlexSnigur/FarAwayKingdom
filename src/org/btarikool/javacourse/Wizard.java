@@ -13,7 +13,7 @@ public class Wizard extends Human {
     };
 
     public Wizard(String name, int idFromCollectiveList, int idFromOwnList, Kingdom kingdom, Human chief) {
-        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, phrase, idFromCollectiveList, idFromOwnList, kingdom, chief);
+        super(name, TITLE, STATUS_LEVEL, phrase, idFromCollectiveList, idFromOwnList, kingdom, chief);
     }
 
     public void doToHeal(King king) {

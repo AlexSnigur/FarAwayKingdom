@@ -11,6 +11,6 @@ public class Lord extends Human {
     };
 
     public Lord(String name, int idFromCollectiveList, int idFromOwnList, Kingdom kingdom, Human chief) {
-        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, phrase, idFromCollectiveList, idFromOwnList, kingdom, chief);
+        super(name, TITLE, STATUS_LEVEL, phrase, idFromCollectiveList, idFromOwnList, kingdom, chief);
     }
 }

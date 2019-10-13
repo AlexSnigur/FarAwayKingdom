@@ -32,6 +32,10 @@ public class Kingdom {
         runActions(settings.getIterCount());
     }
 
+    public Settings getSettings() {
+        return settings;
+    }
+
     public Human createHuman(String name, String title, Human chief) throws IOException {
         Human human = null;
         switch (title.toLowerCase()) {

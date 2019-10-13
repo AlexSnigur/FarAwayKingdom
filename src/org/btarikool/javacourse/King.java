@@ -13,7 +13,7 @@ public class King extends Human {
     };
 
     public King(String name, int idFromCollectiveList, int idFromOwnList, Kingdom kingdom) {
-        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, phrase, idFromCollectiveList, idFromOwnList, kingdom, null);
+        super(name, TITLE, STATUS_LEVEL, phrase, idFromCollectiveList, idFromOwnList, kingdom, null);
         //for (int x = 0; x < NUM_OF_PEASANTS_ON_START; x++) this.createPeasant();
     }
     public Peasant createPeasant() {

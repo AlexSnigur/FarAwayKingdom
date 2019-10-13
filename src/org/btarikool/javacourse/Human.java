@@ -28,14 +28,20 @@ public abstract class Human implements Actions {
     }
 
     //Constructor for Human & Peasant objects
-    public Human(String name, String title, double healPoints, int authorityPoints, int statusLevel, String[][] phrase, int collectiveListId, int ownListId, Kingdom kingdom, Human chief) {
+    public Human(String name, String title, int statusLevel, String[][] phrase, int collectiveListId, int ownListId, Kingdom kingdom, Human chief) {
         this.name = name;
         this.statusLevel = statusLevel;
         this.ownListId = ownListId;
         this.collectiveListId = collectiveListId;
         this.id++;
-        this.authorityPoints = authorityPoints;
-        this.healPoints = healPoints;
+        if (this instanceof Peasant) {
+            this.authorityPoints = 2;
+            this.healPoints = 0.9d;
+        } else {
+            this.authorityPoints = kingdom.getSettings().getAuth(this);
+            this.healPoints = kingdom.getSettings().getHP(this);
+        }
+
         this.title = title;
         this.status = true;
         this.rank = healPoints * authorityPoints;
