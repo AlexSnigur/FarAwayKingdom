@@ -1,0 +1,289 @@
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.5Auth: 10 Status: Alive.
+	Lord Dave HP: 0.7Auth: 5. My chief is King Claude Status: Alive.
+		Knight Shane HP: 0.7Auth: 5. My chief is Lord Dave Status: Alive.
+	Lord Peter HP: 0.7Auth: 5. My chief is King Claude Status: Alive.
+		Knight Aidan HP: 0.7Auth: 5. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 1.0Auth: 10. My chief is King Claude Status: Alive.
+	Wizard Ethan HP: 1.0Auth: 10. My chief is King Claude Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.2714418089588782Auth: 14 Status: Alive.
+	Lord Dave HP: 0.6704937911701301Auth: 12. My chief is King Claude Status: Alive.
+		Knight Shane HP: 0.9099999999999999Auth: 10. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 1.1700000000000002Auth: 11. My chief is Lord Dave Status: Alive.
+	Lord Peter HP: 0.6704937911701301Auth: 13. My chief is King Claude Status: Alive.
+		Knight Aidan HP: 0.9099999999999999Auth: 11. My chief is Lord Peter Status: Alive.
+		Peasant #8 HP: 1.1700000000000002Auth: 12. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 1.1158865332238048Auth: 13. My chief is King Claude Status: Alive.
+		Peasant #9 HP: 1.1700000000000002Auth: 12. My chief is Wizard Shane Status: Alive.
+	Wizard Ethan HP: 1.1158865332238048Auth: 14. My chief is King Claude Status: Alive.
+		Peasant #10 HP: 1.1700000000000002Auth: 13. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.319036162566937Auth: 18 Status: Alive.
+	Lord Dave HP: 0.5512748316914402Auth: 17. My chief is King Claude Status: Alive.
+		Knight Shane HP: 1.1829999999999998Auth: 14. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 1.5210000000000004Auth: 15. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 1.1700000000000002Auth: 16. My chief is Lord Dave Status: Alive.
+	Lord Peter HP: 0.5512748316914402Auth: 18. My chief is King Claude Status: Alive.
+		Knight Aidan HP: 1.1829999999999998Auth: 15. My chief is Lord Peter Status: Alive.
+		Peasant #8 HP: 1.5210000000000004Auth: 16. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 1.1700000000000002Auth: 17. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 0.9174733142810083Auth: 19. My chief is King Claude Status: Alive.
+		Peasant #9 HP: 1.5210000000000004Auth: 16. My chief is Wizard Shane Status: Alive.
+		Peasant #13 HP: 1.1700000000000002Auth: 17. My chief is Wizard Shane Status: Alive.
+		Peasant #14 HP: 1.04Auth: 18. My chief is Wizard Shane Status: Alive.
+	Wizard Ethan HP: 1.0688499888241747Auth: 19. My chief is King Claude Status: Alive.
+		Peasant #10 HP: 1.5210000000000004Auth: 17. My chief is Wizard Ethan Status: Alive.
+		Peasant #15 HP: 1.1700000000000002Auth: 18. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.3731995061809362Auth: 22 Status: Alive.
+	Lord Dave HP: 0.38906149762434666Auth: 22. My chief is King Claude Status: Alive.
+		Knight Shane HP: 1.5378999999999998Auth: 18. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 1.9773000000000005Auth: 19. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 1.5210000000000004Auth: 20. My chief is Lord Dave Status: Alive.
+		Peasant #16 HP: 1.1700000000000002Auth: 21. My chief is Lord Dave Status: Alive.
+	Lord Peter HP: 0.38906149762434666Auth: 23. My chief is King Claude Status: Alive.
+		Knight Aidan HP: 1.5378999999999998Auth: 19. My chief is Lord Peter Status: Alive.
+		Peasant #8 HP: 1.9773000000000005Auth: 20. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 1.5210000000000004Auth: 21. My chief is Lord Peter Status: Alive.
+		Peasant #17 HP: 1.1700000000000002Auth: 22. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 0.6475056018598292Auth: 24. My chief is King Claude Status: Alive.
+		Knight EP#9 HP: 0.6110789939587905Auth: 8. My chief is Wizard Shane Status: Alive.
+		Peasant #13 HP: 1.5210000000000004Auth: 20. My chief is Wizard Shane Status: Alive.
+		Peasant #14 HP: 1.352Auth: 21. My chief is Wizard Shane Status: Alive.
+		Peasant #18 HP: 1.1700000000000002Auth: 22. My chief is Wizard Shane Status: Alive.
+		Peasant #20 HP: 1.04Auth: 23. My chief is Wizard Shane Status: Alive.
+	Wizard Ethan HP: 0.8788002296995681Auth: 24. My chief is King Claude Status: Alive.
+		Peasant #10 HP: 1.9773000000000005Auth: 21. My chief is Wizard Ethan Status: Alive.
+		Peasant #15 HP: 1.5210000000000004Auth: 22. My chief is Wizard Ethan Status: Alive.
+		Peasant #19 HP: 1.1700000000000002Auth: 23. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.20260389812062676Auth: 26 Status: Alive.
+	Lord Dave HP: 0.23569210068184762Auth: 27. My chief is King Claude Status: Alive.
+		Knight Shane HP: 1.9992699999999999Auth: 22. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 2.570490000000001Auth: 23. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 1.9773000000000005Auth: 24. My chief is Lord Dave Status: Alive.
+		Peasant #16 HP: 1.5210000000000004Auth: 25. My chief is Lord Dave Status: Alive.
+		Peasant #21 HP: 1.1700000000000002Auth: 26. My chief is Lord Dave Status: Alive.
+	Lord Peter HP: 0.23569210068184762Auth: 28. My chief is King Claude Status: Alive.
+		Knight Aidan HP: 1.9992699999999999Auth: 23. My chief is Lord Peter Status: Alive.
+		Peasant #8 HP: 2.570490000000001Auth: 24. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 1.9773000000000005Auth: 25. My chief is Lord Peter Status: Alive.
+		Peasant #17 HP: 1.5210000000000004Auth: 26. My chief is Lord Peter Status: Alive.
+		Peasant #22 HP: 1.1700000000000002Auth: 27. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 0.45697623888758193Auth: 28. My chief is King Claude Status: Alive.
+		Knight EP#9 HP: 0.6110789939587905Auth: 8. My chief is Wizard Shane Status: Alive.
+		Knight EP#13 HP: 0.3270837929524476Auth: 7. My chief is Wizard Shane Status: Alive.
+		Peasant #14 HP: 1.7576000000000003Auth: 24. My chief is Wizard Shane Status: Alive.
+		Peasant #18 HP: 1.5210000000000004Auth: 25. My chief is Wizard Shane Status: Alive.
+		Peasant #20 HP: 1.352Auth: 26. My chief is Wizard Shane Status: Alive.
+		Peasant #23 HP: 1.1700000000000002Auth: 27. My chief is Wizard Shane Status: Alive.
+	Wizard Ethan HP: 0.6202121225641339Auth: 29. My chief is King Claude Status: Alive.
+		Peasant #10 HP: 2.570490000000001Auth: 25. My chief is Wizard Ethan Status: Alive.
+		Peasant #15 HP: 1.9773000000000005Auth: 26. My chief is Wizard Ethan Status: Alive.
+		Peasant #19 HP: 1.5210000000000004Auth: 27. My chief is Wizard Ethan Status: Alive.
+		Peasant #24 HP: 1.1700000000000002Auth: 28. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.23648146015373858Auth: 30 Status: Alive.
+☠	Lord Dave HP: 0.19378423013826085Auth: 29. My chief is King Claude Status: Dead.
+		Knight Shane HP: 2.599051Auth: 26. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 3.3416370000000013Auth: 27. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 2.570490000000001Auth: 28. My chief is Lord Dave Status: Alive.
+		Peasant #16 HP: 1.5210000000000004Auth: 25. My chief is Lord Dave Status: Alive.
+		Peasant #21 HP: 1.1700000000000002Auth: 26. My chief is Lord Dave Status: Alive.
+		Peasant #25 HP: 0.9Auth: 2. My chief is Lord Dave Status: Alive.
+	Lord Peter HP: 0.30639973088640193Auth: 27. My chief is King Claude Status: Alive.
+		Knight Aidan HP: 1.9992699999999999Auth: 23. My chief is Lord Peter Status: Alive.
+		Peasant #8 HP: 2.570490000000001Auth: 24. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 1.9773000000000005Auth: 25. My chief is Lord Peter Status: Alive.
+		Peasant #17 HP: 1.5210000000000004Auth: 26. My chief is Lord Peter Status: Alive.
+		Peasant #22 HP: 1.1700000000000002Auth: 27. My chief is Lord Peter Status: Alive.
+		Peasant #27 HP: 0.9Auth: 2. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 0.32251038803066123Auth: 32. My chief is King Claude Status: Alive.
+		Knight EP#9 HP: 0.6110789939587905Auth: 8. My chief is Wizard Shane Status: Alive.
+		Knight EP#13 HP: 0.3270837929524476Auth: 7. My chief is Wizard Shane Status: Alive.
+		Knight EP#14 HP: 0.4161191609766246Auth: 4. My chief is Wizard Shane Status: Alive.
+		Knight EP#18 HP: 0.8612989415062677Auth: 5. My chief is Wizard Shane Status: Alive.
+		Peasant #20 HP: 1.7576000000000003Auth: 28. My chief is Wizard Shane Status: Alive.
+		Peasant #23 HP: 1.5210000000000004Auth: 29. My chief is Wizard Shane Status: Alive.
+		Peasant #26 HP: 1.04Auth: 30. My chief is Wizard Shane Status: Alive.
+		Peasant #28 HP: 1.1700000000000002Auth: 31. My chief is Wizard Shane Status: Alive.
+	Wizard Ethan HP: 0.4377139012662884Auth: 33. My chief is King Claude Status: Alive.
+		Knight EP#10 HP: 0.5734890964691202Auth: 7. My chief is Wizard Ethan Status: Alive.
+		Peasant #15 HP: 2.570490000000001Auth: 29. My chief is Wizard Ethan Status: Alive.
+		Peasant #19 HP: 1.9773000000000005Auth: 30. My chief is Wizard Ethan Status: Alive.
+		Peasant #24 HP: 1.5210000000000004Auth: 31. My chief is Wizard Ethan Status: Alive.
+		Peasant #29 HP: 1.1700000000000002Auth: 32. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.3212388785092528Auth: 33 Status: Alive.
+☠	Lord Dave HP: 0.19378423013826085Auth: 29. My chief is King Claude Status: Dead.
+		Knight Shane HP: 1.4639016144632646Auth: 49. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 3.3416370000000013Auth: 27. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 2.570490000000001Auth: 28. My chief is Lord Dave Status: Alive.
+		Peasant #16 HP: 1.5210000000000004Auth: 25. My chief is Lord Dave Status: Alive.
+		Peasant #21 HP: 1.1700000000000002Auth: 26. My chief is Lord Dave Status: Alive.
+		Peasant #25 HP: 0.9Auth: 2. My chief is Lord Dave Status: Alive.
+☠	Lord Peter HP: 0.1856158901919822Auth: 35. My chief is King Claude Status: Dead.
+☠		Knight Aidan HP: 0.0Auth: 26. My chief is Lord Peter Status: Dead.
+		Peasant #8 HP: 3.3416370000000013Auth: 30. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 2.570490000000001Auth: 31. My chief is Lord Peter Status: Alive.
+		Peasant #17 HP: 1.9773000000000005Auth: 32. My chief is Lord Peter Status: Alive.
+		Peasant #22 HP: 1.5210000000000004Auth: 33. My chief is Lord Peter Status: Alive.
+		Peasant #27 HP: 1.1700000000000002Auth: 34. My chief is Lord Peter Status: Alive.
+		Peasant #30 HP: 0.9Auth: 2. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 0.4192635044398596Auth: 31. My chief is King Claude Status: Alive.
+☠		Knight EP#9 HP: 0.0Auth: 14. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#13 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#14 HP: 0.0Auth: 4. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#18 HP: 0.0Auth: 5. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#20 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+		Knight EP#23 HP: 0.7732310957076909Auth: 7. My chief is Wizard Shane Status: Alive.
+		Peasant #26 HP: 1.04Auth: 30. My chief is Wizard Shane Status: Alive.
+		Peasant #28 HP: 1.1700000000000002Auth: 31. My chief is Wizard Shane Status: Alive.
+		Peasant #31 HP: 0.9Auth: 2. My chief is Wizard Shane Status: Alive.
+		Peasant #32 HP: 0.8Auth: 3. My chief is Wizard Shane Status: Alive.
+	Wizard Ethan HP: 0.3089160182320398Auth: 36. My chief is King Claude Status: Alive.
+☠		Knight EP#10 HP: 0.0Auth: 9. My chief is Wizard Ethan Status: Dead.
+		Knight EP#15 HP: 0.48370720980427584Auth: 8. My chief is Wizard Ethan Status: Alive.
+		Peasant #19 HP: 2.570490000000001Auth: 32. My chief is Wizard Ethan Status: Alive.
+		Peasant #24 HP: 1.9773000000000005Auth: 33. My chief is Wizard Ethan Status: Alive.
+		Peasant #29 HP: 1.5210000000000004Auth: 34. My chief is Wizard Ethan Status: Alive.
+		Peasant #33 HP: 1.1700000000000002Auth: 35. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.23669085002517556Auth: 35 Status: Alive.
+☠	Lord Dave HP: 0.19378423013826085Auth: 29. My chief is King Claude Status: Dead.
+		Knight Shane HP: 1.4639016144632646Auth: 49. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 3.3416370000000013Auth: 27. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 2.570490000000001Auth: 28. My chief is Lord Dave Status: Alive.
+		Peasant #16 HP: 1.5210000000000004Auth: 25. My chief is Lord Dave Status: Alive.
+		Peasant #21 HP: 1.1700000000000002Auth: 26. My chief is Lord Dave Status: Alive.
+		Peasant #25 HP: 0.9Auth: 2. My chief is Lord Dave Status: Alive.
+☠	Lord Peter HP: 0.1856158901919822Auth: 35. My chief is King Claude Status: Dead.
+☠		Knight Aidan HP: 0.0Auth: 26. My chief is Lord Peter Status: Dead.
+		Peasant #8 HP: 3.3416370000000013Auth: 30. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 2.570490000000001Auth: 31. My chief is Lord Peter Status: Alive.
+		Peasant #17 HP: 1.9773000000000005Auth: 32. My chief is Lord Peter Status: Alive.
+		Peasant #22 HP: 1.5210000000000004Auth: 33. My chief is Lord Peter Status: Alive.
+		Peasant #27 HP: 1.1700000000000002Auth: 34. My chief is Lord Peter Status: Alive.
+		Peasant #30 HP: 0.9Auth: 2. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 0.2958946745965448Auth: 37. My chief is King Claude Status: Alive.
+☠		Knight EP#9 HP: 0.0Auth: 14. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#13 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#14 HP: 0.0Auth: 4. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#18 HP: 0.0Auth: 5. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#20 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+		Knight EP#23 HP: 0.7732310957076909Auth: 7. My chief is Wizard Shane Status: Alive.
+		Knight EP#26 HP: 0.6462701277762695Auth: 5. My chief is Wizard Shane Status: Alive.
+		Peasant #28 HP: 1.5210000000000004Auth: 33. My chief is Wizard Shane Status: Alive.
+		Peasant #31 HP: 1.1700000000000002Auth: 34. My chief is Wizard Shane Status: Alive.
+		Peasant #32 HP: 1.04Auth: 35. My chief is Wizard Shane Status: Alive.
+		Peasant #34 HP: 1.1700000000000002Auth: 36. My chief is Wizard Shane Status: Alive.
+	Wizard Ethan HP: 0.21801707929372455Auth: 38. My chief is King Claude Status: Alive.
+☠		Knight EP#10 HP: 0.0Auth: 9. My chief is Wizard Ethan Status: Dead.
+		Knight EP#15 HP: 0.48370720980427584Auth: 8. My chief is Wizard Ethan Status: Alive.
+		Knight EP#19 HP: 0.49819469882899514Auth: 4. My chief is Wizard Ethan Status: Alive.
+		Peasant #24 HP: 2.570490000000001Auth: 34. My chief is Wizard Ethan Status: Alive.
+		Peasant #29 HP: 1.9773000000000005Auth: 35. My chief is Wizard Ethan Status: Alive.
+		Peasant #33 HP: 1.5210000000000004Auth: 36. My chief is Wizard Ethan Status: Alive.
+		Peasant #35 HP: 1.1700000000000002Auth: 37. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.3743953245809458Auth: 37 Status: Alive.
+☠	Lord Dave HP: 0.19378423013826085Auth: 29. My chief is King Claude Status: Dead.
+		Knight Shane HP: 0.8637270055110152Auth: 63. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 3.3416370000000013Auth: 27. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 2.570490000000001Auth: 28. My chief is Lord Dave Status: Alive.
+		Peasant #16 HP: 1.5210000000000004Auth: 25. My chief is Lord Dave Status: Alive.
+		Peasant #21 HP: 1.1700000000000002Auth: 26. My chief is Lord Dave Status: Alive.
+		Peasant #25 HP: 0.9Auth: 2. My chief is Lord Dave Status: Alive.
+☠	Lord Peter HP: 0.1856158901919822Auth: 35. My chief is King Claude Status: Dead.
+☠		Knight Aidan HP: 0.0Auth: 26. My chief is Lord Peter Status: Dead.
+		Peasant #8 HP: 3.3416370000000013Auth: 30. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 2.570490000000001Auth: 31. My chief is Lord Peter Status: Alive.
+		Peasant #17 HP: 1.9773000000000005Auth: 32. My chief is Lord Peter Status: Alive.
+		Peasant #22 HP: 1.5210000000000004Auth: 33. My chief is Lord Peter Status: Alive.
+		Peasant #27 HP: 1.1700000000000002Auth: 34. My chief is Lord Peter Status: Alive.
+		Peasant #30 HP: 0.9Auth: 2. My chief is Lord Peter Status: Alive.
+	Wizard Shane HP: 0.2088272829078403Auth: 39. My chief is King Claude Status: Alive.
+☠		Knight EP#9 HP: 0.0Auth: 14. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#13 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#14 HP: 0.0Auth: 4. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#18 HP: 0.0Auth: 5. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#20 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#23 HP: 0.0Auth: 15. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#26 HP: 0.0Auth: 5. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#28 HP: 0.0Auth: 11. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#31 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+		Peasant #32 HP: 1.352Auth: 35. My chief is Wizard Shane Status: Alive.
+		Peasant #34 HP: 1.5210000000000004Auth: 36. My chief is Wizard Shane Status: Alive.
+		Peasant #36 HP: 1.1700000000000002Auth: 37. My chief is Wizard Shane Status: Alive.
+		Peasant #38 HP: 1.04Auth: 38. My chief is Wizard Shane Status: Alive.
+☠	Wizard Ethan HP: 0.17925196366659746Auth: 39. My chief is King Claude Status: Dead.
+☠		Knight EP#10 HP: 0.0Auth: 9. My chief is Wizard Ethan Status: Dead.
+☠		Knight EP#15 HP: 0.0Auth: 10. My chief is Wizard Ethan Status: Dead.
+☠		Knight EP#19 HP: 0.0Auth: 4. My chief is Wizard Ethan Status: Dead.
+☠		Knight EP#24 HP: 0.0Auth: 6. My chief is Wizard Ethan Status: Dead.
+		Peasant #29 HP: 2.570490000000001Auth: 36. My chief is Wizard Ethan Status: Alive.
+		Peasant #33 HP: 1.9773000000000005Auth: 37. My chief is Wizard Ethan Status: Alive.
+		Peasant #35 HP: 1.5210000000000004Auth: 38. My chief is Wizard Ethan Status: Alive.
+		Peasant #37 HP: 0.9Auth: 2. My chief is Wizard Ethan Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Claude HP: 0.32137130830910215Auth: 38 Status: Alive.
+☠	Lord Dave HP: 0.19378423013826085Auth: 29. My chief is King Claude Status: Dead.
+		Knight Shane HP: 0.8637270055110152Auth: 63. My chief is Lord Dave Status: Alive.
+		Peasant #7 HP: 3.3416370000000013Auth: 27. My chief is Lord Dave Status: Alive.
+		Peasant #11 HP: 2.570490000000001Auth: 28. My chief is Lord Dave Status: Alive.
+		Peasant #16 HP: 1.5210000000000004Auth: 25. My chief is Lord Dave Status: Alive.
+		Peasant #21 HP: 1.1700000000000002Auth: 26. My chief is Lord Dave Status: Alive.
+		Peasant #25 HP: 0.9Auth: 2. My chief is Lord Dave Status: Alive.
+☠	Lord Peter HP: 0.1856158901919822Auth: 35. My chief is King Claude Status: Dead.
+☠		Knight Aidan HP: 0.0Auth: 26. My chief is Lord Peter Status: Dead.
+		Peasant #8 HP: 3.3416370000000013Auth: 30. My chief is Lord Peter Status: Alive.
+		Peasant #12 HP: 2.570490000000001Auth: 31. My chief is Lord Peter Status: Alive.
+		Peasant #17 HP: 1.9773000000000005Auth: 32. My chief is Lord Peter Status: Alive.
+		Peasant #22 HP: 1.5210000000000004Auth: 33. My chief is Lord Peter Status: Alive.
+		Peasant #27 HP: 1.1700000000000002Auth: 34. My chief is Lord Peter Status: Alive.
+		Peasant #30 HP: 0.9Auth: 2. My chief is Lord Peter Status: Alive.
+☠	Wizard Shane HP: 0.17169618384786758Auth: 40. My chief is King Claude Status: Dead.
+☠		Knight EP#9 HP: 0.0Auth: 14. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#13 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#14 HP: 0.0Auth: 4. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#18 HP: 0.0Auth: 5. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#20 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#23 HP: 0.0Auth: 15. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#26 HP: 0.0Auth: 5. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#28 HP: 0.0Auth: 11. My chief is Wizard Shane Status: Dead.
+☠		Knight EP#31 HP: 0.0Auth: 7. My chief is Wizard Shane Status: Dead.
+		Knight EP#32 HP: 0.34439275987386947Auth: 6. My chief is Wizard Shane Status: Alive.
+		Peasant #34 HP: 1.9773000000000005Auth: 37. My chief is Wizard Shane Status: Alive.
+		Peasant #36 HP: 1.5210000000000004Auth: 38. My chief is Wizard Shane Status: Alive.
+		Peasant #38 HP: 1.352Auth: 39. My chief is Wizard Shane Status: Alive.
+		Peasant #39 HP: 0.9Auth: 2. My chief is Wizard Shane Status: Alive.
+☠	Wizard Ethan HP: 0.17925196366659746Auth: 39. My chief is King Claude Status: Dead.
+☠		Knight EP#10 HP: 0.0Auth: 9. My chief is Wizard Ethan Status: Dead.
+☠		Knight EP#15 HP: 0.0Auth: 10. My chief is Wizard Ethan Status: Dead.
+☠		Knight EP#19 HP: 0.0Auth: 4. My chief is Wizard Ethan Status: Dead.
+☠		Knight EP#24 HP: 0.0Auth: 6. My chief is Wizard Ethan Status: Dead.
+		Peasant #29 HP: 2.570490000000001Auth: 36. My chief is Wizard Ethan Status: Alive.
+		Peasant #33 HP: 1.9773000000000005Auth: 37. My chief is Wizard Ethan Status: Alive.
+		Peasant #35 HP: 1.5210000000000004Auth: 38. My chief is Wizard Ethan Status: Alive.
+		Peasant #37 HP: 0.9Auth: 2. My chief is Wizard Ethan Status: Alive.

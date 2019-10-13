@@ -16,21 +16,24 @@ public abstract class Human implements Actions {
     private static double healthIndexUp = 1.3d;
     private int ownListId;
     private int collectiveListId;
+    private static int id = 0;
     private Kingdom kingdom;
     private List<Peasant> myPeasantsList = new ArrayList<>();
     private List<Human> subordinateList = new ArrayList<>();
     private Human chief;
     private boolean evenOrOdd;
+    private String[][] phrase;
 
     public Human() {
     }
 
     //Constructor for Human & Peasant objects
-    public Human(String name, String title, double healPoints, int authorityPoints, int statusLevel, int collectiveListId, int ownListId, Kingdom kingdom, Human chief) {
+    public Human(String name, String title, double healPoints, int authorityPoints, int statusLevel, String[][] phrase, int collectiveListId, int ownListId, Kingdom kingdom, Human chief) {
         this.name = name;
         this.statusLevel = statusLevel;
         this.ownListId = ownListId;
         this.collectiveListId = collectiveListId;
+        this.id++;
         this.authorityPoints = authorityPoints;
         this.healPoints = healPoints;
         this.title = title;
@@ -39,7 +42,8 @@ public abstract class Human implements Actions {
         this.kingdom = kingdom;
         this.chief = chief;
         this.evenOrOdd = collectiveListId%2==0?true:false;
-        if (!(this instanceof King || this instanceof Enemy || this instanceof Wizard)) chief.getSubordinateList().add(this);
+        this.phrase = phrase;
+        if (!(this instanceof King || this instanceof Enemy)) chief.getSubordinateList().add(this);
     }
 
     public void setName(String name) {
@@ -60,6 +64,10 @@ public abstract class Human implements Actions {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public static int getId() {
+        return id;
     }
 
     //Get title and name
@@ -159,6 +167,10 @@ public abstract class Human implements Actions {
         return healthIndexDown;
     }
 
+    public String getPhrase(int i) {
+        return this.evenOrOdd ? this.phrase[i][1] : this.phrase[i][0];
+    }
+
     //Get healthIndexUp
     public static double getHealthIndexUp() {
         return healthIndexUp;
@@ -212,7 +224,6 @@ public abstract class Human implements Actions {
         if (this.statusLevel > person.getStatusLevel()) {
             this.setHealPoints(this.getHealPoints()*healthIndexUp);
             this.authorityPoints--;
-            this.kingdom.removeFromAliveSetToDeadList(this);
             person.setHealPoints(person.getHealPoints()/healthIndexDown);
             person.setAuthorityPoints(person.getAuthorityPoints() + 1);
         }
@@ -221,7 +232,6 @@ public abstract class Human implements Actions {
             this.authorityPoints++;
             person.setHealPoints(person.getHealPoints()*healthIndexUp);
             person.setAuthorityPoints(getAuthorityPoints() - 1);
-            this.kingdom.removeFromAliveSetToDeadList(person);
         }
         setRank(person);
         setRank(this);
@@ -229,6 +239,8 @@ public abstract class Human implements Actions {
 
     @Override
     public void doPresentPeasant(Human person) {
+        if (this instanceof King && this.getMyPeasantsList().isEmpty())
+            ((King) this).createPeasant();
         if (this.getMyPeasantsList().size() > 0) {
             this.getMyPeasantsList().get(0).setChief(person);
             person.getMyPeasantsList().add(this.getMyPeasantsList().get(0));
@@ -249,13 +261,16 @@ public abstract class Human implements Actions {
 
     @Override
     public String toString() {
-        return "I'm - " +
-                this.getTitleAndName() +
-                ". My HP level: " +
-                this.healPoints + ". My authority level: " +
+        return this.getTitleAndName() +
+                " HP: " +
+                this.healPoints +
+                "Auth: " +
                 this.authorityPoints + (this instanceof King?"":". My chief is " +
-                this.chief.getTitleAndName()) + ". My subordinate" +
+                this.chief.getTitleAndName()) +
+                " Status: " +
+                (this.getStatus() ? "Alive." : "Dead.");
+                /*". My subordinate" +
                 (this.subordinateList.size()>1?"s are:":" is:") +
-                (this.subordinateList.size()==0?" nobody at the moment.":this.getStringOfSubordinateList());
+                (this.subordinateList.size()==0?" nobody at the moment.":this.getStringOfSubordinateList());*/
     }
 }

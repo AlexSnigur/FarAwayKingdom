@@ -16,14 +16,14 @@ public class Enemy extends Human {
     private final static int STATUS_LEVEL = 10;
 
     public Enemy(String name, int idFromCollectiveList, int idFromOwnList, Kingdom kingdom) throws IOException {
-        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, idFromCollectiveList, idFromOwnList, kingdom, null);
+        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, null, idFromCollectiveList, idFromOwnList, kingdom, null);
         this.ownPhrase = this.getEachEnemyOwnPhraseFromFile();
         this.ownEncryptedPhrase = this.ownPhrase.getBytes();
         System.out.println(toString());
     }
 
     public Enemy(String name, byte[] phraseInBytes, Kingdom kingdom, Enemy createdBy) throws IOException {
-        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, kingdom.getHumanList().size(), kingdom.getHumanList().size(), kingdom, createdBy);
+        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, null, kingdom.getHumanList().size(), kingdom.getHumanList().size(), kingdom, createdBy);
         this.receivedEncryptedPhrase = phraseInBytes;
         this.receivedDecryptedPhrase = decryptMessage(this.receivedEncryptedPhrase);
         this.ownPhrase = this.receivedDecryptedPhrase + getEachEnemyOwnPhraseFromFile();

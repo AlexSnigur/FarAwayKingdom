@@ -1,0 +1,128 @@
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Peter HP: 0.5Auth: 10 Status: Alive.
+	Lord Wade HP: 0.7Auth: 5. My chief is King Peter Status: Alive.
+	Lord Riley HP: 0.7Auth: 5. My chief is King Peter Status: Alive.
+		Knight Aaron HP: 0.7Auth: 5. My chief is Lord Riley Status: Alive.
+	Lord Miles HP: 0.7Auth: 5. My chief is King Peter Status: Alive.
+		Knight Glen HP: 0.7Auth: 5. My chief is Lord Miles Status: Alive.
+	Wizard Julian HP: 1.0Auth: 10. My chief is King Peter Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Peter HP: 0.2714418089588782Auth: 14 Status: Alive.
+	Lord Wade HP: 0.7811205732566633Auth: 11. My chief is King Peter Status: Alive.
+		Peasant #7 HP: 1.1700000000000002Auth: 10. My chief is Lord Wade Status: Alive.
+	Lord Riley HP: 0.6704937911701301Auth: 13. My chief is King Peter Status: Alive.
+		Knight Aaron HP: 0.9099999999999999Auth: 11. My chief is Lord Riley Status: Alive.
+		Peasant #8 HP: 1.1700000000000002Auth: 12. My chief is Lord Riley Status: Alive.
+	Lord Miles HP: 0.6704937911701301Auth: 14. My chief is King Peter Status: Alive.
+		Knight Glen HP: 0.9099999999999999Auth: 12. My chief is Lord Miles Status: Alive.
+		Peasant #9 HP: 1.1700000000000002Auth: 13. My chief is Lord Miles Status: Alive.
+	Wizard Julian HP: 1.1158865332238048Auth: 14. My chief is King Peter Status: Alive.
+		Peasant #10 HP: 1.1700000000000002Auth: 13. My chief is Wizard Julian Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Peter HP: 0.319036162566937Auth: 18 Status: Alive.
+	Lord Wade HP: 0.7481949921769222Auth: 16. My chief is King Peter Status: Alive.
+		Peasant #7 HP: 1.5210000000000004Auth: 14. My chief is Lord Wade Status: Alive.
+		Peasant #11 HP: 1.1700000000000002Auth: 15. My chief is Lord Wade Status: Alive.
+	Lord Riley HP: 0.5512748316914402Auth: 18. My chief is King Peter Status: Alive.
+		Knight Aaron HP: 1.1829999999999998Auth: 15. My chief is Lord Riley Status: Alive.
+		Peasant #8 HP: 1.5210000000000004Auth: 16. My chief is Lord Riley Status: Alive.
+		Peasant #12 HP: 1.1700000000000002Auth: 17. My chief is Lord Riley Status: Alive.
+	Lord Miles HP: 0.5512748316914402Auth: 19. My chief is King Peter Status: Alive.
+		Knight Glen HP: 1.1829999999999998Auth: 16. My chief is Lord Miles Status: Alive.
+		Peasant #9 HP: 1.5210000000000004Auth: 17. My chief is Lord Miles Status: Alive.
+		Peasant #13 HP: 1.1700000000000002Auth: 18. My chief is Lord Miles Status: Alive.
+	Wizard Julian HP: 0.9174733142810083Auth: 20. My chief is King Peter Status: Alive.
+		Peasant #10 HP: 1.5210000000000004Auth: 17. My chief is Wizard Julian Status: Alive.
+		Peasant #14 HP: 1.04Auth: 18. My chief is Wizard Julian Status: Alive.
+		Peasant #15 HP: 1.1700000000000002Auth: 19. My chief is Wizard Julian Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Peter HP: 0.3731995061809362Auth: 22 Status: Alive.
+	Lord Wade HP: 0.6151601607896975Auth: 21. My chief is King Peter Status: Alive.
+		Peasant #7 HP: 1.9773000000000005Auth: 18. My chief is Lord Wade Status: Alive.
+		Peasant #11 HP: 1.5210000000000004Auth: 19. My chief is Lord Wade Status: Alive.
+		Peasant #16 HP: 1.1700000000000002Auth: 20. My chief is Lord Wade Status: Alive.
+	Lord Riley HP: 0.38906149762434666Auth: 23. My chief is King Peter Status: Alive.
+		Knight Aaron HP: 1.5378999999999998Auth: 19. My chief is Lord Riley Status: Alive.
+		Peasant #8 HP: 1.9773000000000005Auth: 20. My chief is Lord Riley Status: Alive.
+		Peasant #12 HP: 1.5210000000000004Auth: 21. My chief is Lord Riley Status: Alive.
+		Peasant #17 HP: 1.1700000000000002Auth: 22. My chief is Lord Riley Status: Alive.
+	Lord Miles HP: 0.38906149762434666Auth: 24. My chief is King Peter Status: Alive.
+		Knight Glen HP: 1.5378999999999998Auth: 20. My chief is Lord Miles Status: Alive.
+		Peasant #9 HP: 1.9773000000000005Auth: 21. My chief is Lord Miles Status: Alive.
+		Peasant #13 HP: 1.5210000000000004Auth: 22. My chief is Lord Miles Status: Alive.
+		Peasant #18 HP: 1.1700000000000002Auth: 23. My chief is Lord Miles Status: Alive.
+	Wizard Julian HP: 0.6475056018598292Auth: 25. My chief is King Peter Status: Alive.
+		Knight EP#10 HP: 0.8553364216399946Auth: 7. My chief is Wizard Julian Status: Alive.
+		Peasant #14 HP: 1.352Auth: 21. My chief is Wizard Julian Status: Alive.
+		Peasant #15 HP: 1.5210000000000004Auth: 22. My chief is Wizard Julian Status: Alive.
+		Peasant #19 HP: 1.1700000000000002Auth: 23. My chief is Wizard Julian Status: Alive.
+		Peasant #20 HP: 1.04Auth: 24. My chief is Wizard Julian Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Peter HP: 0.20260389812062676Auth: 26 Status: Alive.
+	Lord Wade HP: 0.4341484857948936Auth: 26. My chief is King Peter Status: Alive.
+		Peasant #7 HP: 2.570490000000001Auth: 22. My chief is Lord Wade Status: Alive.
+		Peasant #11 HP: 1.9773000000000005Auth: 23. My chief is Lord Wade Status: Alive.
+		Peasant #16 HP: 1.5210000000000004Auth: 24. My chief is Lord Wade Status: Alive.
+		Peasant #21 HP: 1.1700000000000002Auth: 25. My chief is Lord Wade Status: Alive.
+	Lord Riley HP: 0.23569210068184762Auth: 28. My chief is King Peter Status: Alive.
+		Knight Aaron HP: 1.9992699999999999Auth: 23. My chief is Lord Riley Status: Alive.
+		Peasant #8 HP: 2.570490000000001Auth: 24. My chief is Lord Riley Status: Alive.
+		Peasant #12 HP: 1.9773000000000005Auth: 25. My chief is Lord Riley Status: Alive.
+		Peasant #17 HP: 1.5210000000000004Auth: 26. My chief is Lord Riley Status: Alive.
+		Peasant #22 HP: 1.1700000000000002Auth: 27. My chief is Lord Riley Status: Alive.
+	Lord Miles HP: 0.23569210068184762Auth: 29. My chief is King Peter Status: Alive.
+		Knight Glen HP: 1.9992699999999999Auth: 24. My chief is Lord Miles Status: Alive.
+		Peasant #9 HP: 2.570490000000001Auth: 25. My chief is Lord Miles Status: Alive.
+		Peasant #13 HP: 1.9773000000000005Auth: 26. My chief is Lord Miles Status: Alive.
+		Peasant #18 HP: 1.5210000000000004Auth: 27. My chief is Lord Miles Status: Alive.
+		Peasant #23 HP: 1.1700000000000002Auth: 28. My chief is Lord Miles Status: Alive.
+	Wizard Julian HP: 0.45697623888758193Auth: 29. My chief is King Peter Status: Alive.
+		Knight EP#10 HP: 0.8553364216399946Auth: 7. My chief is Wizard Julian Status: Alive.
+		Knight EP#14 HP: 0.506984961140714Auth: 6. My chief is Wizard Julian Status: Alive.
+		Peasant #15 HP: 1.9773000000000005Auth: 25. My chief is Wizard Julian Status: Alive.
+		Peasant #19 HP: 1.5210000000000004Auth: 26. My chief is Wizard Julian Status: Alive.
+		Peasant #20 HP: 1.352Auth: 27. My chief is Wizard Julian Status: Alive.
+		Peasant #24 HP: 1.1700000000000002Auth: 28. My chief is Wizard Julian Status: Alive.
+
+---------------------------------------------RESULTS---------------------------------------------------
+
+King Peter HP: 0.23648146015373858Auth: 30 Status: Alive.
+	Lord Wade HP: 0.26300564113810276Auth: 31. My chief is King Peter Status: Alive.
+		Peasant #7 HP: 3.3416370000000013Auth: 26. My chief is Lord Wade Status: Alive.
+		Peasant #11 HP: 2.570490000000001Auth: 27. My chief is Lord Wade Status: Alive.
+		Peasant #16 HP: 1.9773000000000005Auth: 28. My chief is Lord Wade Status: Alive.
+		Peasant #21 HP: 1.5210000000000004Auth: 29. My chief is Lord Wade Status: Alive.
+		Peasant #25 HP: 1.1700000000000002Auth: 30. My chief is Lord Wade Status: Alive.
+☠	Lord Riley HP: 0.19378423013826085Auth: 30. My chief is King Peter Status: Dead.
+		Knight Aaron HP: 2.599051Auth: 27. My chief is Lord Riley Status: Alive.
+		Peasant #8 HP: 3.3416370000000013Auth: 28. My chief is Lord Riley Status: Alive.
+		Peasant #12 HP: 2.570490000000001Auth: 29. My chief is Lord Riley Status: Alive.
+		Peasant #17 HP: 1.5210000000000004Auth: 26. My chief is Lord Riley Status: Alive.
+		Peasant #22 HP: 1.1700000000000002Auth: 27. My chief is Lord Riley Status: Alive.
+		Peasant #27 HP: 0.9Auth: 2. My chief is Lord Riley Status: Alive.
+	Lord Miles HP: 0.30639973088640193Auth: 28. My chief is King Peter Status: Alive.
+		Knight Glen HP: 1.9992699999999999Auth: 24. My chief is Lord Miles Status: Alive.
+		Peasant #9 HP: 2.570490000000001Auth: 25. My chief is Lord Miles Status: Alive.
+		Peasant #13 HP: 1.9773000000000005Auth: 26. My chief is Lord Miles Status: Alive.
+		Peasant #18 HP: 1.5210000000000004Auth: 27. My chief is Lord Miles Status: Alive.
+		Peasant #23 HP: 1.1700000000000002Auth: 28. My chief is Lord Miles Status: Alive.
+		Peasant #28 HP: 0.9Auth: 2. My chief is Lord Miles Status: Alive.
+	Wizard Julian HP: 0.32251038803066123Auth: 33. My chief is King Peter Status: Alive.
+		Knight EP#10 HP: 0.8553364216399946Auth: 7. My chief is Wizard Julian Status: Alive.
+		Knight EP#14 HP: 0.506984961140714Auth: 6. My chief is Wizard Julian Status: Alive.
+		Knight EP#15 HP: 0.8261680187193703Auth: 4. My chief is Wizard Julian Status: Alive.
+		Knight EP#19 HP: 0.40491612259799054Auth: 5. My chief is Wizard Julian Status: Alive.
+		Peasant #20 HP: 1.7576000000000003Auth: 29. My chief is Wizard Julian Status: Alive.
+		Peasant #24 HP: 1.5210000000000004Auth: 30. My chief is Wizard Julian Status: Alive.
+		Peasant #26 HP: 1.04Auth: 31. My chief is Wizard Julian Status: Alive.
+		Peasant #29 HP: 1.1700000000000002Auth: 32. My chief is Wizard Julian Status: Alive.

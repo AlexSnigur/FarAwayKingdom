@@ -7,10 +7,13 @@ public class King extends Human {
     private final static  int AUTHORITY = 10;
     private final static int STATUS_LEVEL = 1;
     //private final int NUM_OF_PEASANTS_ON_START = 10;
+    private static String[][] phrase = new String[][] {
+            {null, null},
+            {"fief", "fief"}
+    };
 
     public King(String name, int idFromCollectiveList, int idFromOwnList, Kingdom kingdom) {
-        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, idFromCollectiveList, idFromOwnList, kingdom, null);
-        System.out.println(toString());
+        super(name, TITLE, HEALTH, AUTHORITY, STATUS_LEVEL, phrase, idFromCollectiveList, idFromOwnList, kingdom, null);
         //for (int x = 0; x < NUM_OF_PEASANTS_ON_START; x++) this.createPeasant();
     }
     public Peasant createPeasant() {
