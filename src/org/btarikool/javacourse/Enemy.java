@@ -19,7 +19,6 @@ public class Enemy extends Hooman {
     }
 
     public Enemy createEnemy(String name, String phrasePart) {
-
         return new Enemy(name, phrasePart, this.phrase, idNumber);
     }
 
@@ -36,16 +35,12 @@ public class Enemy extends Hooman {
         String decodedPhraseOne = "";
 
         if (phrase.length() < 20) {
-
             decodedPhraseOne += decodeGroupsHelper();
-
             for (int i = 10; i < phrase.length(); i++) {
                 decodedPhraseOne += phrase.charAt(i);
             }
         } else if (phrase.length() >= 20) {
-
             decodedPhraseOne += decodeGroupsHelper();
-
             for (int i = 17; i < phrase.length(); i++) {
                 decodedPhraseOne += phrase.charAt(i);
                 if (i > 18) {

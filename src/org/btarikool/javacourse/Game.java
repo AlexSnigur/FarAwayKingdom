@@ -29,6 +29,7 @@ public class Game {
 
         kingdom1.fight();
 
+        kingdom1.saveKingdomState();
     }
 
 }

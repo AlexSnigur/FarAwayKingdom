@@ -23,9 +23,7 @@ public class King extends Hooman {
     }
 
     public Hooman givePeasants(Hooman human, Kingdom kingdom) {
-
             peasantQuantity--;
-        //System.out.println(this.getNameAndTitle() + " gives peasant to " + human.getNameAndTitle());
             return kingdom.createHooman(human.getNameAndTitle() +"'s peasant #" +kingdom.hoomansList.size(), "", human);
 
     }

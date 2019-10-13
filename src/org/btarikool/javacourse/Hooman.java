@@ -33,7 +33,7 @@ public abstract class Hooman {
         } else {
             this.checkEven = false;
         }
-        if (!(this instanceof King || this instanceof Wizard || this instanceof Enemy)) {
+        if (!(this instanceof King ||  this instanceof Enemy)) {
             this.chief.getSubordinateList().add(this);
         }
     }
@@ -72,24 +72,20 @@ public abstract class Hooman {
         return listOfPeasants;
     }
 
-    public void setListOfPeasants(List<Hooman> listOfPeasants) {
-        this.listOfPeasants = listOfPeasants;
-    }
-
     public String getSubordinateListString() {
         String forReturn = "";
         for (Hooman h : this.subordinateList) {
-            forReturn += h.getNameAndTitle() + " ";
+            forReturn += h.getNameAndTitle() + (checkIfLastInList(h)? "." : ", ");
         }
         if (forReturn.isEmpty()) {
-            String emptyString = "none ";
+            String emptyString = "none.";
             return emptyString;
         }
         return forReturn;
     }
 
-    public void setCheckEven(boolean checkEven) {
-        this.checkEven = checkEven;
+    public boolean checkIfLastInList(Hooman h){
+        return (this.subordinateList.indexOf(h)==this.subordinateList.size()-1);
     }
 
     public void setAlive(boolean alive) {
@@ -140,21 +136,21 @@ public abstract class Hooman {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() + " ";
+            s += h.getNameAndTitle() + (checkIfLastInList(h)? "." : ", ");
         }
         return " protects " + s;
     }
 
     public String greetings(Hooman human) {
         this.changeStatus(human);
-        return " Greetings, ";
+        return ": 'Greetings, " + human.getNameAndTitle()+"!'";
     }
 
     public String shelter(List<Hooman> list) {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() + " ";
+            s += h.getNameAndTitle() + (checkIfLastInList(h)? "." : ", ");
         }
         return " gives shelter to " + s;
     }
@@ -163,7 +159,7 @@ public abstract class Hooman {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() + " ";
+            s += h.getNameAndTitle() + (checkIfLastInList(h)? "." : ", ");
         }
         return " gives fief to " + s;
     }
@@ -172,35 +168,35 @@ public abstract class Hooman {
         String s = "";
         for (Hooman h : list) {
             this.changeStatus(h);
-            s += h.getNameAndTitle() + " ";
+            s += h.getNameAndTitle() + (checkIfLastInList(h)? "." : ", ");
         }
         return " gives food to " + s;
     }
 
     public String militaryService(Hooman human) {
         this.changeStatus(human);
-        return " provides military service to ";
+        return " provides military service to " + human.getNameAndTitle();
     }
 
     public String militaryAid(Hooman human) {
         this.changeStatus(human);
-        return " provides military aid to ";
+        return " provides military aid to "+ human.getNameAndTitle();
     }
 
     public String loyalty(Hooman human) {
         this.changeStatus(human);
-        return " gives loyalty to ";
+        return " gives loyalty to "+ human.getNameAndTitle();
     }
 
 
     public String farmLand(Hooman human) {
         this.changeStatus(human);
-        return " farms land for ";
+        return " farms land for "+ human.getNameAndTitle();
     }
 
     public String paysRent(Hooman human) {
         this.changeStatus(human);
-        return " pays rent to ";
+        return " pays rent to "+ human.getNameAndTitle();
     }
 
     //coefficient for King power 20. Not used further than task 1
@@ -221,7 +217,9 @@ public abstract class Hooman {
 
     @Override
     public String toString() {
-        return this.title + " " + this.name;
+
+        double round = (double) Math.round(this.getHealth()*100.0)/100.0;
+        return this.title + " " + this.name + " [h: " + round+ ", p: " + this.getPower()+"]";
 
     }
 }

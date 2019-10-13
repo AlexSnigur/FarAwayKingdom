@@ -22,16 +22,19 @@ public class Wizard extends Hooman {
         peasant.setPower(getPower() + 1);
         this.getListOfPeasants().add(peasant);
         if (this.getListOfPeasants().size() % 5 == 0) {
-            Knight knight = new Knight("Promoted #" + this.getListOfPeasants().get(0).idNumber,
-                    this.getListOfPeasants().get(0).idNumber, this);
-            int x = k.hoomansList.indexOf(this.getListOfPeasants().get(0));
-            knight.setHealth(getRandomHealth());
-            knight.setPower(getRandomPower());
-            knight.rank = knight.health * knight.power;
-            k.hoomansList.set(x, knight);
-            k.knightList.add(knight);
-            this.getListOfPeasants().remove(0);
+            createKnight(k);
         }
+    }
+    public void createKnight(Kingdom k){
+        Knight knight = new Knight("Promoted #" + this.getListOfPeasants().get(0).idNumber,
+                this.getListOfPeasants().get(0).idNumber, this);
+        int x = k.hoomansList.indexOf(this.getListOfPeasants().get(0));
+        knight.setHealth(getRandomHealth());
+        knight.setPower(getRandomPower());
+        knight.rank = knight.health * knight.power;
+        k.hoomansList.set(x, knight);
+        k.knightList.add(knight);
+        this.getListOfPeasants().remove(0);
     }
 
     public double getRandomHealth() {
