@@ -4,7 +4,7 @@ package org.btarikool.javacourse;
 public class Game {
 
     public static void main(String[] args) {
-
+        System.out.println("LORDS COUNT: " + Settings.getLordsCount());
         Kingdom kingdom1 = new Kingdom("FarAway");
         King richard = (King) kingdom1.createPerson("Richard", "King", null);
         Lord lionel = (Lord) kingdom1.createPerson("Lionel", "Lord", richard);
