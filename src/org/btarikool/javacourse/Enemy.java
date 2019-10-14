@@ -19,7 +19,6 @@ public class Enemy extends Human {
         super(name, TITLE, STATUS_LEVEL, null, idFromCollectiveList, idFromOwnList, kingdom, null);
         this.ownPhrase = this.getEachEnemyOwnPhraseFromFile();
         this.ownEncryptedPhrase = this.ownPhrase.getBytes();
-        System.out.println(toString());
     }
 
     public Enemy(String name, byte[] phraseInBytes, Kingdom kingdom, Enemy createdBy) throws IOException {
@@ -30,7 +29,6 @@ public class Enemy extends Human {
         this.ownEncryptedPhrase = this.ownPhrase.getBytes();
         this.createdBy = createdBy;
         kingdom.addToLists(this);
-        System.out.println(toString());
     }
 
     public String getEachEnemyOwnPhraseFromFile() throws IOException {

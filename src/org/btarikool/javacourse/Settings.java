@@ -44,15 +44,23 @@ public class Settings {
     }
 
     public double getHP(Human human) {
-        double max = Double.parseDouble(prop.getProperty("maximumHpOnStart".concat(human.getTitle()), "0.0"));
-        double min = Double.parseDouble(prop.getProperty("minimumHpOnStart".concat(human.getTitle()), "0.0"));
-        return new Random().doubles(min, max).findFirst().getAsDouble();
+        if (human instanceof Peasant) return 0.9d;
+        else if (human instanceof Enemy) return 0.0d;
+        else {
+            double max = Double.parseDouble(prop.getProperty("maximumHpOnStart".concat(human.getTitle()), "0.0"));
+            double min = Double.parseDouble(prop.getProperty("minimumHpOnStart".concat(human.getTitle()), "0.0"));
+            return new Random().doubles(min, max).findFirst().getAsDouble();
+        }
     }
 
     public int getAuth(Human human) {
-        int max = Integer.parseInt(prop.getProperty("maximumAuthorityOnStart".concat(human.getTitle()), "0"));
-        int min = Integer.parseInt(prop.getProperty("minimumAuthorityOnStart".concat(human.getTitle()), "0"));
-        return new Random().ints(min, (max + 1)).findFirst().getAsInt();
+        if (human instanceof Peasant) return 2;
+        else if (human instanceof Enemy) return 0;
+        else {
+            int max = Integer.parseInt(prop.getProperty("maximumAuthorityOnStart".concat(human.getTitle()), "0"));
+            int min = Integer.parseInt(prop.getProperty("minimumAuthorityOnStart".concat(human.getTitle()), "0"));
+            return new Random().ints(min, (max + 1)).findFirst().getAsInt();
+        }
     }
 
 

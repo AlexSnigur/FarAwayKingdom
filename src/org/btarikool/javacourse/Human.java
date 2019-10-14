@@ -34,14 +34,6 @@ public abstract class Human implements Actions {
         this.ownListId = ownListId;
         this.collectiveListId = collectiveListId;
         this.id++;
-        if (this instanceof Peasant) {
-            this.authorityPoints = 2;
-            this.healPoints = 0.9d;
-        } else {
-            this.authorityPoints = kingdom.getSettings().getAuth(this);
-            this.healPoints = kingdom.getSettings().getHP(this);
-        }
-
         this.title = title;
         this.status = true;
         this.rank = healPoints * authorityPoints;
@@ -49,6 +41,8 @@ public abstract class Human implements Actions {
         this.chief = chief;
         this.evenOrOdd = collectiveListId%2==0?true:false;
         this.phrase = phrase;
+        this.authorityPoints = kingdom.getSettings().getAuth(this);
+        this.healPoints = kingdom.getSettings().getHP(this);
         if (!(this instanceof King || this instanceof Enemy)) chief.getSubordinateList().add(this);
     }
 

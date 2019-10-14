@@ -17,6 +17,14 @@ public class Wizard extends Human {
     }
 
     public void doToHeal(King king) {
+        int healCount = this.getKingdom().getSettings().getCountOfWizardsHeals();
+        while (healCount > 0) {
+            doToHealIter(king);
+            healCount--;
+        }
+    }
+
+    public void doToHealIter(King king) {
         if (king.getHealPoints() <= HP_TO_KING) {
             System.out.println(this.getTitleAndName() + " heals " + king.getTitleAndName());
             king.setHealPoints(king.getHealPoints() + HP_TO_KING);
@@ -33,7 +41,7 @@ public class Wizard extends Human {
             Knight newKnight = this.getMyPeasantsList().get(0);
             newKnight.setHealPoints(getRandomHP());
             newKnight.setAuthorityPoints(getRandomAuth());
-            newKnight.setName("EP" + this.getMyPeasantsList().get(0).getName());
+            newKnight.setName(this.getKingdom().getSettings().getRandomName().concat(" © " + this.getTitleAndName()));
             newKnight.setTitle("Knight");
             newKnight.setStatusLevel(2);
             setRank(newKnight);

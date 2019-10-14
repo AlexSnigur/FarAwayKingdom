@@ -154,7 +154,10 @@ public class Kingdom {
             System.out.println(winner.getTitleAndName() + " fights with " + looser.getTitleAndName() + ", winner is: " + winner.getTitleAndName());
             this.removeFromAliveSetToDeadList(looser);
         }
-        if (KNIGHT_LIST.size() > 1 && KNIGHT_LIST.size() % 2 == 0) doFightRand(getRandomKnightsList());
+        if (KNIGHT_LIST.size() > 1 && KNIGHT_LIST.size() % 2 == 0) {
+            System.out.println();
+            doFightRand(getRandomKnightsList());
+        }
     }
 
 /*    public Human doFight(Knight knight1, Knight knight2) {
