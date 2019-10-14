@@ -1,9 +1,16 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
+import com.sun.deploy.util.ArrayUtil;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Kingdom {
@@ -70,29 +77,88 @@ public class Kingdom {
             for (Person subordinate: p.subordinates) {
                 p.doAction(subordinate);
             }
-
-
         }
     }
 
-    public Knight[] choosetRandomPair() {
+    public Knight[] chooseRandomPair() {
         List<Person> allKnights = new ArrayList<>();
         for (Person p : this.people) {
-            if (p instanceof Knight & p.chief.title == Wizard.TITLE ) {
+            if (p instanceof Knight
+                    && !p.isDead
+                    && p.chief instanceof Wizard) {
                 allKnights.add(p);
             }
         }
-        
-        return new Knight[2];
+        int knightLen = allKnights.size();
+        if(knightLen < 2) {
+            return null;
+        }
+        int firstIndex = (int) (Math.random() * knightLen);
+        Knight kn1 = (Knight) allKnights.get(firstIndex);
+        int secIndex;
+        do {
+            secIndex = (int) (Math.random() * knightLen);
+        } while (firstIndex == secIndex);
+        Knight kn2 = (Knight) allKnights.get(secIndex);
+        return new Knight[]{kn1, kn2};
     }
 
-    public void doFight(Knight[] knightPair) {
-        double knight1Rank = Person.getRank(knightPair[0]);
-        double kinght2Rank = Person.getRank(knightPair[1]);
-        //TODO: Нужно будет сравнить, насколько отличается ранг рыцарей и в
-        //TODO: В зависимости от этого выбрать победителя
+    public static void doFight(Knight[] pair) {
+        Knight winner;
+        Knight loser;
+        if (pair == null) {
+            System.out.println("Invalid pair of fighters!");
+        }
+        System.out.println("Knights will fight: d");
+        System.out.println(pair[0] + "\n" + pair[1]);
+        double delta = pair[0].getRank() - pair[1].getRank();
+        if (Math.abs(delta) > 0.5) {
+            winner = delta > 0 ? pair[0] : pair[1];
+            loser = delta > 0 ? pair[1] : pair[0];
+        } else {
+            winner = pair[0].power > pair[1].power ? pair[0] : pair[1];
+            loser = pair[0].power > pair[1].power ? pair[1] : pair[0];
+        }
+        updateKnights(winner, loser);
+        System.out.println("Winner is: " + winner);
+        System.out.println("Loser is: " + loser);
+
+    }
+    private static void updateKnights(Knight winner, Knight loser) {
+        winner.setHealth(winner.getHealth() - loser.getHealth() / 2);
+        winner.power += loser.power / 2;
+        loser.setHealth(0);
+        loser.isDead = true;
+
+    }
+    public void printSubordinates (Person[] persons, int level, PrintWriter writer) {
+        if (persons == null) {
+            return;
+        }
+        for(Person p: persons) {
+            String tabs = p.isDead ? "☠" : "";
+            if (level == 0 && p.chief != null) {
+                continue;
+            } else {
+                for(int i = 0; i < level; i++) {
+                    tabs += "\t";
+                }
+            }
+            writer.println(tabs + p);
+            printSubordinates(p.subordinates, level + 1, writer);
+        }
     }
 
+    public void saveKingdomState() {
+        try {
+            FileWriter writer = new FileWriter("kingdom_out.log");
+            PrintWriter printWriter = new PrintWriter(writer);
+            printSubordinates(this.people, 0, printWriter);
+            printWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public String toString() {
