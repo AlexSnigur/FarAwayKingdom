@@ -8,7 +8,7 @@ public class King extends Hooman {
 
 
     public King(String name, int idNumber) {
-        super(name, idNumber, null);
+        super(name, idNumber);
         this.title = TITLE;
         this.health = 0.5;
         this.power = 10;
@@ -24,7 +24,11 @@ public class King extends Hooman {
 
     public Hooman givePeasants(Hooman human, Kingdom kingdom) {
             peasantQuantity--;
-            return kingdom.createHooman(human.getNameAndTitle() +"'s peasant #" +kingdom.hoomansList.size(), "", human);
+            Hooman forReturn = kingdom.createHooman(human.getNameAndTitle() +"'s peasant #" +kingdom.hoomansList.size(), "");
+            forReturn.getChief().getSubordinateList().remove(forReturn);
+            forReturn.setChief(human);
+            human.getSubordinateList().add(forReturn);
+            return forReturn;
 
     }
 }

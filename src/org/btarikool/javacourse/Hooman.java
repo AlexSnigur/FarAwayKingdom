@@ -12,7 +12,7 @@ public abstract class Hooman {
     double health;
     private static double healthUp = 1.3;
     private static double healthDown = 1.164993;
-    int power;
+    double power;
     int levelOfDominance;
     int idNumber;
     boolean isAlive;
@@ -23,18 +23,14 @@ public abstract class Hooman {
     private List<Hooman> listOfPeasants = new ArrayList<>();
 
 
-    public Hooman(String name, int idNumber, Hooman chief) {
+    public Hooman(String name, int idNumber) {
         this.name = name;
         this.idNumber = idNumber;
-        this.chief = chief;
         isAlive = true;
         if (idNumber % 2 == 0) {
             this.checkEven = true;
         } else {
             this.checkEven = false;
-        }
-        if (!(this instanceof King ||  this instanceof Enemy)) {
-            this.chief.getSubordinateList().add(this);
         }
     }
 
@@ -48,6 +44,11 @@ public abstract class Hooman {
 
     public void setChief(Hooman chief) {
         this.chief = chief;
+
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public double getRank() {
@@ -96,7 +97,7 @@ public abstract class Hooman {
         return isAlive;
     }
 
-    public void setPower(int power) {
+    public void setPower(double power) {
         this.power = power;
     }
 
@@ -117,10 +118,11 @@ public abstract class Hooman {
     }
 
     public void setHealth(double health) {
+
         this.health = health;
     }
 
-    public int getPower() {
+    public double getPower() {
         return this.power;
     }
 
@@ -219,7 +221,8 @@ public abstract class Hooman {
     public String toString() {
 
         double round = (double) Math.round(this.getHealth()*100.0)/100.0;
-        return this.title + " " + this.name + " [h: " + round+ ", p: " + this.getPower()+"]";
+        double round1 = (double) Math.round(this.getPower()*100.0)/100.0;
+        return this.title + " " + this.name + " [h: " + round+ ", p: " + round1+"]";
 
     }
 }
