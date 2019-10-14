@@ -1,16 +1,11 @@
 // Kingdom.java
 package org.btarikool.javacourse;
 
-import com.sun.deploy.util.ArrayUtil;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Kingdom {
