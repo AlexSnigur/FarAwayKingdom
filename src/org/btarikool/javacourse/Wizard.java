@@ -19,7 +19,7 @@ public class Wizard extends Hooman {
 
     public void healKing(Kingdom k) {
         System.out.println("\n>"+this.getNameAndTitle() + " heals the King");
-        King king = (King) this.chief;
+        King king = (King) this.getChief();
         king.setHealth(king.getHealth() + 0.2);
         Peasant peasant = (Peasant) king.givePeasants(this, k);
         peasant.getChief().getSubordinateList().remove(peasant);

@@ -7,17 +7,17 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class Hooman {
-    String name;
-    String title;
-    double health;
     private static double healthUp = 1.3;
     private static double healthDown = 1.164993;
-    double power;
     int levelOfDominance;
     int idNumber;
-    boolean isAlive;
+    String title;
+    double health;
     double rank;
-    Hooman chief;
+    double power;
+    private String name;
+    private boolean isAlive;
+    private Hooman chief;
     private boolean checkEven;
     private List<Hooman> subordinateList = new ArrayList<>();
     private List<Hooman> listOfPeasants = new ArrayList<>();

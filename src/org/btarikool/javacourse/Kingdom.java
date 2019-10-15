@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Kingdom {
+    public static final double HEALTH_MIN = 0.2;
     private String name;
     public List<Hooman> hoomansList = new ArrayList<>();
     public List<Hooman> deadList = new ArrayList<>();
@@ -15,10 +16,7 @@ public class Kingdom {
     public List<Hooman> kingList = new ArrayList<>();
     public List<Hooman> lordList = new ArrayList<>();
     public List<Wizard> wizardList = new ArrayList<>();
-
     public List<Hooman> knightFightList = new ArrayList<>();
-
-    public static final double HEALTH_MIN = 0.2;
     private Settings settings;
 
     public Kingdom() {
@@ -32,7 +30,7 @@ public class Kingdom {
             this.createHooman(settings.randomName(), "Wizard");
         }
         for (int i = 0; i < settings.qtyOfKnights(); i++) {
-            this.createHooman(settings.randomName(), "knight");
+            this.createHooman(settings.randomName(), "Knight");
         }
         this.name = settings.kingdomName();
         for (int i = 0; i < settings.gameRounds(); i++) {
@@ -69,11 +67,11 @@ public class Kingdom {
                 break;
             case "knight":
                 hooman = new Knight(name, hoomansList.size());
-                knightList.add(hooman);
                 hooman.setChief(getRandomLord());
                 hooman.getChief().getSubordinateList().add(hooman);
                 hooman.setHealth(settings.getHealthNumber(hooman));
                 hooman.setPower(settings.getPowerNumber(hooman));
+                knightList.add(hooman);
                 break;
             default:
                 hooman = new Peasant(name, hoomansList.size());
@@ -83,7 +81,6 @@ public class Kingdom {
                 hooman.setPower(settings.getPowerNumber(hooman));
                 break;
         }
-        //hooman.setChief(chief);
         hoomansList.add(hooman);
         return hooman;
     }
@@ -99,7 +96,7 @@ public class Kingdom {
         for (Hooman h : hoomansList) {
             if (h == null) {
                 hoomansList.stream().skip(hoomansList.indexOf(h));
-            } else if (h.title.equals("King")) {
+            } else if (h.getTitle().equals("King")) {
                 System.out.println(h + ", Subordinates: "
                         + h.getSubordinateListString());
             } else {
@@ -124,26 +121,26 @@ public class Kingdom {
         deadList.add(hooman);
         hooman.setAlive(false);
         hooman.setHealth(0);
-        //hoomansList.set(hooman.getIdNumber(), null);
         if (hooman instanceof Knight) {
-            knightList.remove(hooman);
+            knightFightList.remove(hooman);
         }
     }
 
     public Hooman pickRandomKnight() {
         Random r = new Random();
-        Hooman hooman = knightList.get(r.nextInt(knightList.size()));
+        Hooman hooman = knightFightList.get(r.nextInt(knightFightList.size()));
         return hooman;
     }
 
     public void fight() {
-        while (knightList.size() > 1) {
+        knightFightList.addAll(knightList);
+        while (this.knightFightList.size() > 1) {
             Hooman hooman1 = pickRandomKnight();
             Hooman hooman2 = pickRandomKnight();
             while (hooman2.equals(hooman1)) {
                 hooman2 = pickRandomKnight();
             }
-            System.out.println("Fight between " + hooman1 + " and " + hooman2 + " is started!");
+            System.out.println("\nFight between " + hooman1 + " and " + hooman2 + " is started!");
             if (hooman1.checkRankDifference(hooman2) || hooman1.getPower() > hooman2.getPower()) {
                 hooman1.setHealth(hooman1.getHealth() - (hooman2.getHealth() / 2));
                 if (hooman1.getHealth() < HEALTH_MIN) {
@@ -167,7 +164,7 @@ public class Kingdom {
     }
 
     public Hooman winnerDetails() {
-        return knightList.get(0);
+        return knightFightList.get(0);
     }
 
 
@@ -193,18 +190,12 @@ public class Kingdom {
                 System.out.println(human.getNameAndTitle()
                         + (human.isCheckEven() ? human.greetings(human.getChief()) : human.militaryService(human.getChief())));
             } else {
-
+                for (Hooman h : human.getSubordinateList()) {
+                    if (h instanceof Peasant && h.isAlive() && h.getChief().isAlive())
+                        System.out.println(h.getName()
+                                + (h.isCheckEven() ? h.farmLand(h.getChief()) : h.paysRent(h.getChief())));
+                }
             }
-            /*for (Hooman h : lordOne.getSubordinateList()) {
-                if (h instanceof Peasant && h.isAlive() && h.getChief().isAlive())
-                    System.out.println(h.getName()
-                            + (h.isCheckEven() ? h.farmLand(h.getChief()) : h.paysRent(h.getChief())));
-            }
-            for (Hooman g : lordTwo.getSubordinateList()) {
-                if (g instanceof Peasant && g.isAlive() && g.getChief().isAlive())
-                    System.out.println(g.getName()
-                            + (g.isCheckEven() ? g.farmLand(g.getChief()) : g.paysRent(g.getChief())));
-            }*/
             count--;
         }
         System.out.println("\n---->>> Actions form C to S:");
@@ -245,29 +236,20 @@ public class Kingdom {
             e.printStackTrace();
         }
     }
-
     public String saveKingdomHelper(Hooman h) {
         String forReturn = "";
         for (int i = 0; i < h.getSubordinateList().size(); i++) {
             if (!h.getSubordinateList().get(i).isAlive()) {
-                forReturn += "\u2620" + "   " + h.getSubordinateList().get(i) + "\n";
+                forReturn += "\u2620" + "\t" + h.getSubordinateList().get(i) + "\n";
                 for (int x = 0; x < h.getSubordinateList().get(i).getSubordinateList().size(); x++) {
                     Hooman hooman = h.getSubordinateList().get(i).getSubordinateList().get(x);
-                    if (!hooman.isAlive()) {
-                        forReturn += "\u2620" + "    " + hooman + "\n";
-                    } else {
-                        forReturn += "      " + hooman + "\n";
-                    }
+                    forReturn += (hooman.isAlive() ? "\t\t" : "\u2620" + "\t\t") + hooman + "\n";
                 }
             } else {
-                forReturn += "   " + h.getSubordinateList().get(i) + "\n";
+                forReturn += "\t" + h.getSubordinateList().get(i) + "\n";
                 for (int x = 0; x < h.getSubordinateList().get(i).getSubordinateList().size(); x++) {
                     Hooman hooman = h.getSubordinateList().get(i).getSubordinateList().get(x);
-                    if (!hooman.isAlive()) {
-                        forReturn += "\u2620" + "    " + hooman + "\n";
-                    } else {
-                        forReturn += "      " + hooman + "\n";
-                    }
+                    forReturn += (hooman.isAlive() ? "\t\t" : "\u2620" + "\t\t") + hooman + "\n";
                 }
             }
         }

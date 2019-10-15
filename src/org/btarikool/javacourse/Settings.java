@@ -25,13 +25,6 @@ public class Settings {
         List<String> listOfNames = Arrays.asList(properties.getProperty("randomNames").split(","));
         int rand = new Random().nextInt(listOfNames.size());
         String name = listOfNames.get(rand);
-        while (usedNames.contains(name)) {
-            rand = new Random().nextInt(listOfNames.size());
-            name = listOfNames.get(rand);
-            if (usedNames.isEmpty()) {
-                break;
-            }
-        }
         usedNames.add(name);
         return name;
     }
@@ -57,56 +50,59 @@ public class Settings {
     }
 
     public double getHealthNumber(Hooman h) {
-        double min = 0.0;
-        double max = 0.0;
+        double min;
+        double max;
+        Random r = new Random();
         switch (h.getTitle()) {
             case "King":
                 min = Double.parseDouble(properties.getProperty("kingMinHealth"));
                 max = Double.parseDouble(properties.getProperty("kingMaxHealth"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
+                //return (Math.random() * ((max - min) + 1)) + min;
             case "Lord":
                 min = Double.parseDouble(properties.getProperty("lordMinHealth"));
                 max = Double.parseDouble(properties.getProperty("lordMaxHealth"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
             case "Wizard":
                 min = Double.parseDouble(properties.getProperty("wizardMinHealth"));
                 max = Double.parseDouble(properties.getProperty("wizardMaxHealth"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
             case "Knight":
                 min = Double.parseDouble(properties.getProperty("knightMinHealth"));
                 max = Double.parseDouble(properties.getProperty("knightMaxHealth"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
             default:
                 min = Double.parseDouble(properties.getProperty("peasantMinHealth"));
                 max = Double.parseDouble(properties.getProperty("peasantMaxHealth"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
         }
     }
 
     public double getPowerNumber(Hooman h) {
-        double min = 0.0;
-        double max = 0.0;
+        double min;
+        double max;
+        Random r = new Random();
         switch (h.getTitle()) {
             case "King":
                 min = Double.parseDouble(properties.getProperty("kingMinPower"));
                 max = Double.parseDouble(properties.getProperty("kingMaxPower"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
             case "Lord":
                 min = Double.parseDouble(properties.getProperty("lordMinPower"));
                 max = Double.parseDouble(properties.getProperty("lordMaxPower"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
             case "Wizard":
                 min = Double.parseDouble(properties.getProperty("wizardMinPower"));
                 max = Double.parseDouble(properties.getProperty("wizardMaxPower"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
             case "Knight":
                 min = Double.parseDouble(properties.getProperty("knightMinPower"));
                 max = Double.parseDouble(properties.getProperty("knightMaxPower"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
             default:
                 min = Double.parseDouble(properties.getProperty("peasantMinPower"));
                 max = Double.parseDouble(properties.getProperty("peasantMaxPower"));
-                return (Math.random() * ((max - min) + 1)) + min;
+                return r.doubles(min,(max+1)).findFirst().getAsDouble();
         }
     }
 }

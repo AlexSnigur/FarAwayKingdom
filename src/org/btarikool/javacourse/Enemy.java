@@ -80,6 +80,6 @@ public class Enemy extends Hooman {
 
     @Override
     public String toString() {
-        return title + " " + name + ": " + this.phrase;
+        return title + " " + getName() + ": " + this.phrase;
     }
 }
