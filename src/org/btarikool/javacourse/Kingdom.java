@@ -288,7 +288,7 @@ public class Kingdom {
         } catch (IOException e) {}
     }
 
-    private void addNewHumansToList() {
+    private void addNewHumansToList()  {
         try {
             for (int x = 0; x < 1; x++) createHuman(settings.getRandomName(), "king", null);
             for (int x = 0; x < settings.getCountOnStartLord(); x++) createHuman(settings.getRandomName(), "lord", KING_LIST.get(0));
