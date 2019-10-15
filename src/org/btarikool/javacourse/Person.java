@@ -30,6 +30,21 @@ public abstract class Person {
 
     public Person(String name) {
         this.name = name;
+
+    }
+
+    void calcPower(int[] interval) {
+        int base = interval[0];
+        int delta = interval[1] - base;
+        int random = (int) (Math.random() * delta); // from 0 to delta
+        this.power = base + random;
+    }
+
+    void calcHealth(double[] interval) {
+        double base = interval[0];
+        double delta = interval[1] - base;
+        double random = Math.random() * delta; // from 0.0 to delta
+        this.health = base + random;
     }
 
     public double getRank() {

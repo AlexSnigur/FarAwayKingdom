@@ -8,8 +8,8 @@ public class Wizard extends Person {
     public Wizard(String name) {
         super(name);
         this.title = TITLE;
-        this.setHealth(1.0);
-        this.power = 10;
+        super.calcHealth(Settings.getWizardsHealthInterval());
+        super.calcPower(Settings.getWizardsPowerInterval());
         this.actions = new String[2][2];
     }
 

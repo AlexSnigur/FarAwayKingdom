@@ -155,6 +155,15 @@ public class Kingdom {
         }
     }
 
+    public Wizard getFirsWizard() {
+        for(Person p : this.people) {
+            if(p instanceof Wizard) {
+                return (Wizard) p;
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         String kingdom = "***" +  this.name + " Kingdom *** \n";

@@ -5,24 +5,31 @@ public class Game {
 
     public static void main(String[] args) {
         int lordsCount = Settings.getLordsCount();
-        System.out.println("LORDS COUNT = " + lordsCount);
-
-/*
         Kingdom kingdom1 = new Kingdom("FarAway");
         King richard = (King) kingdom1.createPerson("Richard", "King", null);
-        Lord lionel = (Lord) kingdom1.createPerson("Lionel", "Lord", richard);
-        Lord lee = (Lord) kingdom1.createPerson("Lee", "Lord", richard);
-        Wizard wally = (Wizard) kingdom1.createPerson("Wally", "wizard", richard);
-        Knight keeney = (Knight) kingdom1.createPerson("Keeney", "kNIGHT", lionel);
-        Knight koosey = (Knight) kingdom1.createPerson("koosey", "knight", lee);
+        for(int i = 1; i <= Settings.getWizardsCount(); i++) {
+            Wizard wizard = (Wizard) kingdom1.createPerson("Wizard #" + i, "Wizard", richard);
+        }
+        for (int i = 1; i <= lordsCount; i++) {
+            Lord lord = (Lord) kingdom1.createPerson("Lord #" + i, "Lord", richard);
+            Knight knight = (Knight) kingdom1.createPerson("Knight #" + i, "Knight", lord);
+        }
 
-
+        System.out.println(kingdom1);
 
         kingdom1.runActionsUp();
         kingdom1.runActionsDown();
 
-        keeney.setHealth(0.1);
-        keeney.isDead = true;
+        System.out.println(kingdom1);
+        kingdom1.saveKingdomState();
+        for (int i = 0; i < Settings.getKingCureCount(); i++){
+            kingdom1.getFirsWizard().cureKing(kingdom1);
+        }
+
+        System.out.println(kingdom1);
+
+
+/*
         kingdom1.saveKingdomState();
         System.out.println(kingdom1);
 

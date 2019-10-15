@@ -10,7 +10,8 @@ public class King extends Person {
         super(name);
         this.title = TITLE;
         this.setHealth(0.5);
-        this.power = 10;
+        super.calcPower(new int[]{9, 12});
+        super.calcHealth(new double[] {0.4, 0.6});
         this.actions = new String[][]{
                 {null, null},
                 {"fief", "fief"}
