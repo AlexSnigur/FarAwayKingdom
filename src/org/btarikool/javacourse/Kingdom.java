@@ -148,7 +148,6 @@ public class Kingdom {
             printSubordinates(p.subordinates, level + 1, writer);
         }
     }
-
     public void saveKingdomState() {
         try {
             FileWriter writer = new FileWriter("kingdom_out.log");
