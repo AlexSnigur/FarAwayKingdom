@@ -11,11 +11,12 @@ import java.util.List;
 public class Kingdom {
     private String name;
     Person[] people = {};
+
     public Kingdom(String name) {
         this.name = name;
     }
 
-    public Person createPerson(String name, String title, Person chief){
+    public Person createPerson(String name, String title, Person chief) {
         Person createdPerson;
         switch (title.toLowerCase()) {
             case "king":
@@ -35,7 +36,7 @@ public class Kingdom {
 
         }
         createdPerson.setChief(chief);
-        if (chief != null){
+        if (chief != null) {
             chief.addSubordinate(createdPerson);
         }
         addToPeople(createdPerson);
@@ -43,33 +44,32 @@ public class Kingdom {
     }
 
 
-
     private void addToPeople(Person p) {
         p.setId(this.people.length);
         int arrayLen = this.people.length;
-        Person [] newPeopleArray = Arrays.copyOf(this.people, arrayLen + 1);
+        Person[] newPeopleArray = Arrays.copyOf(this.people, arrayLen + 1);
         newPeopleArray[arrayLen] = p;
         this.people = newPeopleArray;
     }
 
     public void runActionsUp() {
         int lastIndex = this.people.length - 1;
-        for(int i = lastIndex; i >= 0; i-- ) {
+        for (int i = lastIndex; i >= 0; i--) {
             if (this.people[i] instanceof King) {
                 ((King) this.people[i]).providePeasantToSubordinates(this);
                 continue;
             }
-            this.people[i].doAction ();
+            this.people[i].doAction();
 
         }
     }
 
     public void runActionsDown() {
-        for(Person p: this.people) {
+        for (Person p : this.people) {
             if (p.subordinates == null || p.subordinates.length == 0) {
                 continue;
             }
-            for (Person subordinate: p.subordinates) {
+            for (Person subordinate : p.subordinates) {
                 p.doAction(subordinate);
             }
         }
@@ -85,7 +85,7 @@ public class Kingdom {
             }
         }
         int knightLen = allKnights.size();
-        if(knightLen < 2) {
+        if (knightLen < 2) {
             return null;
         }
         int firstIndex = (int) (Math.random() * knightLen);
@@ -119,6 +119,7 @@ public class Kingdom {
         System.out.println("Loser is: " + loser);
 
     }
+
     private static void updateKnights(Knight winner, Knight loser) {
         winner.setHealth(winner.getHealth() - loser.getHealth() / 2);
         winner.power += loser.power / 2;
@@ -126,16 +127,17 @@ public class Kingdom {
         loser.isDead = true;
 
     }
-    public void printSubordinates (Person[] persons, int level, PrintWriter writer) {
+
+    public void printSubordinates(Person[] persons, int level, PrintWriter writer) {
         if (persons == null) {
             return;
         }
-        for(Person p: persons) {
+        for (Person p : persons) {
             String tabs = p.isDead ? "☠" : "";
             if (level == 0 && p.chief != null) {
                 continue;
             } else {
-                for(int i = 0; i < level; i++) {
+                for (int i = 0; i < level; i++) {
                     tabs += "\t";
                 }
             }
@@ -154,6 +156,17 @@ public class Kingdom {
             e.printStackTrace();
         }
     }
+
+    public Wizard getFirstWizard() {
+        for (Person p : this.people) {
+            if (p instanceof Wizard) {
+                return (Wizard) p;
+            }
+        }
+        return null;
+    }
+
+
 
     @Override
     public String toString() {

@@ -6,8 +6,8 @@ public class Knight extends Person {
     public Knight(String name) {
         super(name);
         this.title = TITLE;
-        this.setHealth(0.7);
-        this.power = 5;
+        super.calcPower(Settings.getKnightsPowerInterval());
+        super.calcHealth(Settings.getKnightsHealthInterval());
         this.actions = new String[][]{
                 {"homage", "military service"},
                 {"food", "protection"}

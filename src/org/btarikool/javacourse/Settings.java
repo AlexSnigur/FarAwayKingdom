@@ -6,10 +6,9 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Settings {
-    static Properties properties;
+    static Properties properties = new Properties();
 
     static {
-        properties = new Properties();
         try (InputStream input = new FileInputStream("conf/default.properties")) {
             properties.load(input);
         } catch (IOException ioe) {
@@ -112,5 +111,34 @@ public class Settings {
         ret[0] = Double.valueOf(intervalArr[0]);// {0.8, 0.0}
         ret[1] = Double.valueOf(intervalArr[1]); // {0.8, 0.9}
         return ret;
+    }
+   /* public static int getLordsCount(){
+        return getIntValue("lords.count");
+    }
+    static int getIntValue(String propertyName){
+        try{
+            return Integer.parseInt(properties.getProperty(propertyName));
+        }catch (Exception e){
+            System.out.println("Invalid property value" + propertyName);
+            return 0;
+        }
+
+    }*/
+
+  /*  static double[] getHealthInterval(String propertyName){
+        String[] interval = properties.getProperty(propertyName);
+       String[] intervalArr = interval.split("-");
+       double[] ret = new double[2];
+       ret[0] = Double.valueOf(intervalArr[0]);
+       ret[1] = Double.valueOf(intervalArr[1]);*/
+
+
+   static int getrunsCount(){
+        String countStr  = properties.getProperty("gameruns.count");
+        return Integer.parseInt(countStr);
+   }
+    static int getKingCureCountCount(){
+        String countStr  = properties.getProperty("king.cure.count");
+        return countStr.length()>0 ? Integer.parseInt(countStr):0;
     }
 }

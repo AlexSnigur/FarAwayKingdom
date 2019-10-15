@@ -9,8 +9,8 @@ public class King extends Person {
     public King(String name) {
         super(name);
         this.title = TITLE;
-        this.setHealth(0.5);
-        this.power = 10;
+        super.calcHealth(new double [] {04, 06});
+        super.calcPower(new int[]{9,12});
         this.actions = new String[][]{
                 {null, null},
                 {"fief", "fief"}
