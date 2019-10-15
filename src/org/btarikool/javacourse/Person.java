@@ -14,9 +14,6 @@ public abstract class Person {
     private static final double HEALTH_THRESHOLD = 0.2;
     private static final List<Person> DEAD_LIST = new ArrayList<>();
 
-    static {
-
-    }
     String name;
     int id;
     String title;

@@ -4,9 +4,10 @@ package org.btarikool.javacourse;
 public class Game {
 
     public static void main(String[] args) {
-        System.out.println("LORDS COUNT: " + Settings.getLordsCount());
-        System.out.println("LORDS INTERVAL FROM: " + Settings.getLordsHealthInterval()[0]);
-        System.out.println("LORDS INTERVAL TO: " + Settings.getLordsHealthInterval()[1]);
+        int lordsCount = Settings.getLordsCount();
+        System.out.println("LORDS COUNT = " + lordsCount);
+
+/*
         Kingdom kingdom1 = new Kingdom("FarAway");
         King richard = (King) kingdom1.createPerson("Richard", "King", null);
         Lord lionel = (Lord) kingdom1.createPerson("Lionel", "Lord", richard);
@@ -14,6 +15,7 @@ public class Game {
         Wizard wally = (Wizard) kingdom1.createPerson("Wally", "wizard", richard);
         Knight keeney = (Knight) kingdom1.createPerson("Keeney", "kNIGHT", lionel);
         Knight koosey = (Knight) kingdom1.createPerson("koosey", "knight", lee);
+
 
 
         kingdom1.runActionsUp();
@@ -31,7 +33,7 @@ public class Game {
 
         Knight[] pair = kingdom1.chooseRandomPair();
         kingdom1.doFight(pair);
-
+*/
     }
 
 }
