@@ -17,36 +17,55 @@ public class Settings {
         }
     }
 
+    private int chekIntValue(String propertyName){
+        try{
+           return Integer.parseInt(properties.getProperty(propertyName));
+        } catch (Exception e){
+            System.out.println("Invalid properties value" + propertyName);
+            return 0;
+        }
+    }
+
     public String kingdomName() {
-        return properties.getProperty("kingdomName");
+        try {
+            return properties.getProperty("kingdomName");
+        }catch (Exception e){
+            System.out.println("Invalid properties value for kingdomName");
+            return "";
+        }
     }
 
     public String randomName() {
-        List<String> listOfNames = Arrays.asList(properties.getProperty("randomNames").split(","));
-        int rand = new Random().nextInt(listOfNames.size());
-        String name = listOfNames.get(rand);
-        usedNames.add(name);
-        return name;
+        try {
+            List<String> listOfNames = Arrays.asList(properties.getProperty("randomNames").split(","));
+            int rand = new Random().nextInt(listOfNames.size());
+            String name = listOfNames.get(rand);
+            usedNames.add(name);
+            return name;
+        }catch (Exception e){
+            System.out.println("Invalid properties value for randomName");
+            return "";
+        }
     }
 
     public int qtyOfWizards() {
-        return Integer.parseInt(properties.getProperty("wizardQuantity"));
+        return chekIntValue("wizardQuantity");
     }
 
     public int qtyOfLords() {
-        return Integer.parseInt(properties.getProperty("lordQuantity"));
+        return chekIntValue("lordQuantity");
     }
 
     public int qtyOfKnights() {
-        return Integer.parseInt(properties.getProperty("knightQuantity"));
+        return chekIntValue("knightQuantity");
     }
 
     public int gameRounds() {
-        return Integer.parseInt(properties.getProperty("gameRounds"));
+        return chekIntValue("gameRounds");
     }
 
     public int qtyOfHeals() {
-        return Integer.parseInt(properties.getProperty("qtyOfHeals"));
+        return chekIntValue("qtyOfHeals");
     }
 
     public double getHealthNumber(Hooman h) {
