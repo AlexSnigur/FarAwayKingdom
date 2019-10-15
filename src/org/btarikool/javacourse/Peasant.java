@@ -1,5 +1,7 @@
 package org.btarikool.javacourse;
 
+import com.sun.scenario.Settings;
+
 public class Peasant extends Person{
 
     public static final String TITLE = "";
@@ -8,11 +10,11 @@ public class Peasant extends Person{
         super(name);
         this.title = TITLE;
         this.setHealth(0.9);
-        this.power = 2;
+        super.calcPower(Settings.getPeasantsPowerInterval());
         this.actions = new String[][] {
                 {"farm the land", "pay rent"},
                 {null, null}
-        };
+        }
 
     }
 

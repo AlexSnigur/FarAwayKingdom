@@ -25,7 +25,15 @@ public abstract class Person {
     Person[] subordinates;
     String[][] actions;
 
-    public Person() {}
+    public Person() {
+    }
+
+    int calcPower(int[] interval) {
+        int base = interval[0];
+        int delta = interval[1] - base;
+        int random = (int) (Math.random() * delta);
+        return base + random;
+}
 
     public Person(String name) {
         this.name = name;

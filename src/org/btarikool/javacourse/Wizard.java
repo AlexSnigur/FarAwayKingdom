@@ -1,6 +1,8 @@
 // King.java
 package org.btarikool.javacourse;
 
+import com.sun.scenario.Settings;
+
 public class Wizard extends Person {
     private static String TITLE = "Wizard ";
 
@@ -9,7 +11,7 @@ public class Wizard extends Person {
         super(name);
         this.title = TITLE;
         this.setHealth(1.0);
-        this.power = 10;
+        super.calcPower(Settings.getWizardsPowerInterval());
         this.actions = new String[2][2];
     }
 
