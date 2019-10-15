@@ -1,6 +1,8 @@
 // King.java
 package org.btarikool.javacourse;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,19 +10,23 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class Person {
+    private static final String TITLE = "";
+    private static final Double HEALTH_CHANGE_COEFFICIENT = 0.98;
+    public static int runCounter = 0;
+    private static final double HEALTH_THRESHOLD = 0.2;
+    private static final List<Person> DEAD_LIST = new ArrayList<>();
+
+    static {
+
+    }
     String name;
     int id;
     String title;
     private double health;
     int power;
     public boolean isDead;
-    private static final String TITLE = "";
-    private static final Double HEALTH_CHANGE_COEFFICIENT = 0.98;
-    public static int runCounter = 0;
     private double healthUpCoeff = 1.33;
     private double healthDownCoeff = 1.164993;
-    private static final double HEALTH_THRESHOLD = 0.2;
-    private static final List<Person> DEAD_LIST = new ArrayList<>();
     Person chief;
     Person[] subordinates;
     String[][] actions;
