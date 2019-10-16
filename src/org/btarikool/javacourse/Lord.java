@@ -8,7 +8,9 @@ public class Lord extends Person{
         super(name);
         this.title =  TITLE;
         this.setHealth(0.7);
-        this.power = 5;
+        super.calcHelth(Settings.getLordsHealthInterval());
+        super.calcPower(Settings.getLordsPowerInterval());
+
         this.actions = new String[][] {
                 {"loyalty", "military aid"},
                 {"shelter", "protection"}

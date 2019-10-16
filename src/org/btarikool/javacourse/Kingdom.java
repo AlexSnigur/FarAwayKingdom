@@ -4,8 +4,11 @@ package org.btarikool.javacourse;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Kingdom {
@@ -14,6 +17,7 @@ public class Kingdom {
     public Kingdom(String name) {
         this.name = name;
     }
+
 
     public Person createPerson(String name, String title, Person chief){
         Person createdPerson;
@@ -34,7 +38,7 @@ public class Kingdom {
                 createdPerson = new Peasant(name);
 
         }
-        createdPerson.setChief(chief);
+          createdPerson.setChief(chief);
         if (chief != null){
             chief.addSubordinate(createdPerson);
         }
@@ -153,6 +157,14 @@ public class Kingdom {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public  Wizard getFirstWizard() {
+        for(Person p : this.people) {
+            if(p instanceof Wizard) {
+                return (Wizard) p;
+            }
+        }
+        return null;
     }
 
     @Override

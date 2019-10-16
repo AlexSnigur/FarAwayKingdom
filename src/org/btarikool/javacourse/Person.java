@@ -24,11 +24,25 @@ public abstract class Person {
     Person chief;
     Person[] subordinates;
     String[][] actions;
+    private double helth;
 
     public Person() {}
 
     public Person(String name) {
         this.name = name;
+    }
+
+    void  calcPower(int[] interval) {
+        int base = interval[0];
+        int delta = interval[1] - base;
+        int random = (int) (Math.random() * interval[1]); //from 0.0 to 0.6
+        this.power = base + random;
+    }
+    void  calcHelth(double[] interval) {
+        double base = interval[0];
+        double delta = interval[1] - base;
+        double random = (Math.random() * delta);  //from 0.0 to delta
+        this.helth = base + random;
     }
 
     public double getRank() {

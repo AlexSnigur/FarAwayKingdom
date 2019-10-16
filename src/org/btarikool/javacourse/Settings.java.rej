@@ -1,0 +1,57 @@
+diff a/src/org/btarikool/javacourse/Settings.java b/src/org/btarikool/javacourse/Settings.java	(rejected hunks)
+@@ -90,26 +90,55 @@
+     }
+ 
+     public static int getPeasantsCount() {
+         String countStr = properties.getProperty("peasants.count");
+         int count = Integer.parseInt(countStr);
+         return count;
+     }
+ 
+     public static int[] getPeasantsPowerInterval() {
+         String interval = properties.getProperty("peasant.power.interval");
+         String[] intervalArr = interval.split("-"); // 3-5 => {"3", "5"}
+         int[] ret = new int[2]; //  {0, 0}
+         ret[0] = Integer.parseInt(intervalArr[0]);// {3, 0}
+         ret[1] = Integer.parseInt(intervalArr[1]); // {3, 5}
+         return ret;
+     }
+ 
+     public static double[] getPeasantsHealthInterval() {
+         String interval = properties.getProperty("peasant.health.interval");
+         String[] intervalArr = interval.split("-"); // 0.8-0.9 => {"0.8", "0.9"}
+         double[] ret = new double[2]; //  {0.0, 0.0}
+         ret[0] = Double.valueOf(intervalArr[0]);// {0.8, 0.0}
+         ret[1] = Double.valueOf(intervalArr[1]); // {0.8, 0.9}
+         return ret;
+     }
++   /* public static int getLordsCount(){
++        return getIntValue("lords.count");
++    }
++    static int getIntValue(String propertyName){
++        try{
++            return Integer.parseInt(properties.getProperty(propertyName));
++        }catch (Exception e){
++            System.out.println("Invalid property value" + propertyName);
++            return 0;
++        }
++
++    }*/
++
++  /*  static double[] getHealthInterval(String propertyName){
++        String[] interval = properties.getProperty(propertyName);
++       String[] intervalArr = interval.split("-");
++       double[] ret = new double[2];
++       ret[0] = Double.valueOf(intervalArr[0]);
++       ret[1] = Double.valueOf(intervalArr[1]);*/
++
++
++   static int getrunsCount(){
++        String countStr  = properties.getProperty("gameruns.count");
++        return Integer.parseInt(countStr);
++   }
++    static int getKingCureCountCount(){
++        String countStr  = properties.getProperty("king.cure.count");
++        return countStr.length()>0 ? Integer.parseInt(countStr):0;
++    }
+ }

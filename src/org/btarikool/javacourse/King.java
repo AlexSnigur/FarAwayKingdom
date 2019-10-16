@@ -9,11 +9,13 @@ public class King extends Person {
     public King(String name) {
         super(name);
         this.title = TITLE;
-        this.setHealth(0.5);
-        this.power = 10;
+        this.setHealth(0.7);
+        this.power = 5;
+        super.calcPower(Settings.getKnightsPowerInterval());
+        super.calcHelth(Settings.getKnightsHealthInterval());
         this.actions = new String[][]{
-                {null, null},
-                {"fief", "fief"}
+                {"homage", "military service"},
+                {"food", "protection"}
         };
     }
 

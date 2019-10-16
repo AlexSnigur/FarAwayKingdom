@@ -1,0 +1,17 @@
+diff a/src/org/btarikool/javacourse/Kingdom.java b/src/org/btarikool/javacourse/Kingdom.java	(rejected hunks)
+@@ -40,14 +40,7 @@
+         return createdPerson;
+     }
+ 
+-    public void replacePerson(Person oldie, Person newbie) {
+-        for(int i = 0; i < this.people.length; i++) {
+-            if(this.people[i].equals(oldie)) {
+-                this.people[i] = newbie;
+-                this.people[i].setId(oldie.id);
+-            }
+-        }
+-    }
++
+ 
+     private void addToPeople(Person p) {
+         p.setId(this.people.length);
