@@ -117,7 +117,7 @@ public class Kingdom {
         else if (human instanceof Enemy) ENEMY_LIST.add(human);
     }
 
-    public Knight[] getRandomKnightsList() {
+/*    public Knight[] getRandomKnightsList() {
         Random random = new Random();
         Knight[] shuffledKnightList = new Knight[KNIGHT_LIST.size()];
         Collections.shuffle(KNIGHT_LIST);
@@ -126,17 +126,17 @@ public class Kingdom {
             KNIGHT_LIST.remove(x);
         }
         return shuffledKnightList;
-    }
+    }*/
 
-    public void checkForChampionshipStart() {
+/*    public void checkForChampionshipStart() {
         if (KNIGHT_LIST.size() == 8) {
             System.out.println("\n-----------------------CHAMPIONSHIP BEGINS!----------------------\n");
             doFightRand(getRandomKnightsList());
             System.out.println("\n-----------------------CHAMPIONSHIP IS OVER! CHAMPION IS " + KNIGHT_LIST.get(0).getTitleAndName() + " ----------------------\n");
         }
-    }
+    }*/
 
-    public void doFightRand(Knight[] shuffledKnightList) {
+    /*public void doFightRand(Knight[] shuffledKnightList) {
         int counter = shuffledKnightList.length;
         while (counter > 0) {
             counter--;
@@ -161,7 +161,7 @@ public class Kingdom {
             System.out.println();
             doFightRand(getRandomKnightsList());
         }
-    }
+    }*/
 
 /*    public Human doFight(Knight knight1, Knight knight2) {
         Knight looser;
@@ -181,7 +181,7 @@ public class Kingdom {
 
     public void removeFromAliveSetToDeadList(Human human) {
         if (human.getHealPoints() < human.getMINIMUM_HP_LEVEL()) {
-            System.out.println("\n---------------------------------------------" + human.getTitleAndName() + " IS DEAD---------------------------------------------------\n");
+            System.out.println("☠ " + human.getTitleAndName());
             human.setStatus(false);
             DEAD_LIST.add(human);
             if (human.getChief()!=null) {
@@ -198,15 +198,12 @@ public class Kingdom {
         }
     }
 
-    public void runActions(int countofIter) {
-        int counterForSout = 1;
-        while (countofIter > 0 && !KING_LIST.get(0).getSubordinateList().isEmpty()) {
-            System.out.println("\n\t\t" + counterForSout + " ITERATION:");
+    public void runActions(int countOfIter) {
+        while (countOfIter > 0 && !KING_LIST.get(0).getSubordinateList().isEmpty()) {
             int size = HUMAN_LIST.size() - 1;
             actionsUp(size);
             actionsDown(size, 0);
-            countofIter--;
-            counterForSout++;
+            countOfIter--;
             printResult();
         }
     }
@@ -258,7 +255,7 @@ public class Kingdom {
         } else return;
     }
     public void printResult() {
-        String line = "\n---------------------------------------------RESULTS FOR: " + this.name.concat(" kingdom").toUpperCase() + "---------------------------------------------------\n";
+        String line = "\n---------------------------------------------ITERATION : " + this.name.concat(" kingdom").toUpperCase() + "---------------------------------------------------\n";
         System.out.println(line);
         toLog = toLog.concat(line);
         String kingToString = KING_LIST.get(0).toString();

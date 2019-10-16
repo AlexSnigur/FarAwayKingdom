@@ -1,6 +1,8 @@
 package org.btarikool.javacourse;
 
 import java.io.*;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -16,6 +18,7 @@ public class Settings {
     private static List<Kingdom> kingdomsList = new ArrayList<>();
 
     public Settings(Kingdom kingdom) {
+        clearLogFiles();
         kingdomsList.add(kingdom);
         setInputSettingsForStart(new BufferedReader(new InputStreamReader(System.in)));
     }
@@ -31,6 +34,10 @@ public class Settings {
 
     public static List<Kingdom> getKingdomsList() {
         return kingdomsList;
+    }
+
+    private long getLogClearTime() {
+        return Long.parseLong(prop.getProperty("clearTime", "0"));
     }
 
     public int getIterCount() {
@@ -119,12 +126,32 @@ public class Settings {
         String dir = System.getProperty("user.dir").concat("\\log\\kingdomsFight_" + date + ".log");
         try (BufferedWriter output = new BufferedWriter(new FileWriter(dir, true))) {
             for (Kingdom kingdom : kingdomsList) {
+                output.write("RESULTS FOR KINGDOM ".concat(kingdom.getName().toUpperCase().concat("\n")));
                 output.write(kingdom.getLog());
                 kingdom.emptyLog();
             }
             output.write(("\nTHE WINNER IS KINGDOM " + Championship.getWinner().getKingdom().getName().toUpperCase().concat("!")));
             System.out.println("LOG WRITTEN");
         } catch (IOException e) {}
+    }
+
+    private void clearLogFiles() {
+        Path path = Paths.get(System.getProperty("user.dir").concat("\\log\\")).toAbsolutePath();
+        try {
+            Files.walkFileTree(path,  EnumSet.of(FileVisitOption.FOLLOW_LINKS), 1, new MyVisitor());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public class MyVisitor extends SimpleFileVisitor {
+        @Override
+        public FileVisitResult visitFile(Object file, BasicFileAttributes attrs) throws IOException {
+            if (attrs.isRegularFile() && attrs.creationTime().toMillis() < (new Date().getTime() - getLogClearTime())) {
+                Files.delete(((Path)file));
+            }
+            return FileVisitResult.CONTINUE;
+        }
     }
 
 }

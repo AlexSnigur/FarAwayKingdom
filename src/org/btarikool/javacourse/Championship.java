@@ -18,19 +18,21 @@ public class Championship {
 
     public static void startChamp() {
         listsToMap(Settings.getKingdomsList());
+        System.out.println("Championship between kingdoms begins!\n".toUpperCase());
         fighting(getTwoFighters());
-        System.out.println("\nTHE WINNER OF THIS CHAMPIONSHIP IS " + Championship.winner.getTitleAndName());
+        System.out.println("\nTHE WINNER OF THIS CHAMPIONSHIP IS " + Championship.winner.getTitleAndName() +
+                ".\nKINGDOM " + winner.getKingdom().getName().toUpperCase() +
+                " WINS!");
     }
 
     private static void fighting(Knight[] twoFighters) {
         Knight fighter1 = twoFighters[0];
         Knight fighter2 = twoFighters[1];
         Knight looser;
-        Knight winner;
         boolean isMore = Math.abs(fighter1.getRankByField() - fighter2.getRankByField()) > 0.5d ? true : false;
         if (isMore) looser = fighter1.getRankByField() > fighter2.getRankByField() ? fighter2 : fighter1;
         else looser = fighter1.getAuthorityPoints() > fighter2.getAuthorityPoints() ? fighter2 : fighter1;
-        winner = looser == fighter1 ? fighter2 : fighter1;
+        Knight winner = looser == fighter1 ? fighter2 : fighter1;
         System.out.println(fighter1.getTitleAndName() +
                 " From Kingdom: " + fighter1.getKingdom().getName().toUpperCase() +
                 " fights with " + fighter2.getTitleAndName() +
@@ -63,15 +65,10 @@ public class Championship {
 
 
     private static void listsToMap(List<Kingdom> list) {
-        list.stream().forEach(x ->
-                {
-                        x.getKnightList().
-                            stream().
-                            forEach(knight ->
-                                    knightsMap.put((Knight)knight, x)
-                            );
-                    }
-                );
+        list.stream().forEach(x -> {
+                        x.getKnightList().stream().forEach(knight ->
+                                    knightsMap.put((Knight)knight, x));
+                    });
     }
 
 }
