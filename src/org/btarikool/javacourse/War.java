@@ -61,6 +61,7 @@ public class War {
     public void saveKingdomState(Kingdom k) {
         for (Hooman h : k.hoomansList) {
             if (h instanceof King) {
+                log += k.getName()+"\n";
                 log += (h.toString() + "\n");
                 log += saveKingdomHelper(h) + "\n";
             }
