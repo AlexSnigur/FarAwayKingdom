@@ -8,19 +8,20 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class Person {
+    private static final String TITLE = "";
+    private static final Double HEALTH_CHANGE_COEFFICIENT = 0.98;
+    public static int runCounter = 0;
+    private static final double HEALTH_THRESHOLD = 0.2;
+    private static final List<Person> DEAD_LIST = new ArrayList<>();
+
     String name;
     int id;
     String title;
     private double health;
     int power;
     public boolean isDead;
-    private static final String TITLE = "";
-    private static final Double HEALTH_CHANGE_COEFFICIENT = 0.98;
-    public static int runCounter = 0;
     private double healthUpCoeff = 1.33;
     private double healthDownCoeff = 1.164993;
-    private static final double HEALTH_THRESHOLD = 0.2;
-    private static final List<Person> DEAD_LIST = new ArrayList<>();
     Person chief;
     Person[] subordinates;
     String[][] actions;
@@ -29,6 +30,21 @@ public abstract class Person {
 
     public Person(String name) {
         this.name = name;
+
+    }
+
+    void calcPower(int[] interval) {
+        int base = interval[0];
+        int delta = interval[1] - base;
+        int random = (int) (Math.random() * delta); // from 0 to delta
+        this.power = base + random;
+    }
+
+    void calcHealth(double[] interval) {
+        double base = interval[0];
+        double delta = interval[1] - base;
+        double random = Math.random() * delta; // from 0.0 to delta
+        this.health = base + random;
     }
 
     public double getRank() {

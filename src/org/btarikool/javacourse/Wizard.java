@@ -2,14 +2,14 @@
 package org.btarikool.javacourse;
 
 public class Wizard extends Person {
-    public static String TITLE = "Wizard ";
+    private static String TITLE = "Wizard ";
 
 
     public Wizard(String name) {
         super(name);
         this.title = TITLE;
-        this.setHealth(1.0);
-        this.power = 10;
+        super.calcHealth(Settings.getWizardsHealthInterval());
+        super.calcPower(Settings.getWizardsPowerInterval());
         this.actions = new String[2][2];
     }
 
@@ -31,7 +31,7 @@ public class Wizard extends Person {
 
     private int getRandomPower() {
         int base = 4;
-        int random = (int) (Math.random() * 5);
+        int random = (int) (Math.random() * 5); // from 0.0 to 0.6
         return base + random;
     }
 

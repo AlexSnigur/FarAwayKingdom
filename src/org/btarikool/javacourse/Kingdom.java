@@ -148,6 +148,7 @@ public class Kingdom {
             printSubordinates(p.subordinates, level + 1, writer);
         }
     }
+
     public void saveKingdomState() {
         try {
             FileWriter writer = new FileWriter("kingdom_out.log");
@@ -157,6 +158,15 @@ public class Kingdom {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Wizard getFirsWizard() {
+        for(Person p : this.people) {
+            if(p instanceof Wizard) {
+                return (Wizard) p;
+            }
+        }
+        return null;
     }
 
     @Override
