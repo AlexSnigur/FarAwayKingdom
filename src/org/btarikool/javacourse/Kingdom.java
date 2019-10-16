@@ -239,16 +239,12 @@ public class Kingdom {
         for (int i = 0; i < h.getSubordinateList().size(); i++) {
             if (!h.getSubordinateList().get(i).isAlive()) {
                 forReturn += "\u2620" + "\t" + h.getSubordinateList().get(i) + "\n";
-                // Hooman x =h.getSubordinateList().get(i);
-                //forReturn += saveKingdomHelper(x);
                 for (int x = 0; x < h.getSubordinateList().get(i).getSubordinateList().size(); x++) {
                     Hooman hooman = h.getSubordinateList().get(i).getSubordinateList().get(x);
                     forReturn += (hooman.isAlive() ? "\t\t" : "\u2620" + "\t\t") + hooman + "\n";
                 }
             } else {
                 forReturn += "\t" + h.getSubordinateList().get(i) + "\n";
-                //Hooman x =h.getSubordinateList().get(i);
-                // forReturn += saveKingdomHelper(x);
                 for (int x = 0; x < h.getSubordinateList().get(i).getSubordinateList().size(); x++) {
                     Hooman hooman = h.getSubordinateList().get(i).getSubordinateList().get(x);
                     forReturn += (hooman.isAlive() ? "\t\t" : "\u2620" + "\t\t") + hooman + "\n";

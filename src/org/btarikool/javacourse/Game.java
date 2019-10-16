@@ -4,6 +4,5 @@ public class Game {
     public static void main(String[] args) {
         Kingdom kingdom1 = new Kingdom();
     }
-
 }
 
