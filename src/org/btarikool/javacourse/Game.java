@@ -39,3 +39,14 @@ public class Game {
     }
 
 }
+        void runGameCycle(Kingdom kingdom){
+        kingdom1.runActionsUp();
+        kingdom1.runActionsDown();
+
+        System.out.println(kingdom);
+        kingdom.saveKingdomState();
+        for(int i=0; i < Settings.getKingCureCount(); i++)}
+        kingdom.getFirsWizard.cureKing(kingdom);
+
+
+
