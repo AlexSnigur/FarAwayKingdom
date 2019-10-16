@@ -79,8 +79,8 @@ public class Kingdom {
         List<Person> allKnights = new ArrayList<>();
         for (Person p : this.people) {
             if (p instanceof Knight
-                    && !p.isDead
-                    && p.chief instanceof Wizard) {
+                    && !p.isDead)
+                   {
                 allKnights.add(p);
             }
         }
