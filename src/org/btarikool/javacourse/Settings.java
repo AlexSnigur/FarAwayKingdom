@@ -1,8 +1,8 @@
 package org.btarikool.javacourse;
 
 import java.io.*;
-import java.util.Properties;
-import java.util.Random;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class Settings {
@@ -13,6 +13,12 @@ public class Settings {
     private int countOnStartWizard;
     private int countOnStartLord;
     private int countOfWizardsHeals;
+    private static List<Kingdom> kingdomsList = new ArrayList<>();
+
+    public Settings(Kingdom kingdom) {
+        kingdomsList.add(kingdom);
+        setInputSettingsForStart(new BufferedReader(new InputStreamReader(System.in)));
+    }
 
     static {
         try (FileInputStream input = new FileInputStream(LOCAL_DIR)){
@@ -21,6 +27,10 @@ public class Settings {
             e.printStackTrace();
             System.out.println("Properties file is not found!");
         }
+    }
+
+    public static List<Kingdom> getKingdomsList() {
+        return kingdomsList;
     }
 
     public int getIterCount() {
@@ -69,16 +79,13 @@ public class Settings {
         return names[new Random().ints(0, (names.length)).findFirst().getAsInt()];
     }
 
-    public void setInputSettingsForStart() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+    public void setInputSettingsForStart(BufferedReader reader) {
             this.iterationsCount = setPropInt(reader, "Please enter count of iterations for our actions: ");
             this.countOnStartLord = setPropInt(reader, "Please enter Lords count on start: ");
             this.countOnStartKnight = setPropInt(reader, "Please enter Knights count on start: ");
             this.countOnStartWizard = setPropInt(reader, "Please enter Wizards count on start: ");
             this.countOfWizardsHeals = setPropInt(reader, "Please enter Wizards heals count: ");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         System.out.print("Well done! Game will start in a ");
         try {
             for (int x = 3; x > 0; x--) {
@@ -106,5 +113,18 @@ public class Settings {
         return num;
     }
 
+    public static void writeLog() {
+        SimpleDateFormat df = new SimpleDateFormat("_dd_hh_mm_ss");
+        String date = df.format(new Date());
+        String dir = System.getProperty("user.dir").concat("\\log\\kingdomsFight_" + date + ".log");
+        try (BufferedWriter output = new BufferedWriter(new FileWriter(dir, true))) {
+            for (Kingdom kingdom : kingdomsList) {
+                output.write(kingdom.getLog());
+                kingdom.emptyLog();
+            }
+            output.write(("\nTHE WINNER IS KINGDOM " + Championship.getWinner().getKingdom().getName().toUpperCase().concat("!")));
+            System.out.println("LOG WRITTEN");
+        } catch (IOException e) {}
+    }
 
 }

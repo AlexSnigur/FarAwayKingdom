@@ -24,9 +24,8 @@ public class Kingdom {
     }
 
     public Kingdom(String name) {
-        this.settings = new Settings();
+        this.settings = new Settings(this);
         this.name = name;
-        settings.setInputSettingsForStart();
         addNewHumansToList();
         printResult();
         runActions(settings.getIterCount());
@@ -34,6 +33,10 @@ public class Kingdom {
 
     public Settings getSettings() {
         return settings;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Human createHuman(String name, String title, Human chief) throws IOException {
@@ -205,7 +208,6 @@ public class Kingdom {
             countofIter--;
             counterForSout++;
             printResult();
-            writeLog();
         }
     }
 
@@ -223,7 +225,7 @@ public class Kingdom {
             Human chief = human.getChief();
             System.out.println(human.getTitleAndName() + " gives " + human.getPhrase(0) + " to " + chief.getTitleAndName());
             removeFromAliveSetToDeadList(human);
-            checkForChampionshipStart();
+            //checkForChampionshipStart();
         } else return;
     }
 
@@ -248,7 +250,7 @@ public class Kingdom {
                 human.changeHpAndAuthorityLevel(subordinate);
                 for (Human wizard : getWizardList()) ((Wizard) wizard).doToHeal((King) KING_LIST.get(0));
                 removeFromAliveSetToDeadList(human);
-                checkForChampionshipStart();
+                //checkForChampionshipStart();
                 start++;
                 subCount = human.getSubordinateList().size() - 1;
                 if (human.getStatus()) actionWithSubordinate(human, subCount, start);
@@ -256,7 +258,7 @@ public class Kingdom {
         } else return;
     }
     public void printResult() {
-        String line = "\n---------------------------------------------RESULTS---------------------------------------------------\n";
+        String line = "\n---------------------------------------------RESULTS FOR: " + this.name.concat(" kingdom").toUpperCase() + "---------------------------------------------------\n";
         System.out.println(line);
         toLog = toLog.concat(line);
         String kingToString = KING_LIST.get(0).toString();
@@ -277,17 +279,6 @@ public class Kingdom {
         }
     }
 
-    private void writeLog() {
-        SimpleDateFormat df = new SimpleDateFormat("_dd_hh_mm_ss");
-        String date = df.format(new Date());
-        String dir = System.getProperty("user.dir").concat("\\log\\kingdom_" + this.name.replaceAll("\\s", "_") + date + ".log");
-        try (BufferedWriter output = new BufferedWriter(new FileWriter(dir, true))) {
-            output.write(toLog);
-            toLog = "";
-            System.out.println("WRITTEN");
-        } catch (IOException e) {}
-    }
-
     private void addNewHumansToList()  {
         try {
             for (int x = 0; x < 1; x++) createHuman(settings.getRandomName(), "king", null);
@@ -303,5 +294,12 @@ public class Kingdom {
         return new Random().ints(0, settings.getCountOnStartLord()).findFirst().getAsInt();
     }
 
+    public String getLog() {
+        return this.toLog;
+    }
+
+    public void emptyLog() {
+        this.toLog = "";
+    }
 
 }
