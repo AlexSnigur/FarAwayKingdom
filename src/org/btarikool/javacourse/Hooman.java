@@ -9,6 +9,7 @@ import java.util.List;
 public abstract class Hooman {
     private static double healthUp = 1.3;
     private static double healthDown = 1.164993;
+    public static final double HEALTH_MIN = 0.2;
     int levelOfDominance;
     int idNumber;
     String title;
@@ -63,6 +64,10 @@ public abstract class Hooman {
             hooman1.health = hooman2.health;
             hooman1.power = hooman2.power;
         }
+    }
+
+    public static double getHealthMin() {
+        return HEALTH_MIN;
     }
 
     public List<Hooman> getSubordinateList() {

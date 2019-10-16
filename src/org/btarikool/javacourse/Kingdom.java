@@ -20,9 +20,10 @@ public class Kingdom {
     private Settings settings;
     private String log = "";
 
-    public Kingdom() {
+    public Kingdom(String name) {
         //Hooman.changeHpLoss(0.8);
         this.settings = new Settings();
+        this.name = name;
         this.createHooman(settings.randomName(), "King");
         for (int i = 0; i < settings.qtyOfLords(); i++) {
             this.createHooman(settings.randomName(), "Lord");
@@ -33,14 +34,14 @@ public class Kingdom {
         for (int i = 0; i < settings.qtyOfKnights(); i++) {
             this.createHooman(settings.randomName(), "Knight");
         }
-        this.name = settings.kingdomName();
+        // this.name = settings.kingdomName();
         for (int i = 0; i < settings.gameRounds(); i++) {
             doActions(this);
             status();
             saveKingdomState();
         }
-        fight();
-        saveKingdomState();
+        // fight();
+        //saveKingdomState();
         writeToLog();
     }
 
@@ -89,6 +90,10 @@ public class Kingdom {
         return hooman;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Hooman getRandomLord() {
         int rand = new Random().nextInt(lordList.size());
         return lordList.get(rand);
@@ -115,7 +120,7 @@ public class Kingdom {
         for (Hooman check : hoomansList) {
             if (check == null) {
                 hoomansList.stream().skip(hoomansList.indexOf(check));
-            } else if (check.getHealth() < HEALTH_MIN) {
+            } else if (check.getHealth() < Hooman.getHealthMin()) {
                 addToDeadList(check);
             }
         }
@@ -147,16 +152,16 @@ public class Kingdom {
             System.out.println("\nFight between " + hooman1 + " and " + hooman2 + " is started!");
             if (hooman1.checkRankDifference(hooman2) || hooman1.getPower() > hooman2.getPower()) {
                 hooman1.setHealth(hooman1.getHealth() - (hooman2.getHealth() / 2));
-                if (hooman1.getHealth() < HEALTH_MIN) {
-                    hooman1.setHealth(HEALTH_MIN);
+                if (hooman1.getHealth() < Hooman.getHealthMin()) {
+                    hooman1.setHealth(Hooman.getHealthMin());
                 }
                 hooman1.setPower(hooman1.getPower() + (hooman2.getPower() / 2));
                 addToDeadList(hooman2);
                 System.out.println(hooman1.toString() + " wins the fight!");
             } else if (hooman2.checkRankDifference(hooman1) || hooman2.getPower() > hooman1.getPower()) {
                 hooman2.setHealth(hooman2.getHealth() - (hooman1.getHealth() / 2));
-                if (hooman2.getHealth() < HEALTH_MIN) {
-                    hooman2.setHealth(HEALTH_MIN);
+                if (hooman2.getHealth() < Hooman.getHealthMin()) {
+                    hooman2.setHealth(Hooman.getHealthMin());
                 }
                 hooman2.setPower(hooman2.getPower() + (hooman1.getPower() / 2));
                 addToDeadList(hooman1);
@@ -253,9 +258,10 @@ public class Kingdom {
         }
         return forReturn;
     }
-    public void writeToLog(){
+
+    public void writeToLog() {
         try {
-            FileWriter writer = new FileWriter("kingdom_out.log");
+            FileWriter writer = new FileWriter("kingdom_out" + this.getName() + ".log");
             PrintWriter printWriter = new PrintWriter(writer);
             printWriter.println(log);
             printWriter.close();
