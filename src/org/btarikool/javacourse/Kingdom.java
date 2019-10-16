@@ -3,6 +3,7 @@ package org.btarikool.javacourse;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -19,6 +20,7 @@ public class Kingdom {
     private final List<Human> DEAD_LIST = new ArrayList<>();
     private Settings settings;
     private String toLog = "";
+    private int iterationCounter = 0;
 
     public Kingdom() {
     }
@@ -27,7 +29,6 @@ public class Kingdom {
         this.settings = new Settings(this);
         this.name = name;
         addNewHumansToList();
-        printResult();
         runActions(settings.getIterCount());
     }
 
@@ -117,68 +118,6 @@ public class Kingdom {
         else if (human instanceof Enemy) ENEMY_LIST.add(human);
     }
 
-/*    public Knight[] getRandomKnightsList() {
-        Random random = new Random();
-        Knight[] shuffledKnightList = new Knight[KNIGHT_LIST.size()];
-        Collections.shuffle(KNIGHT_LIST);
-        for (int x = shuffledKnightList.length - 1; x >= 0; x--) {
-            shuffledKnightList[x] = (Knight) KNIGHT_LIST.get(x);
-            KNIGHT_LIST.remove(x);
-        }
-        return shuffledKnightList;
-    }*/
-
-/*    public void checkForChampionshipStart() {
-        if (KNIGHT_LIST.size() == 8) {
-            System.out.println("\n-----------------------CHAMPIONSHIP BEGINS!----------------------\n");
-            doFightRand(getRandomKnightsList());
-            System.out.println("\n-----------------------CHAMPIONSHIP IS OVER! CHAMPION IS " + KNIGHT_LIST.get(0).getTitleAndName() + " ----------------------\n");
-        }
-    }*/
-
-    /*public void doFightRand(Knight[] shuffledKnightList) {
-        int counter = shuffledKnightList.length;
-        while (counter > 0) {
-            counter--;
-            Knight knightFighter1 = shuffledKnightList[counter];
-            counter--;
-            Knight knightFighter2 = shuffledKnightList[counter];
-            Knight looser;
-            Knight winner;
-            boolean isMore = Math.abs(knightFighter1.getRankByField() - knightFighter2.getRankByField()) > 0.5d ? true : false;
-            if (isMore) looser = knightFighter1.getRankByField() > knightFighter2.getRankByField() ? knightFighter2 : knightFighter1;
-            else looser = knightFighter1.getAuthorityPoints() > knightFighter2.getAuthorityPoints() ? knightFighter2 : knightFighter1;
-            winner = looser == knightFighter1 ? knightFighter2 : knightFighter1;
-            winner.setHealPoints(winner.getHealPoints() - looser.getHealPoints() / 2);
-            winner.setAuthorityPoints(winner.getAuthorityPoints() + looser.getAuthorityPoints() / 2);
-            Human.setRank(winner);
-            KNIGHT_LIST.add(winner);
-            looser.setHealPoints(0);
-            System.out.println(winner.getTitleAndName() + " fights with " + looser.getTitleAndName() + ", winner is: " + winner.getTitleAndName());
-            this.removeFromAliveSetToDeadList(looser);
-        }
-        if (KNIGHT_LIST.size() > 1 && KNIGHT_LIST.size() % 2 == 0) {
-            System.out.println();
-            doFightRand(getRandomKnightsList());
-        }
-    }*/
-
-/*    public Human doFight(Knight knight1, Knight knight2) {
-        Knight looser;
-        Knight winner;
-        boolean isMore = Math.abs(knight1.getRankByField() - knight2.getRankByField()) > 0.5d ? true : false;
-        if (isMore) looser = knight1.getRankByField() > knight2.getRankByField() ? knight2 : knight1;
-        else looser = knight1.getAuthorityPoints() > knight2.getAuthorityPoints() ? knight2 : knight1;
-        winner = looser == knight1 ? knight2 : knight1;
-        winner.setHealPoints(winner.getHealPoints() - (looser.getHealPoints() / 2));
-        winner.setAuthorityPoints(winner.getAuthorityPoints() + (looser.getAuthorityPoints() / 2));
-        Human.setRank(winner);
-        looser.setHealPoints(0);
-        System.out.println(winner.getTitleAndName() + " fights with " + looser.getTitleAndName() + ", winner is: " + winner.getTitleAndName());
-        this.removeFromAliveSetToDeadList(looser);
-        return winner;
-    }*/
-
     public void removeFromAliveSetToDeadList(Human human) {
         if (human.getHealPoints() < human.getMINIMUM_HP_LEVEL()) {
             System.out.println("☠ " + human.getTitleAndName());
@@ -200,6 +139,8 @@ public class Kingdom {
 
     public void runActions(int countOfIter) {
         while (countOfIter > 0 && !KING_LIST.get(0).getSubordinateList().isEmpty()) {
+            iterationCounter++;
+            System.out.println("\n\t" + iterationCounter + " ITERATION:\n");
             int size = HUMAN_LIST.size() - 1;
             actionsUp(size);
             actionsDown(size, 0);
@@ -255,13 +196,14 @@ public class Kingdom {
         } else return;
     }
     public void printResult() {
-        String line = "\n---------------------------------------------ITERATION : " + this.name.concat(" kingdom").toUpperCase() + "---------------------------------------------------\n";
+        String line = "\n\t" + iterationCounter + " ITERATION RESULTS : " + this.name.concat(" kingdom").toUpperCase() + "\n";
         System.out.println(line);
         toLog = toLog.concat(line);
         String kingToString = KING_LIST.get(0).toString();
         System.out.println(kingToString);
         toLog = toLog.concat("\n" + kingToString);
         checkForPrintResult(KING_LIST.get(0), "\t");
+        System.out.println("\n");
         toLog = toLog.concat("\n");
     }
 

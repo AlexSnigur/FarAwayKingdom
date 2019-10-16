@@ -36,7 +36,7 @@ public class Championship {
         System.out.println(fighter1.getTitleAndName() +
                 " From Kingdom: " + fighter1.getKingdom().getName().toUpperCase() +
                 " fights with " + fighter2.getTitleAndName() +
-                " From Kingdom: " + fighter2.getKingdom().getName() +
+                " From Kingdom: " + fighter2.getKingdom().getName().toUpperCase() +
                 ". WINNER IS: " + winner.getTitleAndName());
         setStats(winner, looser);
         Kingdom loosersKingdom = looser.getKingdom();
