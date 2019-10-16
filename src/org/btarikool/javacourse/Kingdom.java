@@ -146,7 +146,9 @@ public class Kingdom {
 
     public void saveKingdomState() {
         try {
-            FileWriter writer = new FileWriter("kingdom_out.log");
+            String fileName = this.name.replaceAll(" ", "_");
+            fileName += "_kingdom_out.log";
+            FileWriter writer = new FileWriter(fileName);
             PrintWriter printWriter = new PrintWriter(writer);
             printSubordinates(this.people, 0, printWriter);
             printWriter.close();

@@ -93,9 +93,11 @@ public abstract class Person {
             healthUpCoeff /= HEALTH_CHANGE_COEFFICIENT;
             healthDownCoeff *= HEALTH_CHANGE_COEFFICIENT;
         }
-        if (subordinate == null) {
+        if (subordinate == null ) {
             health *= healthUpCoeff;
-            power--;
+            if (!(this.chief instanceof Wizard)) {
+                power--;
+            }
         } else {
             health /= healthDownCoeff;
             power++;
