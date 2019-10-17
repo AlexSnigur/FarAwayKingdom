@@ -35,6 +35,7 @@ public class Kingdom {
 
         }
         createdPerson.setChief(chief);
+        createdPerson.setKingdom(this);
         if (chief != null){
             chief.addSubordinate(createdPerson);
         }
@@ -98,7 +99,7 @@ public class Kingdom {
         return new Knight[]{kn1, kn2};
     }
 
-    public static void doFight(Knight[] pair) {
+    public static Knight doFight(Knight[] pair) {
         Knight winner;
         Knight loser;
         if (pair == null) {
@@ -115,9 +116,7 @@ public class Kingdom {
             loser = pair[0].power > pair[1].power ? pair[1] : pair[0];
         }
         updateKnights(winner, loser);
-        System.out.println("Winner is: " + winner);
-        System.out.println("Loser is: " + loser);
-
+        return winner;
     }
     private static void updateKnights(Knight winner, Knight loser) {
         winner.setHealth(winner.getHealth() - loser.getHealth() / 2);
@@ -144,10 +143,20 @@ public class Kingdom {
         }
     }
 
-    public void saveKingdomState() {
+    public Knight getFirstAliveKnight() {
+        for (Person p : this.people) {
+            if (p instanceof Knight && !p.isDead) {
+                return (Knight) p;
+            }
+        }
+        return null;
+    }
+
+    public void saveKingdomState(int cycleNum) {
         try {
-            String fileName = this.name.replaceAll(" ", "_");
-            fileName += "_kingdom_out.log";
+            String fileName = "log/";
+            fileName += this.name.replaceAll(" ", "_");
+            fileName += cycleNum + "_kingdom_out.log";
             FileWriter writer = new FileWriter(fileName);
             PrintWriter printWriter = new PrintWriter(writer);
             printSubordinates(this.people, 0, printWriter);

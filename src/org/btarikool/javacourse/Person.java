@@ -17,6 +17,7 @@ public abstract class Person {
     String name;
     int id;
     String title;
+    private Kingdom kingdom;
     private double health;
     int power;
     public boolean isDead;
@@ -31,6 +32,14 @@ public abstract class Person {
     public Person(String name) {
         this.name = name;
 
+    }
+
+    public Kingdom getKingdom() {
+        return kingdom;
+    }
+
+    public void setKingdom(Kingdom kingdom) {
+        this.kingdom = kingdom;
     }
 
     void calcPower(int[] interval) {
@@ -95,7 +104,7 @@ public abstract class Person {
         }
         if (subordinate == null ) {
             health *= healthUpCoeff;
-            if (!(this.chief instanceof Wizard)) {
+            if (!(this instanceof Knight)) {
                 power--;
             }
         } else {
