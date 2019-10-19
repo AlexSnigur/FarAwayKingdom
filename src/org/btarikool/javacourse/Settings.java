@@ -26,7 +26,7 @@ public class Settings {
     }
 
     public static int getWizardsCount() {
-        return getIntValue("wizards.count");
+        return getIntValue("wizard.count");
     }
 
     public static int[] getLordsPowerInterval () {
