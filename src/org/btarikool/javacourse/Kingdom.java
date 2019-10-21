@@ -147,6 +147,8 @@ public class Kingdom {
             printSubordinates(p.subordinates, level + 1, writer);
         }
     }
+    public Knight getFirst;
+
 
     public void saveKingdomState() {
         try {
