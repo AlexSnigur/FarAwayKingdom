@@ -15,6 +15,10 @@ public class Kingdom {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Person createPerson(String name, String title, Person chief){
         Person createdPerson;
         switch (title.toLowerCase()) {
@@ -43,6 +47,29 @@ public class Kingdom {
         return createdPerson;
     }
 
+    public double getAverageKnightsHealt() {
+        int count = 0;
+        double sum = 0;
+        for (Person p: this.people) {
+            if(p instanceof Knight && !p.isDead) {
+                count++;
+                sum += p.getHealth();
+            }
+        }
+        return count > 0 ? sum / count : 0;
+    }
+
+    public int getAverageKnightsPower() {
+        int count = 0;
+        int sum = 0;
+        for (Person p: this.people) {
+            if(p instanceof Knight && !p.isDead) {
+                count++;
+                sum += p.power;
+            }
+        }
+        return count > 0 ? sum / count : 0;
+    }
 
 
     private void addToPeople(Person p) {
@@ -105,8 +132,7 @@ public class Kingdom {
         if (pair == null) {
             System.out.println("Invalid pair of fighters!");
         }
-        System.out.println("Knights will fight: d");
-        System.out.println(pair[0] + "\n" + pair[1]);
+        System.out.println(pair[0].name + "(" + pair[0].getKingdom().name +  ") ** vs ** " + pair[1].name + "(" + pair[1].getKingdom().name + ")");
         double delta = pair[0].getRank() - pair[1].getRank();
         if (Math.abs(delta) > 0.5) {
             winner = delta > 0 ? pair[0] : pair[1];
@@ -116,15 +142,24 @@ public class Kingdom {
             loser = pair[0].power > pair[1].power ? pair[1] : pair[0];
         }
         updateKnights(winner, loser);
+
         return winner;
     }
+
+
     private static void updateKnights(Knight winner, Knight loser) {
-        winner.setHealth(winner.getHealth() - loser.getHealth() / 2);
-        winner.power += loser.power / 2;
+//        winner.setHealth(winner.getHealth() - loser.getHealth() / 2);
+//        winner.power += loser.power / 2;
         loser.setHealth(0);
         loser.isDead = true;
-
+        double avgHealth = loser.getKingdom().getAverageKnightsHealt();
+        int avgPower = loser.getKingdom().getAverageKnightsPower();
+        if (avgHealth > 0.2 && avgPower > 0) {
+            winner.setHealth(avgHealth);
+            winner.power = avgPower;
+        }
     }
+
     public void printSubordinates (Person[] persons, int level, PrintWriter writer) {
         if (persons == null) {
             return;

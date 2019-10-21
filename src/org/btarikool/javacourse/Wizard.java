@@ -17,6 +17,7 @@ public class Wizard extends Person {
         Knight newKnight = new Knight("Young Knight #" + peasant.id);
         kingdom.people[peasant.id] = newKnight;
         newKnight.setId(peasant.id);
+        newKnight.setKingdom(peasant.getKingdom());
         newKnight.setHealth(getRandomHealth());
         newKnight.power = getRandomPower();
         newKnight.setChief(this);
